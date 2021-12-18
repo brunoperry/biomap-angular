@@ -1,0 +1,58 @@
+:host {
+  display: grid;
+  grid-template-areas:
+    "title title"
+    "type rate"
+    "img img"
+    "desc desc"
+    "void date";
+  margin-bottom: 38px;
+  background-color: white;
+}
+:host:active {
+  transform: scale(0.95);
+}
+
+:host h2 {
+  color: var(--green-a);
+  font-size: 24pt;
+  grid-area: title;
+  margin: var(--padding);
+}
+:host label {
+  color: var(--green-b);
+  font-size: 20pt;
+  grid-area: type;
+  margin: 0 var(--padding);
+}
+:host app-rate {
+  display: flex;
+  grid-area: rate;
+  height: 18px;
+  align-self: center;
+  justify-self: flex-end;
+  margin: 0 var(--padding);
+  width: 100%;
+  gap: var(--padding);
+  justify-content: flex-end;
+}
+:host img {
+  grid-area: img;
+  width: 100%;
+  height: auto;
+  margin: var(--padding) 0;
+}
+:host p {
+  grid-area: desc;
+  font-size: 14pt;
+  margin: 0 var(--padding);
+  font-weight: 100;
+  color: var(--font-color);
+}
+:host .date {
+  grid-area: date;
+  margin: var(--padding);
+  color: var(--green-c);
+  justify-self: flex-end;
+  font-size: 12pt;
+}

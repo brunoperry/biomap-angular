@@ -1,0 +1,56 @@
+:host {
+  display: flex;
+  min-height: 64px;
+  padding: var(--padding);
+  flex: 1;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background-color: var(--green-a);
+  overflow: hidden;
+  align-items: center;
+  max-height: 64px;
+  pointer-events: initial;
+}
+
+#header-search,
+#header-back {
+  display: flex;
+  flex: 1;
+  animation-name: showdown;
+  animation-duration: var(--speed);
+}
+#header-search {
+  justify-content: center;
+}
+#header-search input {
+  flex: 1;
+  border: none;
+  margin: 0 var(--padding);
+  background-color: transparent;
+  border-bottom: 1px solid var(--green-c);
+  box-sizing: border-box;
+  font-size: 14pt;
+  padding: 0 var(--padding);
+  color: var(--font-color);
+}
+#header-search input:focus {
+  background-color: var(--green-e);
+}
+
+#header-back button {
+  display: flex;
+  align-items: center;
+  gap: var(--padding);
+  font-size: 18pt;
+  color: var(--green-c);
+}
+
+.void {
+  width: 32px;
+  height: 32px;
+}
+
+:host .hidden {
+  display: none !important;
+  animation-name: none !important;
+}

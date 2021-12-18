@@ -1,0 +1,62 @@
+:host {
+  flex: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#list-modes {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  max-height: 48px;
+  pointer-events: initial;
+  animation-duration: var(--speed);
+  animation-fill-mode: forwards;
+}
+#list-modes.initialized {
+  animation-name: zoomin;
+}
+
+#list-modes button {
+  padding: var(--padding);
+  flex: 1;
+}
+
+#list-modes .toggled {
+  background-color: var(--green-c);
+  pointer-events: none;
+}
+#list-modes .toggled svg {
+  fill: var(--green-e) !important;
+}
+
+#modes-container {
+  display: inline-flex;
+  flex: 1;
+  animation-duration: var(--speed);
+  animation-fill-mode: forwards;
+  /* pointer-events: none; */
+  width: 200%;
+  height: calc(100% - 48px);
+  transition: transform var(--speed) ease-in-out;
+  background-color: red;
+}
+#modes-container.initialized {
+  animation-name: fadein;
+}
+
+#list-map {
+  position: relative;
+  display: inline-flex;
+  width: 50%;
+  height: 100%;
+}
+
+#list-cards {
+  position: relative;
+  display: inline-block;
+  overflow-y: scroll;
+  pointer-events: initial;
+  width: 50%;
+  max-height: 100%;
+}
