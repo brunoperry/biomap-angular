@@ -3,53 +3,12 @@
 </h2>
 <div id="steps-container"  [ngClass]="{'initialized':initialized}" [ngStyle]="{'transform': 'translateX(-' + (currIndex/steps.length) * 100 + '%)'}">
     
-    
-    <div id="step1" class="step">
-        <button (click)="onStep1Click('type1')" [ngClass]="{'toggled' : currentSiteData.type === 'type1'}">
-            <svg width="50%" height="50%" viewBox="0 0 18 25" fill="var(--red)">
-                <path
-                    d="m 8.999975,0 c 4.959375,0 8.978906,4.0320312 8.978906,9.0046875 0,0 0,10.8523435 -8.978906,15.9953125 C 0.02106875,19.857031 0.02106875,9.0046875 0.02106875,9.0046875 0.02106875,4.0320312 4.0406,0 8.999975,0 Z" />
-            </svg>
-        </button>
-        <button (click)="onStep1Click('type2')" [ngClass]="{'toggled' : currentSiteData.type === 'type2'}">
-            <svg width="50%" height="50%" viewBox="0 0 18 25" fill="var(--yellow)">
-                <path
-                    d="m 8.999975,0 c 4.959375,0 8.978906,4.0320312 8.978906,9.0046875 0,0 0,10.8523435 -8.978906,15.9953125 C 0.02106875,19.857031 0.02106875,9.0046875 0.02106875,9.0046875 0.02106875,4.0320312 4.0406,0 8.999975,0 Z" />
-            </svg>
-        </button>
-        <button (click)="onStep1Click('type3')" [ngClass]="{'toggled' : currentSiteData.type === 'type3'}">
-            <svg width="50%" height="50%" viewBox="0 0 18 25" fill="var(--green-c)">
-                <path
-                    d="m 8.999975,0 c 4.959375,0 8.978906,4.0320312 8.978906,9.0046875 0,0 0,10.8523435 -8.978906,15.9953125 C 0.02106875,19.857031 0.02106875,9.0046875 0.02106875,9.0046875 0.02106875,4.0320312 4.0406,0 8.999975,0 Z" />
-            </svg>
-        </button>
-        <button (click)="onStep1Click('type4')" [ngClass]="{'toggled' : currentSiteData.type === 'type4'}">
-            <svg width="50%" height="50%" viewBox="0 0 18 25" fill="var(--brown)">
-                <path
-                    d="m 8.999975,0 c 4.959375,0 8.978906,4.0320312 8.978906,9.0046875 0,0 0,10.8523435 -8.978906,15.9953125 C 0.02106875,19.857031 0.02106875,9.0046875 0.02106875,9.0046875 0.02106875,4.0320312 4.0406,0 8.999975,0 Z" />
-            </svg>
-        </button>
-        <button (click)="onStep1Click('type5')" [ngClass]="{'toggled' : currentSiteData.type === 'type5'}">
-            <svg width="50%" height="50%" viewBox="0 0 18 25" fill="var(--blue)">
-                <path
-                    d="m 8.999975,0 c 4.959375,0 8.978906,4.0320312 8.978906,9.0046875 0,0 0,10.8523435 -8.978906,15.9953125 C 0.02106875,19.857031 0.02106875,9.0046875 0.02106875,9.0046875 0.02106875,4.0320312 4.0406,0 8.999975,0 Z" />
-            </svg>
-        </button>
-        <button (click)="onStep1Click('typeother')" [ngClass]="{'toggled' : currentSiteData.type === 'typeother'}">
-            <svg width="50%" height="50%" viewBox="0 0 18 25" fill="var(--grey)">
-                <path
-                    d="m 8.999975,0 c 4.959375,0 8.978906,4.0320312 8.978906,9.0046875 0,0 0,10.8523435 -8.978906,15.9953125 C 0.02106875,19.857031 0.02106875,9.0046875 0.02106875,9.0046875 0.02106875,4.0320312 4.0406,0 8.999975,0 Z" />
-            </svg>
-        </button>
-    </div>
+    <app-step1 [ngClass]="'step'" (onChange)="onStep1Change($event)"></app-step1>
+    <app-step2 [ngClass]="'step'" (onChange)="onStep2Change($event)"></app-step2>
+    <app-step3 [ngClass]="'step'" (onChange)="onStep3Change($event)"></app-step3>
+    <app-step4 [ngClass]="'step'" (onChange)="onStep4Change($event)"></app-step4>
+    <app-step5 [ngClass]="'step'" (onChange)="onStep5Change($event)" [reviewData]="currentSiteData"></app-step5>
 
-
-    <div id="step2" class="step">
-        <app-site-map [mapID]="'mapadd'" [isPlacement]="true" (onChange)="onStep2Change($event)"></app-site-map>
-        
-    </div>
-    <div id="step3" class="step">step3</div>
-    <div id="step4" class="step">step4</div>
 </div>
 <div id="steps-controller" [ngClass]="{'initialized':initialized}">
     <button id="prev-step" (click)="onPrevClick()" [ngClass]="{'disabled' : currIndex == 0}">
@@ -59,8 +18,12 @@
     </button>
     <p id="controller-text">{{currIndex+1}} / {{steps.length}}</p>
     <button id="next-step" (click)="onNextClick()" [ngClass]="{'disabled' : !currentStep.state}">
-        <svg width="32" height="21" viewBox="0 0 32 21" fill="var(--green-e)" style="transform: rotate(180deg);">
+        <svg width="32" height="21" viewBox="0 0 32 21" fill="var(--green-e)" style="transform: rotate(180deg);" [ngClass]="{'hidden':isEnd}">
             <path d="m 9.0065,12.7845 5.133,4.985 L 10.8125,21 0,10.5 10.8125,0 l 3.327,3.2305 -5.133,4.985 H 32 v 4.569 z" />
+        </svg>
+        <svg width="32" height="21" viewBox="0 0 32 23" fill="var(--green-e)" [ngClass]="{'hidden':!isEnd}">
+            <path
+                d="M 12.877746,15.129772 28.052642,2.8736e-4 32.00008,3.9347737 12.877746,22.999884 0,10.160674 3.9474384,6.2261875 Z" />
         </svg>
     </button>
 </div>

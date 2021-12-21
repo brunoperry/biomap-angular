@@ -1,0 +1,49 @@
+<div id="review-container">
+
+    <div class="review-group">
+        <label>Title</label>
+        <p>{{reviewData.title}}</p>
+    </div>
+    
+    <div class="review-group">
+        <label>Description</label>
+        <p>{{reviewData.description}}</p>
+    </div>
+    
+    <div class="review-group">
+        <label>Type</label>
+        <p>{{reviewData.type}}</p>
+    </div>
+    
+    <div *ngIf="reviewData.phone" class="review-group">
+        <label>Phone</label>
+        <p>{{reviewData.phone}}</p>
+    </div>
+    
+    <div *ngIf="reviewData.address" class="review-group">
+        <label>Address</label>
+        <p>{{reviewData.address}}</p>
+    </div>
+
+    <div *ngIf="reviewData.email" class="review-group">
+        <label>Email</label>
+        <p>{{reviewData.email}}</p>
+    </div>
+
+    <div *ngIf="reviewData.website" class="review-group">
+        <label>Website</label>
+        <p>{{reviewData.website}}</p>
+    </div>
+    
+    <div *ngIf="reviewData.networks.length > 0" class="review-group">
+        <label>Networks</label>
+        <div class="networks-container"></div>
+    </div>
+
+    <div *ngIf="reviewData.media.length > 0" class="review-group">
+        <label>Media</label>
+        <div class="media-container"></div>
+    </div>
+</div>
+
+

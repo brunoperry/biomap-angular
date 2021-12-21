@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core"
+import { Router } from "@angular/router";
 import { catchError, Observable } from "rxjs";
 import { ReviewModel } from "src/models/review.model.";
 import { SiteModel } from "src/models/site.model"
@@ -20,7 +21,12 @@ export class SiteService {
         'https://www.gardeningknowhow.com/wp-content/uploads/2016/03/surplus-veggies.jpg',
         'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        '+351 94 3453434',
         'street A',
+        'info@quintadmarinha.com',
+        'www.quintadosol.com',
+        ['facebook', 'instagram'],
+        ['image1', 'image2'],
         '02 Jan 2019',
         [0,2],
         [37.82474,-8.65186]),
@@ -32,7 +38,12 @@ export class SiteService {
         'https://cdn.vox-cdn.com/thumbor/wNCd1cBf7MrId4a_2IT-XmcfygY=/0x0:5114x3414/1200x800/filters:focal(2148x1298:2966x2116)/cdn.vox-cdn.com/uploads/chorus_image/image/64713096/shutterstock_1106746100.0.jpg',
         'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        '+351 94 3212124',
         'street B',
+        'quintadosol@quintadosol.com',
+        'www.quintadosol.com',
+        ['facebook', 'instagram'],
+        ['image1', 'image2'],
         '12 Jan 2021',
         [1,3],
         [39.64369,-4.41705]),
@@ -44,7 +55,12 @@ export class SiteService {
         'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.masslive.com%2Fresizer%2FYroJRQw1VU9PtFhxMt9NFjl846w%3D%2F1280x0%2Fsmart%2Fcloudfront-us-east-1.images.arcpublishing.com%2Fadvancelocal%2FYITTQEWCCNH6VBNPXC7E3FXLXY.jpg&f=1&nofb=1',
         'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        '+351 94 3453434',
         'street C',
+        'quintaalfarroba@quintaalfarroba.com',
+        'www.alfarroba.com',
+        ['facebook', 'instagram'],
+        ['image1', 'image2'],
         '22 Mar 2021',
         [4],
         [52.8221,-1.6810])
@@ -58,7 +74,7 @@ export class SiteService {
     new ReviewModel(4, 1, 'review 05', '7 Sep 2021')
   ];
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient, private router:Router) {
 
   }
 
@@ -72,7 +88,7 @@ export class SiteService {
   }
 
   getSites():SiteModel[] {
-      return this.sitesData;
+      return this.sitesData.reverse();
   }
 
   getSite(siteID:number):SiteModel|undefined {
@@ -85,6 +101,7 @@ export class SiteService {
 
   addSite(site:SiteModel) :void {
       this.sitesData.push(site);
+      this.router.navigate(['/site-list']);
   }
 
   searchSite(siteName:string):SiteModel[] {

@@ -30,6 +30,7 @@
   animation-duration: var(--speed);
   animation-fill-mode: forwards;
   transition: transform var(--speed) ease-in-out;
+  overflow: hidden;
 }
 #steps-container.initialized {
   animation-name: fadein;
@@ -38,6 +39,7 @@
   display: inline-flex;
   width: calc(100% / 4);
   height: 100%;
+  overflow-y: scroll;
 }
 
 #steps-controller {
@@ -73,18 +75,6 @@
   grid-area: next;
 }
 
-#step1 {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 33% 34% 33%;
-}
-
-#step1 button.toggled {
-  background-color: var(--green-a);
-  pointer-events: none;
-}
-
-#step2 {
-  display: flex;
-  flex-direction: column;
+:host .hidden {
+  display: none;
 }

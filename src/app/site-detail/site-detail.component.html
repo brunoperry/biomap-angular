@@ -8,16 +8,16 @@
 </div>
 
 <div id="detail-contacts-container"  [ngClass]="{'initialized':initialized}">
-    <img src="{{detailData?.mapImg}}" alt="">
-    <button id="detail-map-button" (click)="onMapButtonClick()">
+    <img *ngIf="detailData?.mapImg" src="{{detailData?.mapImg}}" alt="">
+    <button *ngIf="detailData?.mapImg" id="detail-map-button" (click)="onMapButtonClick()">
         <svg width="100%" height="100%" viewBox="0 0 32 32">
             <ellipse cx="15.989835" cy="15.999867" fill="var(--blue)" rx="15.999805" ry="15.999874" />
             <path fill="white"
                 d="m 17.507474,13.860362 v -2.939911 l 5.906286,4.473892 -5.906286,4.474421 v -2.93991 h -5.856546 v 4.151115 H 8.5829609 v -7.219607 z" />
         </svg>
     </button>
-    <p>{{detailData?.address}}</p>
-    <div id="detail-networks-container">
+    <p *ngIf="detailData?.address">{{detailData?.address}}</p>
+    <div  *ngIf="detailData?.address" id="detail-networks-container">
         <button (click)="onNetworkClick('mail')">
             <svg width="100%" height="100%" viewBox="0 0 32 25" fill="var(--green-b)">
                 <path

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LatLng } from 'leaflet';
 import { SiteModel } from 'src/models/site.model';
 import { SiteService } from 'src/services/site.service';
 
@@ -14,30 +13,38 @@ export class SiteAddComponent implements OnInit {
   steps:any[] = [
     {
       id: 0,
-      title:'select type',
-      state: false
-    },
-    {
-      id: 1,
       title:'set location',
       state: false
     },
     {
-      id: 2,
-      title:'info',
+      id: 1,
+      title:'information',
       state: false
+    },
+    {
+      id: 2,
+      title:'contacts',
+      state: true
+    },
+    {
+      id: 3,
+      title:'media',
+      state: true
     },
     {
       id: 3,
       title:'review',
-      state: false
+      state: true
     }
   ];
   currIndex:number=0;
   disableNext:boolean = true;
   currentSiteData:SiteModel = new SiteModel();
+  isEnd:boolean = false;
 
-  constructor(private siteService:SiteService) { }
+  constructor(private siteService:SiteService) { 
+    document.documentElement.style.setProperty('--num-steps', this.steps.length.toString());
+  }
 
   ngOnInit(): void {
     this.initialized = true;
@@ -45,19 +52,48 @@ export class SiteAddComponent implements OnInit {
 
   onPrevClick():void {
     this.currIndex--;
-
+    this.isEnd = this.currIndex >= this.steps.length - 1;
   }
   onNextClick():void {
+
+    if(this.isEnd) {
+      this.siteService.addSite(this.currentSiteData);
+      return;
+    }
     this.currIndex++;
+    this.isEnd = this.currIndex >= this.steps.length - 1;
   }
 
-  onStep1Click(type:string):void {
-    this.currentStep.state = true;
-    this.currentSiteData.type = type;
-  }
-  onStep2Change(coords:number[] | undefined) {
+  onStep1Change(coords:number[] | undefined):void {
     coords ? this.currentStep.state = true : this.currentStep.state = false;
     this.currentSiteData.coords = coords;
+  }
+  onStep2Change(data:any):void {
+
+    if(!data) {
+      this.currentStep.state = false;
+      return;
+    }
+
+    this.currentSiteData = Object.assign({}, this.currentSiteData, data);
+    this.currentStep.state = true;
+  }
+
+  onStep3Change(data:any):void {
+
+    this.currentSiteData = Object.assign({}, this.currentSiteData, data);
+    
+    this.currentStep.state = true;
+    // console.log('step3 change', data);
+  }
+
+  onStep4Change(data:any):void {
+    console.log('step4 change', data);
+  }
+
+  onStep5Change(data:any):void {
+    
+    console.log('step5 change', data);
   }
 
   get currentStep():any {

@@ -39,7 +39,7 @@
   width: 200%;
   height: calc(100% - 48px);
   transition: transform var(--speed) ease-in-out;
-  background-color: red;
+  background-color: var(--green-e);
 }
 #modes-container.initialized {
   animation-name: fadein;

@@ -15,6 +15,12 @@ import { SiteDetailComponent } from './site-detail/site-detail.component';
 import { ReviewCardComponent } from './review-card/review-card.component';
 import { SiteMapComponent } from './site-map/site-map.component';
 import { SiteAddComponent } from './site-add/site-add.component';
+import { Step1Component } from './site-add/steps/step1/step1.component';
+import { Step2Component } from './site-add/steps/step2/step2.component';
+import { Step3Component } from './site-add/steps/step3/step3.component';
+import { Step4Component } from './site-add/steps/step4/step4.component';
+import { Step5Component } from './site-add/steps/step5/step5.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes:Routes = [
   {
@@ -47,14 +53,20 @@ const routes:Routes = [
     SiteDetailComponent,
     ReviewCardComponent,
     SiteMapComponent,
-    SiteAddComponent
+    SiteAddComponent,
+    Step1Component,
+    Step2Component,
+    Step3Component,
+    Step4Component,
+    Step5Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

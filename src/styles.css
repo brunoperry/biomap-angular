@@ -27,6 +27,7 @@
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: "Roboto", sans-serif;
 }
 *:focus {
   outline: none;
@@ -36,7 +37,6 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: "Roboto", sans-serif;
   background-color: var(--green-e);
 }
 
@@ -63,8 +63,45 @@ ul {
 }
 
 ::placeholder {
-  color: var(--green-b);
+  color: var(--green-c);
   font-size: 12pt;
+}
+
+form {
+  flex: 1;
+}
+textarea {
+  resize: none;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--green-c);
+  font-size: 14pt;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding);
+  /* margin: var(--padding) 0; */
+}
+.form-group label {
+  font-size: 18pt;
+  color: var(--green-b);
+  margin-bottom: 6px;
+}
+.radio-group {
+  display: grid;
+}
+input.form-control {
+  flex: 1;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid var(--green-c);
+  box-sizing: border-box;
+  font-size: 14pt;
+}
+.form-control {
+  color: var(--font-color);
 }
 
 @keyframes showdown {

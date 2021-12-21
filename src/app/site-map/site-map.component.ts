@@ -21,7 +21,6 @@ export class SiteMapComponent implements AfterViewInit {
   markerStatus:string = 'zoom';
 
   private markersLayer:any;
-  
 
   constructor(private router:Router) {
    }
@@ -57,7 +56,6 @@ export class SiteMapComponent implements AfterViewInit {
       this.isZoomed ? this.markerStatus = 'tap!' : this.markerStatus = 'zoom'
     });
   }
-
   private initMapList(): void {
 
     const markerIcon = L.icon({

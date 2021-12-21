@@ -8,7 +8,12 @@ export class SiteModel {
         public img:string='',
         public mapImg:string='',
         public description:string='',
+        public phone:string='',
         public address:string='',
+        public email:string='',
+        public website:string='',
+        public networks:string[] = [],
+        public media:string[] = [],
         public date:string='',
         public reviews:number[]=[],
         public coords:number[] | undefined = []) {

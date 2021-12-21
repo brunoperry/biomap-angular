@@ -1,0 +1,26 @@
+:host {
+  position: relative;
+  display: grid !important;
+  align-items: center;
+  justify-items: center;
+}
+:host p {
+  font-size: 18px;
+  color: var(--green-c);
+}
+
+:host .actions-container {
+  position: absolute;
+  display: flex;
+  left: var(--padding);
+  bottom: var(--padding);
+}
+
+:host .actions-container button {
+  background-color: var(--green-b);
+  border-radius: 50%;
+  padding: 8px;
+  width: 38px;
+  height: 38px;
+  margin-right: var(--padding);
+}
