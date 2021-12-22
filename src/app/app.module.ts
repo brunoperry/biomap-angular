@@ -21,6 +21,8 @@ import { Step3Component } from './site-add/steps/step3/step3.component';
 import { Step4Component } from './site-add/steps/step4/step4.component';
 import { Step5Component } from './site-add/steps/step5/step5.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
+import { SiteMiniCardComponent } from './site-mini-card/site-mini-card.component';
 
 const routes:Routes = [
   {
@@ -39,6 +41,10 @@ const routes:Routes = [
   {
     path: 'site-add',
     component: SiteAddComponent
+  },
+  {
+    path: 'profile/:index',
+    component: ProfileComponent
   }
 ];
 
@@ -58,7 +64,9 @@ const routes:Routes = [
     Step2Component,
     Step3Component,
     Step4Component,
-    Step5Component
+    Step5Component,
+    ProfileComponent,
+    SiteMiniCardComponent
   ],
   imports: [
     BrowserModule,

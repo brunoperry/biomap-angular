@@ -5,12 +5,10 @@
     "type rate"
     "img img"
     "desc desc"
-    "void date";
+    "date date";
   margin-bottom: 38px;
+  padding: 0 var(--padding);
   background-color: white;
-  box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.13);
-  -webkit-box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.13);
-  -moz-box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.13);
 }
 :host:active {
   transform: scale(0.95);
@@ -18,15 +16,15 @@
 
 :host h2 {
   color: var(--green-a);
-  font-size: 24pt;
+  font-size: 24px;
   grid-area: title;
-  margin: var(--padding);
+  margin: var(--padding) 0;
 }
 :host label {
   color: var(--green-b);
-  font-size: 20pt;
+  font-size: 20px;
   grid-area: type;
-  margin: 0 var(--padding);
+  /* margin: 0 var(--padding); */
 }
 :host app-rate {
   display: flex;
@@ -34,7 +32,7 @@
   height: 18px;
   align-self: center;
   justify-self: flex-end;
-  margin: 0 var(--padding);
+  /* margin: 0 var(--padding); */
   width: 100%;
   gap: var(--padding);
   justify-content: flex-end;
@@ -47,15 +45,14 @@
 }
 :host p {
   grid-area: desc;
-  font-size: 14pt;
-  margin: 0 var(--padding);
-  font-weight: 100;
+  font-size: 15px;
+  /* margin: 0 var(--padding); */
+  font-weight: 400;
   color: var(--font-color);
 }
 :host .date {
   grid-area: date;
-  margin: var(--padding);
-  color: var(--green-c);
-  justify-self: flex-end;
-  font-size: 12pt;
+  margin: var(--padding) 0;
+  color: var(--green-b);
+  font-size: 13px;
 }

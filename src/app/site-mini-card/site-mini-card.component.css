@@ -1,0 +1,32 @@
+:host {
+  border-radius: 2px;
+  display: flex;
+  margin-bottom: var(--padding);
+  padding: var(--padding);
+  background-color: white;
+}
+
+:host button {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+:host p {
+  font-size: 14pt;
+  color: var(--green-b);
+  margin-left: var(--padding);
+  text-align: left;
+}
+
+:host .actions-container {
+  display: flex;
+}
+
+:host .actions-container button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  padding: var(--padding);
+  margin-left: var(--padding);
+}

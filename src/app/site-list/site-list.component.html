@@ -1,19 +1,19 @@
 <div id="list-modes" [ngClass]="{'initialized' : initialized}">
     <button [ngClass]="{'toggled': currentMode==='list'}" (click)="onModeClick('list')">
-        <svg width="100%" height="100%" viewBox="0 0 32 32" style="fill-rule:evenodd;clip-rule:evenodd;fill:var(--green-a)">
+        <svg width="100%" height="100%" viewBox="0 0 32 32" style="fill-rule:evenodd;clip-rule:evenodd;fill:var(--green-b)">
             <path d="M6,25.983L0,25.983L0,32L6,32L6,25.983ZM9,25.983L9,32L32,32L32,25.983L9,25.983Z" />
             <path d="M6,12.945L0,12.945L0,18.962L6,18.962L6,12.945ZM9,12.945L9,18.962L32,18.962L32,12.945L9,12.945Z" />
             <path d="M32,0L9,0L9,6.017L32,6.017L32,0ZM6,6.017L6,0L0,0L0,6.017L6,6.017Z" />
         </svg>
     </button>
     <button [ngClass]="{'toggled': currentMode==='map'}" (click)="onModeClick('map')">
-        <svg width="100%" height="100%" viewBox="0 0 23 32" style="fill-rule:evenodd;clip-rule:evenodd;fill:var(--green-a)">
+        <svg width="100%" height="100%" viewBox="0 0 23 32" style="fill-rule:evenodd;clip-rule:evenodd;fill:var(--green-b)">
             <path
                 d="m 11.49296,0 c 6.348,0 11.493,5.161 11.493,11.526 0,0 0,13.891 -11.493,20.474 C -4e-5,25.417 -4e-5,11.526 -4e-5,11.526 -4e-5,5.161 5.14496,0 11.49296,0 Z m -7.974,9.649 c 0,4.435 3.584,8.029 8.006,8.029 4.422,0 8.005,-3.594 8.005,-8.029 0,-4.434 -3.583,-8.03 -8.005,-8.03 -4.422,0 -8.006,3.596 -8.006,8.03 z" />
         </svg>
     </button>
     <button (click)="onFilterClick()">
-        <svg width="100%" height="100%" viewBox="0 0 32 32" fill="var(--green-a)">
+        <svg width="100%" height="100%" viewBox="0 0 32 32" fill="var(--green-b)">
             <path d="M 0,0 V 2.59072 L 11.68,13.71136 V 25.23008 L 17.6128,32 h 2.73536 V 13.71136 L 32,2.59072 V 0 H 0" />
         </svg>
     </button>
@@ -21,7 +21,7 @@
 <div id="modes-container" [ngClass]="{'initialized' : initialized}" [ngStyle]="{'transform': currentMode==='list' ? 'translateX(0)' : 'translateX(-50%)'}">
     <ul id="list-cards">
         <li *ngFor="let site of sitesData">
-            <app-site-card [siteData]="site" (click)="onCardClick(site.id)"></app-site-card>
+            <app-site-card class="shadowed" [siteData]="site" (click)="onCardClick(site.id)"></app-site-card>
         </li>
     </ul>
 

@@ -1,0 +1,67 @@
+:host {
+  flex: 1;
+  overflow: hidden;
+  overflow-y: scroll;
+  animation-duration: 1s;
+  animation-name: show;
+  height: 100%;
+}
+
+:host.hidden {
+  display: none !important;
+  animation-name: none !important;
+}
+
+#profile-container {
+  flex: 1;
+  animation-duration: var(--speed);
+  animation-fill-mode: forwards;
+  padding: var(--padding);
+  padding-bottom: 0;
+  margin-bottom: 72px;
+}
+#profile-container.initialized {
+  animation-name: zoomin;
+}
+
+#profile-container .avatar {
+}
+
+#profile-container h2 {
+  color: var(--green-a);
+  font-size: 24pt;
+  margin-bottom: 20px;
+}
+
+#profile-container label {
+  display: block;
+  color: var(--green-b);
+  font-size: 17pt;
+  margin-bottom: 3px;
+}
+
+#profile-container p {
+  display: block;
+  font-size: 14pt;
+  font-weight: 100;
+  color: var(--font-color);
+  margin-bottom: 15px;
+}
+
+#profile-container .cards-container {
+  display: block;
+  margin: var(--padding) 0;
+}
+
+#profile-container .avatar-container {
+  display: flex;
+  margin-bottom: 15px;
+}
+#profile-container .avatar-container button {
+  background-color: var(--blue);
+  color: var(--green-e);
+  padding: var(--padding);
+  align-self: flex-end;
+  border-radius: 2px;
+  margin-left: var(--padding);
+}

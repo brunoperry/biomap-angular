@@ -7,6 +7,10 @@
   position: absolute;
   bottom: var(--padding);
   right: var(--padding);
+
+  box-shadow: var(--shadow);
+  -webkit-box-shadow: var(--shadow);
+  -moz-box-shadow: var(--shadow);
 }
 
 #button-add.hide {

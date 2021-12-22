@@ -23,8 +23,10 @@ export class SiteDetailComponent implements OnInit {
 
     this.route.params.subscribe((params:Params) => {
       if(params['index']) {
-        this.detailData = this.siteService.getSite(parseInt(params['index']));
-        this.reviewsData = this.siteService.getReviews(this.detailData?.reviews)
+
+        const data = this.siteService.getSiteDetail(params['index']);
+        this.detailData = data.site;
+        this.reviewsData = data.reviews;
       }
     })
     this.initialized = true;

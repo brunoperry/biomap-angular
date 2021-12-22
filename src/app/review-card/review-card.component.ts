@@ -20,6 +20,8 @@ export class ReviewCardComponent implements OnInit {
   }
 
   onAvatarClick():void {
-    console.log('avatar click')
+    if(!this.reviewData) return;
+
+    this.router.navigate(['/profile', this.reviewData.userID]);
   }
 }

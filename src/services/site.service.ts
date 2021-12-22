@@ -11,7 +11,7 @@ export class SiteService {
 
   DB_PATH = 'https://biomap-2f3d1-default-rtdb.firebaseio.com';
 
-    sitesData:SiteModel[] = [
+  sitesData:SiteModel[] = [
 
         new SiteModel(
           0,
@@ -67,11 +67,11 @@ export class SiteService {
   ];
 
   reviewsData:ReviewModel[] = [
-    new ReviewModel(0, 2, 'review 01', '1 Jan 2021'),
-    new ReviewModel(1, 4, 'review 02', '2 Apr 2017'),
-    new ReviewModel(2, 5, 'review 03', '15 Jan 2019'),
-    new ReviewModel(3, 3, 'review 04', '21 Oct 2020'),
-    new ReviewModel(4, 1, 'review 05', '7 Sep 2021')
+    new ReviewModel(0, 0, 2, 'review 01', '1 Jan 2021'),
+    new ReviewModel(0, 1, 4, 'review 02', '2 Apr 2017'),
+    new ReviewModel(0, 2, 5, 'review 03', '15 Jan 2019'),
+    new ReviewModel(1, 3, 3, 'review 04', '21 Oct 2020'),
+    new ReviewModel(1, 4, 1, 'review 05', '7 Sep 2021')
   ];
 
   constructor(private http:HttpClient, private router:Router) {
@@ -93,6 +93,14 @@ export class SiteService {
 
   getSite(siteID:number):SiteModel|undefined {
     return this.sitesData.find(s=>s.id===siteID);
+  }
+
+  getSiteDetail(siteID:any):any {
+    const siteData = this.getSite(parseInt(siteID));
+    return {
+      site: siteData,
+      reviews: this.getReviews(siteData?.reviews)
+    };
   }
 
   deleteSite(index:number):void {

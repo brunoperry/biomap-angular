@@ -1,0 +1,21 @@
+<div id="profile-container" [ngClass]="{'initialized':initialized}">
+    <h2>Profile</h2>
+
+    <div class="avatar-container">
+        <svg width="64px" height="64px" viewBox="0 0 32 30" fill="var(--green-a)" class="avatar">
+            <ellipse cx="16.00392" cy="8.1245852" rx="8.130291" ry="8.1302891" />
+            <path
+                d="M 32.003931,29.609165 H 0.00390985 c 0,-4.978288 7.16914765,-9.019432 16.00001015,-9.019432 8.830863,0 16.000011,4.041144 16.000011,9.019432 z" />
+        </svg>
+    <button *ngIf="isEditable" (click)="onChangeAvatarClick()">Change</button>
+    </div>
+
+    <label>Username</label>
+    <p>{{userData.name}}</p>
+    <label>Email</label>
+    <p>{{userData.email}}</p>
+    <label>Places added ({{userData.sites.length}} places)</label>
+    <div class="cards-container">
+        <app-site-mini-card  *ngFor="let site of sitesData" [cardData]="site" [editable]="isEditable"></app-site-mini-card>
+    </div>
+</div>

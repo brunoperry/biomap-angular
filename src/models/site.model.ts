@@ -12,7 +12,7 @@ export class SiteModel {
         public address:string='',
         public email:string='',
         public website:string='',
-        public networks:string[] = [],
+        public networks:string[] = ['','',''],
         public media:string[] = [],
         public date:string='',
         public reviews:number[]=[],
