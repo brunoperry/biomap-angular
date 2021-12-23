@@ -3,8 +3,6 @@
   overflow: hidden;
   overflow-y: scroll;
   padding-bottom: 72px;
-  /* animation-duration: 1s;
-  animation-name: show; */
 }
 
 #detail-description-container {
@@ -97,11 +95,8 @@
 #detail-reviews-container {
   margin-top: var(--padding);
   padding: var(--padding);
-  display: grid;
-  grid-template-areas:
-    "expand"
-    "reviews"
-    "write";
+  display: flex;
+  flex-direction: column;
 }
 
 #card-review-container {
@@ -119,6 +114,7 @@
   grid-area: expand;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 #detail-reviews-button h3 {
   font-weight: 400;
@@ -138,7 +134,8 @@
   height: var(--button-size);
   align-self: flex-end;
   color: var(--green-c);
-  font-size: 18pt;
+  font-size: 18px;
+  width: 100%;
   border-bottom: 1px solid var(--green-c);
 }
 :host.hidden {
