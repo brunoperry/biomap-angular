@@ -24,6 +24,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { SiteMiniCardComponent } from './site-mini-card/site-mini-card.component';
 import { ReviewAddComponent } from './review-add/review-add.component';
+import { SettingsComponent } from './settings/settings.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { AboutComponent } from './about/about.component';
+import { LogoutComponent } from './logout/logout.component';
+import { LangButtonComponent } from './lang-button/lang-button.component';
 
 const routes:Routes = [
   {
@@ -44,12 +49,28 @@ const routes:Routes = [
     component: SiteAddComponent
   },
   {
+    path: 'profile',
+    component: ProfileComponent
+  },
+  {
     path: 'profile/:index',
     component: ProfileComponent
   },
   {
     path: 'review-add/:index',
     component: ReviewAddComponent
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent
   }
 ];
 
@@ -72,7 +93,12 @@ const routes:Routes = [
     Step5Component,
     ProfileComponent,
     SiteMiniCardComponent,
-    ReviewAddComponent
+    ReviewAddComponent,
+    SettingsComponent,
+    CheckboxComponent,
+    AboutComponent,
+    LogoutComponent,
+    LangButtonComponent
   ],
   imports: [
     BrowserModule,

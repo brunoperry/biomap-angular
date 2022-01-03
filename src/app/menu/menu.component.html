@@ -1,8 +1,9 @@
 <div class="background" [ngClass]="{'opened': isOpen}" (click)="onBackgroundClick()"></div>
 <ul class="container" [ngClass]="{'opened': isOpen}">
+    <li (click)="onMenuItemClick('logout')">Logout</li>
     <li (click)="onMenuItemClick('profile')">Profile</li>
-    <li (click)="onMenuItemClick('')">Settings</li>
-    <li (click)="onMenuItemClick('')">About</li>
+    <li (click)="onMenuItemClick('settings')">Settings</li>
+    <li (click)="onMenuItemClick('about')">About</li>
     <li (click)="onSaveClick()">Save</li>
     <li class="logo">
         <svg width="100%" height="100%" viewBox="0 0 32 32" fill="var(--green-a)">

@@ -22,8 +22,6 @@ export class RateComponent implements OnInit {
 
   onRateClick(i:number) :void {
     this.rating = i;
-    console.log('fff', i);
-    
     this.onChange.emit(i);
   }
   lessThan(valA:number):boolean {

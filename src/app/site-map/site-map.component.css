@@ -6,6 +6,7 @@
   background-color: green;
   pointer-events: initial;
   flex-direction: column;
+  overflow: auto;
 }
 
 :host .map {

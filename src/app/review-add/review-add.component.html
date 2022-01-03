@@ -1,9 +1,9 @@
 <div id="add-review-container" [ngClass]="{'initialized':initialized}">
 
     <label>Rating</label>
-    <app-rate [enabled]="true"></app-rate>
+    <app-rate [enabled]="true" (onChange)="onRateChange($event)"></app-rate>
     <label>Write Review</label>
-    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <textarea (input)="onReviewInput($event.target)" id="review-area"></textarea>
     <div class="actions-container">
         <button id="cancel-button" (click)="onCancelClick()">
             <svg width="100%" height="100%" viewBox="0 0 32 32" fill="var(--green-e)">

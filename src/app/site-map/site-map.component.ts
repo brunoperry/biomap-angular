@@ -27,6 +27,7 @@ export class SiteMapComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
+
     this.mapID = this.isPlacement ? 'mapadd' : 'maplist';
 
     this.map = L.map(this.mapID, {center: this.centroid, zoom:3});
@@ -64,9 +65,7 @@ export class SiteMapComponent implements AfterViewInit {
       iconAnchor:   [9, 25],
       popupAnchor:  [-3, -76]
     });
-
     this.mapData.forEach(d => {
-
       const markerOptions = {
         clickable: true,
         icon: markerIcon

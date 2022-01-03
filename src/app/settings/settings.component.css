@@ -1,0 +1,71 @@
+:host {
+  flex: 1;
+  padding: var(--padding);
+}
+
+:host h2 {
+  color: var(--green-a);
+  font-size: 24px;
+  margin-bottom: var(--padding);
+}
+
+#lang-list-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inset: 0;
+}
+#lang-list-container .background {
+  position: absolute;
+  /* display: none; */
+  inset: 0;
+  background-color: #1f1e1ee7;
+}
+#lang-list-container .lang-list {
+  background-color: white;
+  padding: var(--padding);
+  min-width: 50%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#lang-list-container .lang-list h3 {
+  color: var(--green-b);
+}
+#lang-list-container .lang-list svg {
+  padding: var(--padding) 0;
+}
+#lang-list-container .lang-list svg:active {
+  transform: scale(0.9);
+}
+:host h3 {
+  color: var(--green-b);
+  font-weight: 400;
+  padding: var(--padding) 0;
+}
+:host button {
+  margin-top: 32px;
+  color: var(--green-e);
+  font-weight: 500;
+  padding: var(--padding);
+  background-color: var(--blue);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+:host button svg {
+  margin-right: 7px;
+}
+
+#map-style-container img {
+  margin-right: var(--padding);
+}
+#map-style-container img.toggle {
+  border: 3px solid var(--green-c);
+}
+#map-style-container img:active {
+  transform: scale(0.97);
+}

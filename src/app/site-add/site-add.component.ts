@@ -80,20 +80,17 @@ export class SiteAddComponent implements OnInit {
   }
 
   onStep3Change(data:any):void {
-
     this.currentSiteData = Object.assign({}, this.currentSiteData, data);
-    
     this.currentStep.state = true;
-    // console.log('step3 change', data);
   }
 
   onStep4Change(data:any):void {
-    console.log('step4 change', data);
+    console.log('step4 change, deal with media', data);
   }
 
   onStep5Change(data:any):void {
     
-    console.log('step5 change', data);
+    console.log('step5 change, just confirm..', data);
   }
 
   get currentStep():any {

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { SiteService } from 'src/services/site.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   @Input() isOpen:boolean = false;
 
-  constructor(private siteService:SiteService) { }
+  constructor(private siteService:SiteService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +26,7 @@ export class MenuComponent implements OnInit {
 
   onMenuItemClick(value:string):void {
     this.isOpen = false;
+    this.router.navigate([value]);
   }
 
   onSaveClick():void {

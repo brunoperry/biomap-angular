@@ -112,6 +112,13 @@ export class SiteService {
       this.router.navigate(['/site-list']);
   }
 
+  addReview(r:any):void {
+    const id = this.reviewsData.length;
+    const rm:ReviewModel = new ReviewModel(0, id, r.rating, r.review, 'dd')
+    this.sitesData[r.siteID].reviews.push(rm.id);
+    this.reviewsData.push(rm)
+  }
+
   searchSite(siteName:string):SiteModel[] {
     return this.sitesData.filter(s => s.title === siteName);
   }
