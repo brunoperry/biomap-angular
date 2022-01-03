@@ -9,6 +9,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent {
   title = 'biomap';
   hideAddButton:boolean = true;
+  isMenuOpen:boolean = false;
 
   constructor(private router:Router) {
 
@@ -20,6 +21,7 @@ export class AppComponent {
   }
 
   onAddClick() {
+    this.isMenuOpen = false;
     this.router.navigate(['/site-add/'])
   }
 }

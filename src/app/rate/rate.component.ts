@@ -6,7 +6,7 @@ import { Component, Input, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./rate.component.css']
 })
 export class RateComponent implements OnInit {
-  @Input() rating?: number;
+  @Input() rating: number | undefined = 0;
   @Input() enabled?: boolean;
   @Output() onChange = new EventEmitter();
 
@@ -20,7 +20,14 @@ export class RateComponent implements OnInit {
     }
   }
 
-  onRateClick(i:Number) :void {
+  onRateClick(i:number) :void {
+    this.rating = i;
+    console.log('fff', i);
+    
     this.onChange.emit(i);
+  }
+  lessThan(valA:number):boolean {
+    if(this.rating) return valA < this.rating;
+    return false;
   }
 }

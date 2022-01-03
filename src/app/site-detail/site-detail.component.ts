@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { observeOn } from 'rxjs';
 import { ReviewModel } from 'src/models/review.model.';
 import { SiteModel } from 'src/models/site.model';
@@ -17,7 +17,7 @@ export class SiteDetailComponent implements OnInit {
   reviewsOpened:boolean = false;
   initialized:boolean = false;
 
-  constructor(private siteService:SiteService, private route:ActivatedRoute) { }
+  constructor(private siteService:SiteService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
 
@@ -32,6 +32,11 @@ export class SiteDetailComponent implements OnInit {
     this.initialized = true;
   }
 
+  onShareClick():void {
+    console.log('share this');
+    
+  }
+
   onMapButtonClick():void {
     console.log('map button click');
   }
@@ -44,6 +49,7 @@ export class SiteDetailComponent implements OnInit {
     this.reviewsOpened = !this.reviewsOpened;
   }
   onWriteButtonClick():void {
-    console.log('wire review clicked');
+
+    this.router.navigate(['review-add', this.detailData?.id])
   }
 }

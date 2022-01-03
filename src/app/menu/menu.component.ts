@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { SiteService } from 'src/services/site.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { SiteService } from 'src/services/site.service';
 })
 export class MenuComponent implements OnInit {
 
-  isOpen:boolean = false;
+  @Input() isOpen:boolean = false;
 
   constructor(private siteService:SiteService) { }
 

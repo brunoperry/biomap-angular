@@ -23,6 +23,7 @@ import { Step5Component } from './site-add/steps/step5/step5.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { SiteMiniCardComponent } from './site-mini-card/site-mini-card.component';
+import { ReviewAddComponent } from './review-add/review-add.component';
 
 const routes:Routes = [
   {
@@ -45,6 +46,10 @@ const routes:Routes = [
   {
     path: 'profile/:index',
     component: ProfileComponent
+  },
+  {
+    path: 'review-add/:index',
+    component: ReviewAddComponent
   }
 ];
 
@@ -66,7 +71,8 @@ const routes:Routes = [
     Step4Component,
     Step5Component,
     ProfileComponent,
-    SiteMiniCardComponent
+    SiteMiniCardComponent,
+    ReviewAddComponent
   ],
   imports: [
     BrowserModule,

@@ -20,11 +20,20 @@
   animation-name: zoomin;
 }
 
+#detail-title {
+  display: flex;
+  justify-content: space-between;
+  grid-area: title;
+}
 #detail-description-container h2 {
   color: var(--green-a);
   font-size: 24px;
-  grid-area: title;
   margin: var(--padding);
+}
+
+#detail-description-container button {
+  padding: var(--padding);
+  justify-self: flex-end;
 }
 #detail-description-container label {
   color: var(--green-b);
@@ -133,10 +142,12 @@
   text-align: left;
   height: var(--button-size);
   align-self: flex-end;
-  color: var(--green-c);
+  color: var(--green-b);
   font-size: 18px;
   width: 100%;
-  border-bottom: 1px solid var(--green-c);
+}
+#write-review-button svg {
+  margin-right: var(--padding);
 }
 :host.hidden {
   display: none !important;
