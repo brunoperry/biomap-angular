@@ -1,9 +1,19 @@
 :host {
   flex: 1;
-  padding: var(--padding);
+  display: flex;
 }
 
-:host h2 {
+#settings-container {
+  flex: 1;
+  padding: var(--padding);
+  animation-duration: var(--speed);
+  animation-fill-mode: forwards;
+}
+#settings-container.initialized {
+  animation-name: zoomin;
+}
+
+#settings-container h2 {
   color: var(--green-a);
   font-size: 24px;
   margin-bottom: var(--padding);
@@ -41,12 +51,12 @@
 #lang-list-container .lang-list svg:active {
   transform: scale(0.9);
 }
-:host h3 {
+#settings-containerh3 {
   color: var(--green-b);
   font-weight: 400;
   padding: var(--padding) 0;
 }
-:host button {
+#settings-container button {
   margin-top: 32px;
   color: var(--green-e);
   font-weight: 500;
@@ -56,7 +66,7 @@
   display: flex;
   align-items: center;
 }
-:host button svg {
+#settings-containerbutton svg {
   margin-right: 7px;
 }
 

@@ -14,7 +14,8 @@ export class ProfileComponent implements OnInit {
     -1,
     '---',
     '---',
-    [-1]
+    [-1],
+    {}
   );
   sitesData:any[] = [];
   isEditable:boolean = false;

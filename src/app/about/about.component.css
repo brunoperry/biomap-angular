@@ -1,0 +1,32 @@
+:host {
+  flex: 1;
+  display: flex;
+}
+#about-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding);
+  animation-duration: var(--speed);
+  animation-fill-mode: forwards;
+}
+
+#about-container.initialized {
+  animation-name: zoomin;
+}
+#about-container svg {
+  max-height: 40%;
+}
+
+#about-container h1 {
+  color: var(--green-a);
+  text-align: center;
+  margin: var(--padding) 0;
+}
+#about-container p {
+  color: var(--font-color);
+  margin: var(--padding) 0;
+}
+#about-container a {
+  color: var(--green-b);
+}

@@ -10,21 +10,33 @@ export class UsersService {
             0,
             'bruno',
             'bruno@email.com',
-            [0,1]
+            [0,1],
+            {
+                notifications: true,
+                location: false,
+                newsletter: true,
+                language: 'eng',
+                mapStyle: 'graphic'
+            }
         ),
         new UserModel(
             1,
             'perry',
             'perry@email.com',
-            [2]
+            [2],
+            {
+                notifications: false,
+                location: false,
+                newsletter: false,
+                language: 'pt',
+                mapStyle: 'terrain'
+            }
         )
     ]
 
     currentUser:UserModel = this.usersData[0];
 
-    constructor(private siteService:SiteService) {
-
-    }
+    constructor(private siteService:SiteService) {}
 
     getUser(id:number):UserModel {
         return this.usersData[id];
@@ -40,7 +52,12 @@ export class UsersService {
         });
         return out;
     }
-
+    getUserSettings():void {
+        return this.currentUser.settings;
+    }
+    saveUserSettings(settings:any) :void {
+        this.currentUser.settings = settings;
+    }
     getSiteTitle(id:number):string | undefined {
         return this.siteService.getSite(id)?.title;
     }

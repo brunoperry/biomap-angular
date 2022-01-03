@@ -1,0 +1,32 @@
+<h2 [ngClass]="{'initialized':initialized}">
+    {{currentStep.title}}
+</h2>
+<div id="steps-container" [ngClass]="{'initialized':initialized}"
+    [ngStyle]="{'transform': 'translateX(-' + (currIndex/steps.length) * 100 + '%)'}">
+
+    <app-step1 [ngClass]="'step'" (onChange)="onStep1Change($event)" [siteData]="currentSiteData"></app-step1>
+    <app-step2 [ngClass]="'step'" (onChange)="onStep2Change($event)" [siteData]="currentSiteData"></app-step2>
+    <app-step3 [ngClass]="'step'" (onChange)="onStep3Change($event)" [siteData]="currentSiteData"></app-step3>
+    <app-step4 [ngClass]="'step'" (onChange)="onStep4Change($event)"></app-step4>
+    <app-step5 [ngClass]="'step'" (onChange)="onStep5Change($event)" [reviewData]="currentSiteData"></app-step5>
+
+</div>
+<div id="steps-controller" [ngClass]="{'initialized':initialized}">
+    <button id="prev-step" (click)="onPrevClick()" [ngClass]="{'disabled' : currIndex == 0}">
+        <svg width="32" height="21" viewBox="0 0 32 21" fill="var(--green-e)">
+            <path
+                d="m 9.0065,12.7845 5.133,4.985 L 10.8125,21 0,10.5 10.8125,0 l 3.327,3.2305 -5.133,4.985 H 32 v 4.569 z" />
+        </svg>
+    </button>
+    <p id="controller-text">{{currIndex+1}} / {{steps.length}}</p>
+    <button id="next-step" (click)="onNextClick()" [ngClass]="{'disabled' : !currentStep.state}">
+        <svg width="32" height="21" viewBox="0 0 32 21" fill="var(--green-e)" style="transform: rotate(180deg);"
+            [ngClass]="{'hidden':isEnd}">
+            <path d="m 9.0065,12.7845 5.133,4.985 L 10.8125,21 0,10.5 10.8125,0 l 3.327,3.2305 -5.133,4.985 H 32 v 4.569 z" />
+        </svg>
+        <svg width="32" height="21" viewBox="0 0 32 23" fill="var(--green-e)" [ngClass]="{'hidden':!isEnd}">
+            <path
+                d="M 12.877746,15.129772 28.052642,2.8736e-4 32.00008,3.9347737 12.877746,22.999884 0,10.160674 3.9474384,6.2261875 Z" />
+        </svg>
+    </button>
+</div>

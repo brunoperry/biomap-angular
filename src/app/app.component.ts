@@ -15,7 +15,7 @@ export class AppComponent {
 
     this.router.events.subscribe((ev: any) => {
       if(ev instanceof NavigationEnd) {
-        this.hideAddButton = ev.url.includes('site-add');
+        this.hideAddButton = ev.url.includes('site-add') || ev.url.includes('site-edit');
       }
     });
   }

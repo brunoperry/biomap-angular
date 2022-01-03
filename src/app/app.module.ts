@@ -29,6 +29,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { AboutComponent } from './about/about.component';
 import { LogoutComponent } from './logout/logout.component';
 import { LangButtonComponent } from './lang-button/lang-button.component';
+import { SiteEditComponent } from './site-edit/site-edit.component';
 
 const routes:Routes = [
   {
@@ -47,6 +48,10 @@ const routes:Routes = [
   {
     path: 'site-add',
     component: SiteAddComponent
+  },
+  {
+    path: 'site-edit/:index',
+    component: SiteEditComponent
   },
   {
     path: 'profile',
@@ -98,7 +103,8 @@ const routes:Routes = [
     CheckboxComponent,
     AboutComponent,
     LogoutComponent,
-    LangButtonComponent
+    LangButtonComponent,
+    SiteEditComponent
   ],
   imports: [
     BrowserModule,

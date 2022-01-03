@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -14,6 +14,7 @@ export class Step2Component implements OnInit {
 
   form!:FormGroup;
   @Output() onChange:EventEmitter<any> = new EventEmitter<any>();
+  @Input() siteData:any = null;
   constructor() { }
 
   ngOnInit(): void {
@@ -22,6 +23,17 @@ export class Step2Component implements OnInit {
       description: new FormControl(null, [Validators.required, Validators.maxLength(200)]),
       type: new FormControl(null, Validators.required),
     })
+
+    if(this.siteData) {
+
+      this.title = this.siteData.title;
+      this.description = this.siteData.description;
+      this.toggleType = this.siteData.type.toLocaleLowerCase();
+
+      this.form.get('title')?.setValue(this.title);
+      this.form.get('description')?.setValue(this.description);
+      this.form.get('type')?.setValue(this.toggleType);
+    }
   }
 
   onTitleInput(event:any):void {

@@ -111,6 +111,10 @@ export class SiteService {
       this.sitesData.push(site);
       this.router.navigate(['/site-list']);
   }
+  editSite(site:SiteModel):void {
+      this.sitesData[site.id] = site;
+      this.router.navigate(['/site-list']);
+  }
 
   addReview(r:any):void {
     const id = this.reviewsData.length;

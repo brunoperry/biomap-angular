@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,11 +9,13 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class Step1Component implements OnInit {
 
   form!: FormGroup;
+  @Input() siteData:any = null;
   @Output() onChange:EventEmitter<number[]> = new EventEmitter<number[]>();
 
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   onMapChange(coords:number[] | undefined):void {

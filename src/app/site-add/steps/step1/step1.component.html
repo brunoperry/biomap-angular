@@ -1,1 +1,1 @@
-<app-site-map [mapID]="'mapadd'" [isPlacement]="true" (onChange)="onMapChange($event)"></app-site-map>
+<app-site-map [mapID]="'mapadd'" [isPlacement]="true" (onChange)="onMapChange($event)" [coords]="siteData ? siteData.coords : []"></app-site-map>

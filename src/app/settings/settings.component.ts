@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/services/users.service';
 
 @Component({
   selector: 'app-settings',
@@ -14,12 +15,17 @@ export class SettingsComponent implements OnInit {
     language: 'pt',
     mapStyle: 'graphic'
   }
+  initialized:boolean = false;
 
   public showLangList:boolean = false;
 
-  constructor() { }
+  constructor(private userModel:UsersService) {
+
+    this.settings = this.userModel.getUserSettings();
+   }
 
   ngOnInit(): void {
+    this.initialized = true;
   }
 
   onNotificationClick(e:any):void {
@@ -54,6 +60,8 @@ export class SettingsComponent implements OnInit {
   }
 
   onRefreshClick() :void {
+
+    this.userModel.saveUserSettings(this.settings);
     console.log('refresh');
     
   }

@@ -4,6 +4,7 @@ export class UserModel {
         public id:number,
         public name:string,
         public email:string,
-        public sites:number[]
+        public sites:number[],
+        public settings:any
     ) {}
 }

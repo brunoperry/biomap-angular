@@ -18,6 +18,6 @@ export class SiteMiniCardComponent implements OnInit {
     this.router.navigate(['/site-detail/', this.cardData.id]);
   }
   onEditClick():void {
-    console.log('edit site');
+    this.router.navigate(['/site-edit/', this.cardData.id]);
   }
 }

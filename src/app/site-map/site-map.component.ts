@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, AfterViewInit, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
 
@@ -7,12 +7,13 @@ import * as L from 'leaflet';
   templateUrl: './site-map.component.html',
   styleUrls: ['./site-map.component.css']
 })
-export class SiteMapComponent implements AfterViewInit {
+export class SiteMapComponent implements AfterViewInit, OnInit {
 
   private map:any;
   @Input() mapData:any[] = [];
   @Input() mapID:string = 'none';
   @Input() isPlacement:boolean = false;
+  @Input() coords:number[] = [];
   @Output() onChange:EventEmitter<number[]> = new EventEmitter<number[]>();
 
   private centroid:L.LatLngExpression = [47.250, 7.646];
@@ -21,19 +22,32 @@ export class SiteMapComponent implements AfterViewInit {
   markerStatus:string = 'zoom';
 
   private markersLayer:any;
+  private currentZoom:number = 3;
 
   constructor(private router:Router) {
    }
 
+  ngOnInit():void {
+
+    if(this.coords.length > 0) {
+      this.centroid = [this.coords[0], this.coords[1]];
+      this.currentZoom = 18;
+      this.isZoomed = true;
+      this.markerStatus = 'tap!'
+    }
+  }
+
   ngAfterViewInit(): void {
 
+    let maxZoom:number = 18;
+    let minZoom:number = 3;
 
     this.mapID = this.isPlacement ? 'mapadd' : 'maplist';
 
-    this.map = L.map(this.mapID, {center: this.centroid, zoom:3});
+    this.map = L.map(this.mapID, {center: this.centroid, zoom:this.currentZoom});
     const tiles = L.tileLayer('https://api.mapbox.com/styles/v1/brunoperry/cjqr2e6z699gu2tpavd0e5wwy/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYnJ1bm9wZXJyeSIsImEiOiJjamdhdHdramkxbDA4MnpzMDdpaXdkZTdoIn0.bvfmigvdRdrNBnAxfX_e2g', {
-      maxZoom: 18,
-      minZoom: 3,
+      maxZoom: maxZoom,
+      minZoom: minZoom,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
     tiles.addTo(this.map);
@@ -52,6 +66,7 @@ export class SiteMapComponent implements AfterViewInit {
 
   private initMapAdd():void {
 
+    setTimeout(() => this.map.invalidateSize(), 100);
     this.map.on('zoom', () => {
       this.isZoomed = this.map.getZoom() >= 17;
       this.isZoomed ? this.markerStatus = 'tap!' : this.markerStatus = 'zoom'
@@ -59,6 +74,7 @@ export class SiteMapComponent implements AfterViewInit {
   }
   private initMapList(): void {
 
+    setTimeout(() => this.map.invalidateSize(), 100);
     const markerIcon = L.icon({
       iconUrl: '/assets/images/marker_map_icon.svg',
       iconSize:     [18, 25],

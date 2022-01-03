@@ -1,7 +1,7 @@
 <form [formGroup]="form">
     <div class="form-group">
         <label>Title</label>
-        <input class="form-control" type="text" placeholder="Type the title" formControlName="title" (input)="onTitleInput($event)">
+        <input class="form-control" type="text" placeholder="Type the title" formControlName="title" (input)="onTitleInput($event)"/>
     </div>
     <div class="form-group">
         <label>Description</label>
@@ -40,10 +40,5 @@
             <input type="radio" value="other" name="type" formControlName="type">
             <label style="color:var(--green-c)">other</label>
         </div>
-            
-            
-        <!-- <button id="radio-market-button" (click)="onRadioClick('market')"></button>
-        <button id="radio-restaurant-button" (click)="onRadioClick('restaurant')"></button>
-        <button id="radio-other-button" (click)="onRadioClick('other')"></button> -->
     </div>
 </form>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,7 @@ export class Step3Component implements OnInit {
 
   form!:FormGroup;
   @Output() onChange:EventEmitter<any> = new EventEmitter<any>();
+  @Input() siteData:any = null;
 
   private phone:string = '';
   private address:string = '';
@@ -20,12 +21,32 @@ export class Step3Component implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
     this.form = new FormGroup({
       phone: new FormControl(null),
       address: new FormControl(null),
       email: new FormControl(null),
       website: new FormControl(null),
-    })
+      facebook: new FormControl(null),
+      instagram: new FormControl(null),
+      twitter: new FormControl(null),
+    });
+    
+    if(this.siteData){
+      this.phone = this.siteData.phone;
+      this.address = this.siteData.address;
+      this.email = this.siteData.email;
+      this.website = this.siteData.website;
+      this.networks = this.siteData.networks;
+
+      this.form.get('phone')?.setValue(this.phone);
+      this.form.get('address')?.setValue(this.address);
+      this.form.get('email')?.setValue(this.email);
+      this.form.get('website')?.setValue(this.website);
+      this.form.get('facebook')?.setValue(this.networks[0]);
+      this.form.get('instagram')?.setValue(this.networks[1]);
+      this.form.get('twitter')?.setValue(this.networks[2]);
+    }
   }
 
   onPhoneInput(e:any):void {
