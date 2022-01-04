@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { observeOn } from 'rxjs';
 import { ReviewModel } from 'src/models/review.model.';
 import { SiteModel } from 'src/models/site.model';
+import { BackendService } from 'src/services/backend.service';
 import { SiteService } from 'src/services/site.service';
 
 @Component({
@@ -27,8 +28,6 @@ export class SiteDetailComponent implements OnInit {
         const data = this.siteService.getSiteDetail(params['index']);
         this.detailData = data.site;
         this.reviewsData = data.reviews;
-
-        console.log(this.detailData)
       }
     })
     this.initialized = true;

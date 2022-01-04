@@ -17,12 +17,17 @@ export class SiteListComponent implements OnInit {
   initialized:boolean = false;
   isFiltersOpen:boolean = false;
 
-  constructor(private siteListService:SiteService, private router:Router) { }
+  constructor(private siteService:SiteService, private router:Router) { }
 
   ngOnInit():void {
-    this.rawSitesData = this.siteListService.getSites();
+
+    this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
+      this.rawSitesData = this.siteService.getSites();
+      this.sitesData = this.rawSitesData;
+    })
+    this.rawSitesData = this.siteService.getSites();
     this.sitesData = this.rawSitesData;
-    this.mapsData = this.siteListService.getMapData();
+    this.mapsData = this.siteService.getMapData();
     this.initialized = true;
   }
 
@@ -36,7 +41,7 @@ export class SiteListComponent implements OnInit {
 
     const filterData:SiteModel[] = this.rawSitesData.filter(s=>s.type===type);
     filterData.length > 0 ? this.sitesData = filterData : this.sitesData = this.rawSitesData;
-    this.mapsData = this.siteListService.getFilterMapData(this.sitesData);
+    this.mapsData = this.siteService.getFilterMapData(this.sitesData);
     this.isFiltersOpen = false;
   }
   onFilterBackgroundClick():void{

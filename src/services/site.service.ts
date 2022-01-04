@@ -1,81 +1,79 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core"
+import { EventEmitter, Injectable } from "@angular/core"
 import { Router } from "@angular/router";
-import { catchError, Observable } from "rxjs";
 import { ReviewModel } from "src/models/review.model.";
 import { SiteModel } from "src/models/site.model"
-
 
 @Injectable({providedIn:'root'})
 export class SiteService {
 
   DB_PATH = 'https://biomap-2f3d1-default-rtdb.firebaseio.com';
 
+  sitesChangedEvent: EventEmitter<SiteModel[]> = new EventEmitter();
   sitesData:SiteModel[] = [
 
-        new SiteModel(
-          0,
-        'Quinta da marinha',
-        'farm',
-        2,
-        'https://www.gardeningknowhow.com/wp-content/uploads/2016/03/surplus-veggies.jpg',
-        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-        '+351 94 3453434',
-        'street A',
-        'info@quintadmarinha.com',
-        'www.quintadosol.com',
-        {
-          facebook: 'facebook link',
-          instagram: 'nistagram link'
-        },
-        ['image1', 'image2'],
-        '02 Jan 2019',
-        [0,2],
-        [37.82474,-8.65186]),
-        new SiteModel(
-          1,
-        'Quinta do Sol',
-        'farm',
-        5,
-        'https://cdn.vox-cdn.com/thumbor/wNCd1cBf7MrId4a_2IT-XmcfygY=/0x0:5114x3414/1200x800/filters:focal(2148x1298:2966x2116)/cdn.vox-cdn.com/uploads/chorus_image/image/64713096/shutterstock_1106746100.0.jpg',
-        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-        '+351 94 3212124',
-        'street B',
-        'quintadosol@quintadosol.com',
-        'www.quintadosol.com',
-        {
-          facebook: 'facebook link',
-          instagram: 'nistagram link',
-          twitter: 'twitter link'
-        },
-        // ['facebook', 'instagram'],
-        ['image1', 'image2'],
-        '12 Jan 2021',
-        [1,3],
-        [39.64369,-4.41705]),
-        new SiteModel(
-          2,
-        'Quinta da Alfarroba',
-        'restaurant',
-        5,
-        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.masslive.com%2Fresizer%2FYroJRQw1VU9PtFhxMt9NFjl846w%3D%2F1280x0%2Fsmart%2Fcloudfront-us-east-1.images.arcpublishing.com%2Fadvancelocal%2FYITTQEWCCNH6VBNPXC7E3FXLXY.jpg&f=1&nofb=1',
-        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-        '+351 94 3453434',
-        'street C',
-        'quintaalfarroba@quintaalfarroba.com',
-        'www.alfarroba.com',
-        {
-          facebook: 'facebook link',
-          instagram: 'nistagram link',
-          twitter: 'twitter link'
-        },
-        ['image1', 'image2'],
-        '22 Mar 2021',
-        [4],
-        [52.8221,-1.6810])
+        // new SiteModel(
+        //   0,
+        // 'Quinta da marinha',
+        // 'farm',
+        // 2,
+        // 'https://www.gardeningknowhow.com/wp-content/uploads/2016/03/surplus-veggies.jpg',
+        // 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
+        // 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        // '+351 94 3453434',
+        // 'street A',
+        // 'info@quintadmarinha.com',
+        // 'www.quintadosol.com',
+        // {
+        //   facebook: 'facebook link',
+        //   instagram: 'nistagram link'
+        // },
+        // ['image1', 'image2'],
+        // '02 Jan 2019',
+        // [0,2],
+        // [37.82474,-8.65186]),
+        // new SiteModel(
+        //   1,
+        // 'Quinta do Sol',
+        // 'farm',
+        // 5,
+        // 'https://cdn.vox-cdn.com/thumbor/wNCd1cBf7MrId4a_2IT-XmcfygY=/0x0:5114x3414/1200x800/filters:focal(2148x1298:2966x2116)/cdn.vox-cdn.com/uploads/chorus_image/image/64713096/shutterstock_1106746100.0.jpg',
+        // 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
+        // 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        // '+351 94 3212124',
+        // 'street B',
+        // 'quintadosol@quintadosol.com',
+        // 'www.quintadosol.com',
+        // {
+        //   facebook: 'facebook link',
+        //   instagram: 'nistagram link',
+        //   twitter: 'twitter link'
+        // },
+        // // ['facebook', 'instagram'],
+        // ['image1', 'image2'],
+        // '12 Jan 2021',
+        // [1,3],
+        // [39.64369,-4.41705]),
+        // new SiteModel(
+        //   2,
+        // 'Quinta da Alfarroba',
+        // 'restaurant',
+        // 5,
+        // 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.masslive.com%2Fresizer%2FYroJRQw1VU9PtFhxMt9NFjl846w%3D%2F1280x0%2Fsmart%2Fcloudfront-us-east-1.images.arcpublishing.com%2Fadvancelocal%2FYITTQEWCCNH6VBNPXC7E3FXLXY.jpg&f=1&nofb=1',
+        // 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
+        // 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        // '+351 94 3453434',
+        // 'street C',
+        // 'quintaalfarroba@quintaalfarroba.com',
+        // 'www.alfarroba.com',
+        // {
+        //   facebook: 'facebook link',
+        //   instagram: 'nistagram link',
+        //   twitter: 'twitter link'
+        // },
+        // ['image1', 'image2'],
+        // '22 Mar 2021',
+        // [4],
+        // [52.8221,-1.6810])
   ];
 
   reviewsData:ReviewModel[] = [
@@ -86,18 +84,23 @@ export class SiteService {
     new ReviewModel(1, 4, 1, 'review 05', '7 Sep 2021')
   ];
 
-  constructor(private http:HttpClient, private router:Router) {
-
+  constructor(private router:Router) {
+    
   }
 
-  saveData():void {
-
-    const path = `${this.DB_PATH}/sites.json`;
-
-    this.http.put(path, this.sitesData).subscribe(h => console.log(h));
-
-    console.log(path, 'done')
+  setSites(sitesData:SiteModel[]):void {
+    this.sitesData = sitesData;
+    this.sitesChangedEvent.emit(this.sitesData);
   }
+
+  // saveData():void {
+
+  //   const path = `${this.DB_PATH}/sites.json`;
+
+  //   this.http.put(path, this.sitesData).subscribe(h => console.log(h));
+
+  //   console.log(path, 'done')
+  // }
 
   getSites():SiteModel[] {
       return this.sitesData.reverse();
@@ -123,6 +126,7 @@ export class SiteService {
       if(!site.img) {
         site.img = site.images[0];
       }
+      site.id = this.sitesData.length;
       this.sitesData.push(site);
       this.router.navigate(['/site-list']);
   }

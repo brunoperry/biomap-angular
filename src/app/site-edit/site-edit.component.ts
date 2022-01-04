@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SiteModel } from 'src/models/site.model';
+import { BackendService } from 'src/services/backend.service';
 import { SiteService } from 'src/services/site.service';
 
 
@@ -43,7 +44,7 @@ export class SiteEditComponent implements OnInit {
   currentSiteData:SiteModel = new SiteModel();
   isEnd:boolean = false;
 
-  constructor(private siteService:SiteService, private route:ActivatedRoute) { 
+  constructor(private siteService:SiteService, private route:ActivatedRoute, private backendService:BackendService) { 
     document.documentElement.style.setProperty('--num-steps', this.steps.length.toString());
   }
 
@@ -66,6 +67,7 @@ export class SiteEditComponent implements OnInit {
 
     if(this.isEnd) {
       this.siteService.editSite(this.currentSiteData);
+      this.backendService.saveData();
       return;
     }
     this.currIndex++;

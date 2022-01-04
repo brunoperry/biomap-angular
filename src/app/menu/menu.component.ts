@@ -1,5 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { BackendService } from 'src/services/backend.service';
 import { SiteService } from 'src/services/site.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class MenuComponent implements OnInit {
 
   @Input() isOpen:boolean = false;
 
-  constructor(private siteService:SiteService, private router:Router) { }
+  constructor( private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +31,9 @@ export class MenuComponent implements OnInit {
   }
 
   onSaveClick():void {
-    this.siteService.saveData();
+    // this.backendService.saveData();
   }
+  // onFetchClick():void {
+  //   this.backendService.fetchData();
+  // }
 }

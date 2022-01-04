@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SiteModel } from 'src/models/site.model';
+import { BackendService } from 'src/services/backend.service';
 import { SiteService } from 'src/services/site.service';
 
 @Component({
@@ -42,7 +43,7 @@ export class SiteAddComponent implements OnInit {
   currentSiteData:SiteModel = new SiteModel();
   isEnd:boolean = false;
 
-  constructor(private siteService:SiteService) { 
+  constructor(private siteService:SiteService, private backendService:BackendService) { 
     document.documentElement.style.setProperty('--num-steps', this.steps.length.toString());
   }
 
@@ -55,9 +56,9 @@ export class SiteAddComponent implements OnInit {
     this.isEnd = this.currIndex >= this.steps.length - 1;
   }
   onNextClick():void {
-
     if(this.isEnd) {
       this.siteService.addSite(this.currentSiteData);
+      this.backendService.saveData();
       return;
     }
     this.currIndex++;
