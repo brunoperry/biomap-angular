@@ -16,7 +16,7 @@ export class SiteService {
         new SiteModel(
           0,
         'Quinta da marinha',
-        'Farm',
+        'farm',
         2,
         'https://www.gardeningknowhow.com/wp-content/uploads/2016/03/surplus-veggies.jpg',
         'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
@@ -25,7 +25,10 @@ export class SiteService {
         'street A',
         'info@quintadmarinha.com',
         'www.quintadosol.com',
-        ['facebook', 'instagram'],
+        {
+          facebook: 'facebook link',
+          instagram: 'nistagram link'
+        },
         ['image1', 'image2'],
         '02 Jan 2019',
         [0,2],
@@ -33,7 +36,7 @@ export class SiteService {
         new SiteModel(
           1,
         'Quinta do Sol',
-        'Camping',
+        'farm',
         5,
         'https://cdn.vox-cdn.com/thumbor/wNCd1cBf7MrId4a_2IT-XmcfygY=/0x0:5114x3414/1200x800/filters:focal(2148x1298:2966x2116)/cdn.vox-cdn.com/uploads/chorus_image/image/64713096/shutterstock_1106746100.0.jpg',
         'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
@@ -42,7 +45,12 @@ export class SiteService {
         'street B',
         'quintadosol@quintadosol.com',
         'www.quintadosol.com',
-        ['facebook', 'instagram'],
+        {
+          facebook: 'facebook link',
+          instagram: 'nistagram link',
+          twitter: 'twitter link'
+        },
+        // ['facebook', 'instagram'],
         ['image1', 'image2'],
         '12 Jan 2021',
         [1,3],
@@ -50,7 +58,7 @@ export class SiteService {
         new SiteModel(
           2,
         'Quinta da Alfarroba',
-        'Park',
+        'restaurant',
         5,
         'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.masslive.com%2Fresizer%2FYroJRQw1VU9PtFhxMt9NFjl846w%3D%2F1280x0%2Fsmart%2Fcloudfront-us-east-1.images.arcpublishing.com%2Fadvancelocal%2FYITTQEWCCNH6VBNPXC7E3FXLXY.jpg&f=1&nofb=1',
         'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sfmission.com%2Fgallery_files%2Fsite_pics%2FAsia%2FNepal%2FKathmandu%2FMaps_and_Guides%2FKathmandu-google-maps.jpg&f=1&nofb=1',
@@ -59,7 +67,11 @@ export class SiteService {
         'street C',
         'quintaalfarroba@quintaalfarroba.com',
         'www.alfarroba.com',
-        ['facebook', 'instagram'],
+        {
+          facebook: 'facebook link',
+          instagram: 'nistagram link',
+          twitter: 'twitter link'
+        },
         ['image1', 'image2'],
         '22 Mar 2021',
         [4],
@@ -108,6 +120,9 @@ export class SiteService {
   }
 
   addSite(site:SiteModel) :void {
+      if(!site.img) {
+        site.img = site.images[0];
+      }
       this.sitesData.push(site);
       this.router.navigate(['/site-list']);
   }
@@ -142,6 +157,19 @@ export class SiteService {
   }
   getReview(reviewID:number):ReviewModel | undefined {
     return this.reviewsData.find(r => r.id === reviewID);
+  }
+
+  getFilterMapData(filterData:any[]):any[] {
+
+    let out:any[] = [];
+    filterData.forEach(s => {
+      out.push({
+        siteID: s.id,
+        type: s.type,
+        coordinates: s.coords
+      })
+    });
+    return out;
   }
 
   getMapData() :any[] {

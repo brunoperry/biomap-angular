@@ -85,11 +85,10 @@ export class SiteAddComponent implements OnInit {
   }
 
   onStep4Change(data:any):void {
-    console.log('step4 change, deal with media', data);
+    this.currentSiteData.images = data;
   }
 
   onStep5Change(data:any):void {
-    
     console.log('step5 change, just confirm..', data);
   }
 

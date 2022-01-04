@@ -16,7 +16,11 @@ export class Step3Component implements OnInit {
   private address:string = '';
   private email:string = '';
   private website:string = '';
-  private networks:string[] = [];
+  private networks:any = {
+    facebook: null,
+    instagram: null,
+    twitter: null
+  };
 
   constructor() { }
 
@@ -43,9 +47,9 @@ export class Step3Component implements OnInit {
       this.form.get('address')?.setValue(this.address);
       this.form.get('email')?.setValue(this.email);
       this.form.get('website')?.setValue(this.website);
-      this.form.get('facebook')?.setValue(this.networks[0]);
-      this.form.get('instagram')?.setValue(this.networks[1]);
-      this.form.get('twitter')?.setValue(this.networks[2]);
+      this.form.get('facebook')?.setValue(this.networks.facebook);
+      this.form.get('instagram')?.setValue(this.networks.instagram);
+      this.form.get('twitter')?.setValue(this.networks.twitter);
     }
   }
 
@@ -70,20 +74,19 @@ export class Step3Component implements OnInit {
   }
 
   onNetworkInput(type:string, e:any) :void {
-    let currNT:number;
     switch (type) {
       case 'facebook':
-      default:
-        currNT = 0;
+        this.networks.facebook = e.target.value;
         break;
       case 'instagram':
-        currNT = 1;
+        this.networks.instagram = e.target.value;
         break;
       case 'twitter':
-        currNT = 2;
+        this.networks.twitter = e.target.value;
+        break;
+      default:
         break;
     }
-    this.networks[currNT] = e.target.value;
     this.validate();
   }
 

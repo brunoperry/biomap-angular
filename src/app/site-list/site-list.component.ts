@@ -12,13 +12,16 @@ export class SiteListComponent implements OnInit {
 
   currentMode:string = 'list';
   sitesData:SiteModel[] = [];
+  private rawSitesData:SiteModel[] = [];
   mapsData:any[] = [];
   initialized:boolean = false;
+  isFiltersOpen:boolean = false;
 
   constructor(private siteListService:SiteService, private router:Router) { }
 
   ngOnInit():void {
-    this.sitesData = this.siteListService.getSites();
+    this.rawSitesData = this.siteListService.getSites();
+    this.sitesData = this.rawSitesData;
     this.mapsData = this.siteListService.getMapData();
     this.initialized = true;
   }
@@ -27,7 +30,17 @@ export class SiteListComponent implements OnInit {
     this.currentMode = mode;
   }
   onFilterClick():void {
-    console.log('lkqjd')
+    this.isFiltersOpen = true;
+  }
+  onFilterTypeClick(type:string):void {
+
+    const filterData:SiteModel[] = this.rawSitesData.filter(s=>s.type===type);
+    filterData.length > 0 ? this.sitesData = filterData : this.sitesData = this.rawSitesData;
+    this.mapsData = this.siteListService.getFilterMapData(this.sitesData);
+    this.isFiltersOpen = false;
+  }
+  onFilterBackgroundClick():void{
+    this.isFiltersOpen = false;
   }
 
   onCardClick(cardID:number):void {

@@ -42,6 +42,13 @@
   justify-content: center;
   flex-direction: column;
 }
+
+:host h3 {
+  color: var(--green-b);
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
 #lang-list-container .lang-list h3 {
   color: var(--green-b);
 }

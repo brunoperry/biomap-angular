@@ -12,7 +12,7 @@ import { SiteService } from 'src/services/site.service';
 })
 export class SiteDetailComponent implements OnInit {
 
-  @Input() detailData?: SiteModel;
+  @Input() detailData: SiteModel = new SiteModel();
   reviewsData:ReviewModel[]=[];
   reviewsOpened:boolean = false;
   initialized:boolean = false;
@@ -27,6 +27,8 @@ export class SiteDetailComponent implements OnInit {
         const data = this.siteService.getSiteDetail(params['index']);
         this.detailData = data.site;
         this.reviewsData = data.reviews;
+
+        console.log(this.detailData)
       }
     })
     this.initialized = true;
@@ -34,14 +36,13 @@ export class SiteDetailComponent implements OnInit {
 
   onShareClick():void {
     console.log('share this');
-    
   }
 
   onMapButtonClick():void {
     console.log('map button click');
   }
 
-  onNetworkClick(type:string):void {
+  onNetworkClick(type:string | undefined):void {
     console.log('network clicked', type);
   }
 

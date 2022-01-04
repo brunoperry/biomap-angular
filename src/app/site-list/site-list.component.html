@@ -29,4 +29,39 @@
         <app-site-map [mapID]="'maplist'" [mapData]="mapsData"></app-site-map>
     </div>
 </div>
+
+<div id="types-filter-container" [ngClass]="{'hidden':!isFiltersOpen}">
+    <div class="background" (click)="onFilterBackgroundClick()"></div>
+    <div class="filters-container">
+        <h2>Filter</h2>
+        <div id="radio-farm-button" class="type-button" (click)="onFilterTypeClick('farm')" >
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="var(--red)">
+                <path d="M 0,0 V 2.59072 L 11.68,13.71136 V 25.23008 L 17.6128,32 h 2.73536 V 13.71136 L 32,2.59072 V 0 H 0" />
+            </svg>
+            <input type="radio" value="farm" checked> 
+            <label>Farm</label> 
+        </div>
+        <div id="radio-market-button" class="type-button" (click)="onFilterTypeClick('market')">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="var(--blue)">
+                <path d="M 0,0 V 2.59072 L 11.68,13.71136 V 25.23008 L 17.6128,32 h 2.73536 V 13.71136 L 32,2.59072 V 0 H 0" />
+            </svg>
+            <input type="radio" value="market"> 
+            <label>Market</label> 
+        </div>
+        <div id="radio-restaurant-button" class="type-button" (click)="onFilterTypeClick('restaurant')">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="var(--brown)">
+                <path d="M 0,0 V 2.59072 L 11.68,13.71136 V 25.23008 L 17.6128,32 h 2.73536 V 13.71136 L 32,2.59072 V 0 H 0" />
+            </svg>
+            <input type="radio" value="restaurant"> 
+            <label>Restaurant</label> 
+        </div>
+        <div id="radio-other-button" class="type-button" (click)="onFilterTypeClick('other')">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="var(--green-c)">
+                <path d="M 0,0 V 2.59072 L 11.68,13.71136 V 25.23008 L 17.6128,32 h 2.73536 V 13.71136 L 32,2.59072 V 0 H 0" />
+            </svg>
+            <input type="radio" value="other">
+            <label>Other</label> 
+        </div>
+    </div>
+</div>
     

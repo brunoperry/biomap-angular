@@ -94,11 +94,13 @@
 }
 #detail-networks-container {
   display: flex;
-  justify-content: space-around;
   max-height: 48px;
-  max-width: 60%;
   padding: var(--padding);
-  gap: var(--padding);
+}
+#detail-networks-container button {
+  padding: 5px;
+  width: 48px;
+  height: 48px;
 }
 
 #detail-reviews-container {

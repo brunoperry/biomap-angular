@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-step4',
@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class Step4Component implements OnInit {
 
   numImages:number = 0;
+  images:any[] = [];
 
+  @Output() onChange:EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
@@ -21,5 +23,20 @@ export class Step4Component implements OnInit {
   onTakePic():void {
 
   }
+  onFileSelected(e:any) :void {
 
+    const reader = new FileReader();
+    reader.onload = (ev:any) => {
+      this.images.push(ev.target.result);
+      this.numImages = this.images.length;
+      this.onChange.emit(this.images);
+    }
+    reader.readAsDataURL(e.target.files[0]);
+  }
+
+  onDeleteThumbnailClick(i:number):void {
+    this.images.splice(i, 1);
+    this.numImages = this.images.length;
+    this.onChange.emit(this.images);
+  }
 }
