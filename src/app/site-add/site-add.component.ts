@@ -86,7 +86,7 @@ export class SiteAddComponent implements OnInit {
   }
 
   onStep4Change(data:any):void {
-    this.currentSiteData.images = data;
+    this.currentSiteData.media = data;
   }
 
   onStep5Change(data:any):void {

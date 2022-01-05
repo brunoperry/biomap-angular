@@ -124,7 +124,7 @@ export class SiteService {
 
   addSite(site:SiteModel) :void {
       if(!site.img) {
-        site.img = site.images[0];
+        site.img = site.media[0];
       }
       site.id = this.sitesData.length;
       this.sitesData.push(site);
