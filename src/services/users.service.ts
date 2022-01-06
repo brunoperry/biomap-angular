@@ -46,9 +46,11 @@ export class UsersService {
         let out:any[] = [];
 
         const sitesData= this.siteService.getSites();
+            console.log(sitesData);
         sitesID.forEach(siteID => {
             const site = sitesData.filter(s=>s.id===siteID);
-            if(site) out.push(site[0]);
+
+            if(site) out.push(site);
         });
         return out;
     }
@@ -59,6 +61,8 @@ export class UsersService {
         this.currentUser.settings = settings;
     }
     getSiteTitle(id:number):string | undefined {
-        return this.siteService.getSite(id)?.title;
+
+        return undefined;
+        // return this.siteService.getSite(id)?.title;
     }
 }

@@ -20,8 +20,7 @@ export class SiteModel {
         public media:string[] = [],
         public date:string='',
         public reviews:number[]=[],
-        public coords:number[] | undefined = [],
-        public images:any[]=[]) {
+        public coords:number[] | undefined = []) {
 
     }
 }

@@ -18,7 +18,8 @@ export class Step1Component implements OnInit {
     
   }
 
-  onMapChange(coords:number[] | undefined):void {
-    this.onChange.emit(coords);
+  onMapChange(mapData:any):void {
+
+    this.onChange.emit(mapData);
   }
 }

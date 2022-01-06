@@ -40,11 +40,11 @@ export class ReviewAddComponent implements OnInit {
 
     if(!this.reviewText) return;
 
-    this.siteService.addReview({
-      siteID: this.siteID,
-      rating: this.rating,
-      review: this.reviewText
-    })
+    // this.siteService.addReview({
+    //   siteID: this.siteID,
+    //   rating: this.rating,
+    //   review: this.reviewText
+    // })
     this.location.back();
   }
 }

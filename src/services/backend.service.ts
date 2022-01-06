@@ -1,23 +1,39 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { from, tap } from "rxjs";
-import { SiteModel } from "src/models/site.model";
-// import { SiteService } from "./site.service";
-// import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
+import { Observable } from "rxjs";
+import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
+
 
 @Injectable({providedIn: 'root'})
 export class BackendService {
 
-    private FIREBASE_URL:string = 'https://biomap-2f3d1-default-rtdb.firebaseio.com/sites.json';
-
-    constructor(private http:HttpClient) {
+    constructor(private firestore: Firestore) {
     }
 
-    saveData() :void {
-        // const sitesData:SiteModel[] = this.siteService.getSites();
-        // this.http.put(this.FIREBASE_URL, sitesData).subscribe(res => {
-        //     console.log(res);
-        // });
+    getDataFrom(table:string, params:any={idField: 'id'}):Observable<any> {
+        const siteRef = collection(this.firestore, table);
+        return collectionData(siteRef, params) as Observable<any[]>;
+    }
+
+    getDataById(table:string, id:number, params:any={idField: 'id'}):Observable<any> {
+        const siteDocRef = doc(this.firestore, `${table}/${id}`);
+        return docData(siteDocRef, params) as Observable<any>;
+    }
+
+    async saveData(table:string, data:any, images:any=null) :Promise<any> {
+        const sitesRef = collection(this.firestore, table);
+        return await addDoc(sitesRef, data);
+    }
+    async uploadImages(images:any[]):Promise<any> {
+        const storage = getStorage();
+        const storageRef = ref(storage, `files/${Math.random()}${images[0].name}`);
+        const uploadTask = await uploadBytes(storageRef, images[0])
+        return await getDownloadURL(uploadTask.ref);
+    }
+
+    async deleteDataByID(table:string, id:number):Promise<any> {
+        const siteDocRef = doc(this.firestore, `${table}/${id}`);
+        return await deleteDoc(siteDocRef);
     }
 
     fetchData() {

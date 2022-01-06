@@ -30,7 +30,6 @@ export class ProfileComponent implements OnInit {
         if(data) {
           this.userData = data;
           this.isEditable = this.userData.id === this.userService.currentUser.id;
-          
           this.sitesData = this.userService.getUserSites(this.userData.sites)
         }
       }
@@ -40,6 +39,5 @@ export class ProfileComponent implements OnInit {
   }
   onChangeAvatarClick() :void {
     console.log('change avatar');
-    
   }
 }

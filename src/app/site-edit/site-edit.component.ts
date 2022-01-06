@@ -52,8 +52,8 @@ export class SiteEditComponent implements OnInit {
 
     this.route.params.subscribe((params:Params) => {
       if(params['index']) {
-        const data = this.siteService.getSiteDetail(params['index']);
-        this.currentSiteData = data.site;
+        // const data = this.siteService.getSiteDetail(params['index']);
+        // this.currentSiteData = data.site;
       }
     })
     this.initialized = true;
@@ -66,8 +66,8 @@ export class SiteEditComponent implements OnInit {
   onNextClick():void {
 
     if(this.isEnd) {
-      this.siteService.editSite(this.currentSiteData);
-      this.backendService.saveData();
+      // this.siteService.editSite(this.currentSiteData);
+      // this.backendService.saveData();
       return;
     }
     this.currIndex++;

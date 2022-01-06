@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
+import {SimpleMapScreenshoter} from 'leaflet-simple-map-screenshoter';
 
 @Component({
   selector: 'app-site-map',
@@ -14,7 +15,7 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
   @Input() mapID:string = 'none';
   @Input() isPlacement:boolean = false;
   @Input() coords:number[] = [];
-  @Output() onChange:EventEmitter<number[]> = new EventEmitter<number[]>();
+  @Output() onChange:EventEmitter<any> = new EventEmitter<any>();
 
   private centroid:L.LatLngExpression = [47.250, 7.646];
   isZoomed:boolean = false;
@@ -25,7 +26,9 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
   private currentZoom:number = 3;
 
   constructor(private router:Router) {
-   }
+
+
+  }
 
   ngOnInit():void {
 
@@ -52,6 +55,7 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     });
     tiles.addTo(this.map);
     this.markersLayer  = L.layerGroup().addTo(this.map);
+    new SimpleMapScreenshoter({ hidden: false }).addTo(this.map);
 
     switch (this.mapID) {
       case 'mapadd':
@@ -93,10 +97,9 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     });
   }
 
-  onMarkerTapClick():void {
+  async onMarkerTapClick():Promise<any> {
 
     const coords = this.map.getBounds().getCenter();
-    this.onChange.emit([coords.lat, coords.lng]);
 
     const markerIcon = L.icon({
       iconUrl: '/assets/images/marker_map_icon.svg',
@@ -109,6 +112,12 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
       }
     L.marker(coords, markerOptions).addTo(this.markersLayer);
     this.isMarked = true;
+
+    const mapImg = await this.takeSnapshot();
+    this.onChange.emit({
+      coords:[coords.lat, coords.lng],
+      mapImg: mapImg
+    });
   }
   onClearMarkerClick():void {
     this.onChange.emit();
@@ -117,5 +126,38 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
   }
   onMyLocationClick():void {
     this.map.locate({setView: true, watch: true, maxZoom: 17});
+  }
+
+  async takeSnapshot():Promise<any> {
+    let pluginOptions = {
+      cropImageByInnerWH: true, // crop blank opacity from image borders
+      hidden: true, // hide screen icon
+      preventDownload: false, // prevent download on button click
+      domtoimageOptions: {}, // see options for dom-to-image
+      screenName: 'screen', // string or function
+      hideElementsWithSelectors: ['.leaflet-control-container', 'leaflet-control-simpleMapScreenshoter'], // by default hide map controls All els must be child of _map._container
+      mimeType: 'image/png', // used if format == image,
+      caption: null, // string or function, added caption to bottom of screen
+      captionFontSize: 15,
+      captionFont: 'Arial',
+      captionColor: 'black',
+      captionBgColor: 'white',
+      captionOffset: 5,
+    }
+
+    const screenShoter = L.simpleMapScreenshoter(pluginOptions).addTo(this.map)
+    let format:any = 'blob' // 'image' - return base64, 'canvas' - return canvas
+    let overridedPluginOptions = {
+      mimeType: 'image/jpeg'
+    }
+
+    try {
+      const blob = await screenShoter.takeScreen(format, overridedPluginOptions);
+      alert('done')
+      console.log('blob', blob)
+      return blob;
+    } catch (error) {
+      console.error(error)
+    }
   }
 }

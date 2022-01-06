@@ -32,9 +32,11 @@ import { LangButtonComponent } from './lang-button/lang-button.component';
 import { SiteEditComponent } from './site-edit/site-edit.component';
 
 //firebase
-// import {AngularFireModule} from '@angular/fire';
-import {list} from '@angular/fire/database';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore, connectFirestoreEmulator, enableIndexedDbPersistence } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
+
 const routes:Routes = [
   {
     path: '',
@@ -118,14 +120,9 @@ const routes:Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     [
-        // provideFirebaseApp(() => initializeApp(config)),
-        // provideFirestore(() => {
-        //     const firestore = getFirestore();
-        //     connectFirestoreEmulator(firestore, 'localhost', 8080);
-        //     enableIndexedDbPersistence(firestore);
-        //     return firestore;
-        // }),
-        // provideStorage(() => getStorage()),
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideFirestore(() => getFirestore()),
+        provideStorage(() => getStorage())
     ]
   ],
   providers: [],

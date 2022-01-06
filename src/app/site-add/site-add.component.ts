@@ -42,6 +42,7 @@ export class SiteAddComponent implements OnInit {
   disableNext:boolean = true;
   currentSiteData:SiteModel = new SiteModel();
   isEnd:boolean = false;
+  currentThumbs:any[] = [];
 
   constructor(private siteService:SiteService, private backendService:BackendService) { 
     document.documentElement.style.setProperty('--num-steps', this.steps.length.toString());
@@ -58,16 +59,17 @@ export class SiteAddComponent implements OnInit {
   onNextClick():void {
     if(this.isEnd) {
       this.siteService.addSite(this.currentSiteData);
-      this.backendService.saveData();
       return;
     }
+
     this.currIndex++;
     this.isEnd = this.currIndex >= this.steps.length - 1;
   }
 
-  onStep1Change(coords:number[] | undefined):void {
-    coords ? this.currentStep.state = true : this.currentStep.state = false;
-    this.currentSiteData.coords = coords;
+  onStep1Change(data:any):void {
+    data ? this.currentStep.state = true : this.currentStep.state = false;
+    this.currentSiteData.coords = data.coords;
+    this.currentSiteData.mapImg = data.mapImg;
   }
   onStep2Change(data:any):void {
 
@@ -85,8 +87,21 @@ export class SiteAddComponent implements OnInit {
     this.currentStep.state = true;
   }
 
-  onStep4Change(data:any):void {
-    this.currentSiteData.media = data;
+  onStep4Change(change:any):void {
+
+    switch (change.type) {
+      case 'file':
+        this.currentSiteData.media = change.data;
+        break;
+      case 'thumbnail':
+        this.currentThumbs.push(change.data)
+        break;
+      case 'delete':
+        this.currentThumbs.splice(change.index, 1);
+        break;
+      default:
+        break;
+    }
   }
 
   onStep5Change(data:any):void {

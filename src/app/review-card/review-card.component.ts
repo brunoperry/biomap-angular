@@ -16,7 +16,7 @@ export class ReviewCardComponent implements OnInit {
   constructor(private siteService:SiteService, private router:Router) { }
 
   ngOnInit(): void {
-    this.reviewData = this.siteService.getReview(this.reviewID);
+    // this.reviewData = this.siteService.getReview(this.reviewID);
   }
 
   onAvatarClick():void {

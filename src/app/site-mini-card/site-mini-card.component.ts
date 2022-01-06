@@ -13,6 +13,8 @@ export class SiteMiniCardComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+
+    
   }
   onSiteClick():void {
     this.router.navigate(['/site-detail/', this.cardData.id]);

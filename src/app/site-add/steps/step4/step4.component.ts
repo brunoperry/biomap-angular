@@ -25,11 +25,19 @@ export class Step4Component implements OnInit {
   }
   onFileSelected(e:any) :void {
 
+    this.onChange.emit({
+      type: 'file',
+      data:e.target.files
+    });
+
     const reader = new FileReader();
     reader.onload = (ev:any) => {
       this.images.push(ev.target.result);
       this.numImages = this.images.length;
-      this.onChange.emit(this.images);
+      this.onChange.emit({
+        type:'thumb',
+        data:this.images
+      });
     }
     reader.readAsDataURL(e.target.files[0]);
   }
@@ -37,6 +45,9 @@ export class Step4Component implements OnInit {
   onDeleteThumbnailClick(i:number):void {
     this.images.splice(i, 1);
     this.numImages = this.images.length;
-    this.onChange.emit(this.images);
+    this.onChange.emit({
+      type: 'delete',
+      index: i
+    });
   }
 }

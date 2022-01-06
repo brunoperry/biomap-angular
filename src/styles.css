@@ -46,6 +46,9 @@ body {
   height: 100%;
   background-color: var(--green-e);
 }
+body::-webkit-scrollbar {
+  width: 0;
+}
 
 app-root {
   display: flex;

@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { observeOn } from 'rxjs';
 import { ReviewModel } from 'src/models/review.model.';
 import { SiteModel } from 'src/models/site.model';
-import { BackendService } from 'src/services/backend.service';
 import { SiteService } from 'src/services/site.service';
 
 @Component({
@@ -13,21 +11,31 @@ import { SiteService } from 'src/services/site.service';
 })
 export class SiteDetailComponent implements OnInit {
 
-  @Input() detailData: SiteModel = new SiteModel();
+  private detailID:number = -1;
+  detailData: SiteModel = new SiteModel();
   reviewsData:ReviewModel[]=[];
   reviewsOpened:boolean = false;
   initialized:boolean = false;
 
-  constructor(private siteService:SiteService, private route:ActivatedRoute, private router:Router) { }
+  constructor(private siteService:SiteService, private route:ActivatedRoute, private router:Router) { 
+  }
 
   ngOnInit(): void {
 
-    this.route.params.subscribe((params:Params) => {
-      if(params['index']) {
+    this.route.params.subscribe(async (params:Params) => {
 
-        const data = this.siteService.getSiteDetail(params['index']);
-        this.detailData = data.site;
-        this.reviewsData = data.reviews;
+      if(!params['index']) return;
+
+      this.detailID = params['index'];
+      let data:SiteModel | undefined;
+      if(this.siteService.getSites().length === 0) {
+        this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
+          data = this.siteService.getSiteById(this.detailID);
+          if(data) this.detailData = data;
+        })
+      } else {
+          data = this.siteService.getSiteById(this.detailID);
+          if(data) this.detailData = data;
       }
     })
     this.initialized = true;
@@ -49,7 +57,6 @@ export class SiteDetailComponent implements OnInit {
     this.reviewsOpened = !this.reviewsOpened;
   }
   onWriteButtonClick():void {
-
     this.router.navigate(['review-add', this.detailData?.id])
   }
 }
