@@ -15,7 +15,7 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
   @Input() mapID:string = 'none';
   @Input() isPlacement:boolean = false;
   @Input() coords:number[] = [];
-  @Output() onChange:EventEmitter<any> = new EventEmitter<any>();
+  @Output() onMapChange:EventEmitter<any> = new EventEmitter<any>();
 
   private centroid:L.LatLngExpression = [47.250, 7.646];
   isZoomed:boolean = false;
@@ -55,7 +55,7 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     });
     tiles.addTo(this.map);
     this.markersLayer  = L.layerGroup().addTo(this.map);
-    new SimpleMapScreenshoter({ hidden: false }).addTo(this.map);
+    new SimpleMapScreenshoter({ hidden: true }).addTo(this.map);
 
     switch (this.mapID) {
       case 'mapadd':
@@ -114,13 +114,13 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     this.isMarked = true;
 
     const mapImg = await this.takeSnapshot();
-    this.onChange.emit({
+    this.onMapChange.emit({
       coords:[coords.lat, coords.lng],
       mapImg: mapImg
     });
   }
   onClearMarkerClick():void {
-    this.onChange.emit();
+    this.onMapChange.emit();
     this.markersLayer.clearLayers();
     this.isMarked = false;
   }
@@ -133,16 +133,9 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
       cropImageByInnerWH: true, // crop blank opacity from image borders
       hidden: true, // hide screen icon
       preventDownload: false, // prevent download on button click
-      domtoimageOptions: {}, // see options for dom-to-image
       screenName: 'screen', // string or function
       hideElementsWithSelectors: ['.leaflet-control-container', 'leaflet-control-simpleMapScreenshoter'], // by default hide map controls All els must be child of _map._container
       mimeType: 'image/png', // used if format == image,
-      caption: null, // string or function, added caption to bottom of screen
-      captionFontSize: 15,
-      captionFont: 'Arial',
-      captionColor: 'black',
-      captionBgColor: 'white',
-      captionOffset: 5,
     }
 
     const screenShoter = L.simpleMapScreenshoter(pluginOptions).addTo(this.map)
@@ -150,11 +143,8 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     let overridedPluginOptions = {
       mimeType: 'image/jpeg'
     }
-
     try {
       const blob = await screenShoter.takeScreen(format, overridedPluginOptions);
-      alert('done')
-      console.log('blob', blob)
       return blob;
     } catch (error) {
       console.error(error)

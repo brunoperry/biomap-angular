@@ -11,7 +11,7 @@ import { SiteService } from 'src/services/site.service';
 })
 export class SiteDetailComponent implements OnInit {
 
-  private detailID:number = -1;
+  private detailID:string = '';
   detailData: SiteModel = new SiteModel();
   reviewsData:ReviewModel[]=[];
   reviewsOpened:boolean = false;
@@ -25,6 +25,7 @@ export class SiteDetailComponent implements OnInit {
     this.route.params.subscribe(async (params:Params) => {
 
       if(!params['index']) return;
+
 
       this.detailID = params['index'];
       let data:SiteModel | undefined;

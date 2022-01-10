@@ -1,7 +1,7 @@
 export class SiteModel {
 
     constructor(
-        public id:number=-1,
+        public id:string='',
         public title:string='',
         public type:string='',
         public rating:number=-1,

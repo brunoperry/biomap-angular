@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { BackendService } from 'src/services/backend.service';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +11,13 @@ export class AppComponent {
   hideAddButton:boolean = true;
   isMenuOpen:boolean = false;
 
-  constructor(private router:Router, private backendService:BackendService) {
+  constructor(private router:Router) {
 
     this.router.events.subscribe((ev: any) => {
       if(ev instanceof NavigationEnd) {
         this.hideAddButton = ev.url.includes('site-add') || ev.url.includes('site-edit');
       }
     });
-
-    this.backendService.fetchData();
   }
 
   onAddClick() {

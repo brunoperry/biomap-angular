@@ -52,8 +52,7 @@ export class SiteEditComponent implements OnInit {
 
     this.route.params.subscribe((params:Params) => {
       if(params['index']) {
-        // const data = this.siteService.getSiteDetail(params['index']);
-        // this.currentSiteData = data.site;
+        this.currentSiteData = this.siteService.getSiteById(params['index']);
       }
     })
     this.initialized = true;
@@ -63,12 +62,10 @@ export class SiteEditComponent implements OnInit {
     this.currIndex--;
     this.isEnd = this.currIndex >= this.steps.length - 1;
   }
-  onNextClick():void {
+  async onNextClick() {
 
     if(this.isEnd) {
-      // this.siteService.editSite(this.currentSiteData);
-      // this.backendService.saveData();
-      return;
+      return await this.siteService.updateSite(this.currentSiteData);
     }
     this.currIndex++;
     this.isEnd = this.currIndex >= this.steps.length - 1;

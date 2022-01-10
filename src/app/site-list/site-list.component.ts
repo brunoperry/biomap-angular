@@ -20,6 +20,7 @@ export class SiteListComponent implements OnInit {
   constructor(private siteService:SiteService, private router:Router) { 
     this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
       this.sitesData = sites;
+      console.log(sites)
     })
   }
 
@@ -36,17 +37,15 @@ export class SiteListComponent implements OnInit {
     this.isFiltersOpen = true;
   }
   onFilterTypeClick(type:string):void {
-
-    const filterData:SiteModel[] = this.rawSitesData.filter(s=>s.type===type);
+    const filterData:SiteModel[] = this.siteService.getSitesFiltered([type]);
     filterData.length > 0 ? this.sitesData = filterData : this.sitesData = this.rawSitesData;
-    // this.mapsData = this.siteService.getFilterMapData(this.sitesData);
     this.isFiltersOpen = false;
   }
   onFilterBackgroundClick():void{
     this.isFiltersOpen = false;
   }
 
-  onCardClick(cardID:number):void {
+  async onCardClick(cardID:string) {
     this.router.navigate(['/site-detail/', cardID]);
   }
 }

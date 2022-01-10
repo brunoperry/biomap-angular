@@ -16,6 +16,7 @@
     <p>{{userData.email}}</p>
     <label>Places added ({{userData.sites.length}} places)</label>
     <div class="cards-container">
+        <!-- <div *ngFor="let site of sitesData"></div> -->
         <app-site-mini-card  *ngFor="let site of sitesData" [cardData]="site" [editable]="isEditable"></app-site-mini-card>
     </div>
 </div>

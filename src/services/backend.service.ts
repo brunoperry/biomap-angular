@@ -20,7 +20,7 @@ export class BackendService {
         return docData(siteDocRef, params) as Observable<any>;
     }
 
-    async saveData(table:string, data:any, images:any=null) :Promise<any> {
+    async saveData(table:string, data:any, images:any=null):Promise<any> {
         const sitesRef = collection(this.firestore, table);
         return await addDoc(sitesRef, data);
     }
@@ -31,14 +31,13 @@ export class BackendService {
         return await getDownloadURL(uploadTask.ref);
     }
 
-    async deleteDataByID(table:string, id:number):Promise<any> {
+    async deleteDataByID(table:string, id:string):Promise<any> {
         const siteDocRef = doc(this.firestore, `${table}/${id}`);
         return await deleteDoc(siteDocRef);
     }
 
-    fetchData() {
-        // this.http.get<SiteModel[]>(this.FIREBASE_URL).pipe(tap((sites:SiteModel[])=>{
-        //     this.siteService.setSites(sites);
-        // })).subscribe();
+    async updateDataByID(table:string, data:any):Promise<any> {
+        const noteDocRef = doc(this.firestore, `${table}/${data.id}`);
+        return await updateDoc(noteDocRef, data);
     }
 }

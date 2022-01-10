@@ -14,6 +14,7 @@
 
 #profile-container {
   flex: 1;
+  opacity: 0;
   animation-duration: var(--speed);
   animation-fill-mode: forwards;
   padding: var(--padding);
