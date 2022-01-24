@@ -1,8 +1,0 @@
-:host .network-container {
-  display: flex;
-  flex: 1;
-  padding: var(--padding) 0;
-}
-:host .network-container input {
-  margin-left: var(--padding);
-}

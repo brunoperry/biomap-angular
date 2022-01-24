@@ -14,12 +14,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { SiteDetailComponent } from './site-detail/site-detail.component';
 import { ReviewCardComponent } from './review-card/review-card.component';
 import { SiteMapComponent } from './site-map/site-map.component';
-import { SiteAddComponent } from './site-add/site-add.component';
-import { Step1Component } from './site-add/steps/step1/step1.component';
-import { Step2Component } from './site-add/steps/step2/step2.component';
-import { Step3Component } from './site-add/steps/step3/step3.component';
-import { Step4Component } from './site-add/steps/step4/step4.component';
-import { Step5Component } from './site-add/steps/step5/step5.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { SiteMiniCardComponent } from './site-mini-card/site-mini-card.component';
@@ -36,7 +30,6 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore, connectFirestoreEmulator, enableIndexedDbPersistence } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
-import { StepsControllerComponent } from './components/steps-controller/steps-controller.component';
 
 const routes:Routes = [
   {
@@ -97,12 +90,6 @@ const routes:Routes = [
     SiteDetailComponent,
     ReviewCardComponent,
     SiteMapComponent,
-    SiteAddComponent,
-    Step1Component,
-    Step2Component,
-    Step3Component,
-    Step4Component,
-    Step5Component,
     ProfileComponent,
     SiteMiniCardComponent,
     ReviewAddComponent,
@@ -112,7 +99,6 @@ const routes:Routes = [
     LogoutComponent,
     LangButtonComponent,
     SiteEditComponent,
-    StepsControllerComponent,
   ],
   imports: [
     BrowserModule,

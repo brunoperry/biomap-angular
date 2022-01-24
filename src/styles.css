@@ -91,6 +91,7 @@ textarea {
   border: none;
   border-bottom: 1px solid var(--green-c);
   font-size: 14pt;
+  min-height: 100px;
 }
 
 .form-group {
