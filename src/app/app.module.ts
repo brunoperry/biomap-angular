@@ -36,6 +36,7 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore, connectFirestoreEmulator, enableIndexedDbPersistence } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
+import { StepsControllerComponent } from './components/steps-controller/steps-controller.component';
 
 const routes:Routes = [
   {
@@ -52,11 +53,11 @@ const routes:Routes = [
     component: SiteDetailComponent
   },
   {
-    path: 'site-add',
-    component: SiteAddComponent
+    path: 'site-edit/:index',
+    component: SiteEditComponent
   },
   {
-    path: 'site-edit/:index',
+    path: 'site-edit',
     component: SiteEditComponent
   },
   {
@@ -110,7 +111,8 @@ const routes:Routes = [
     AboutComponent,
     LogoutComponent,
     LangButtonComponent,
-    SiteEditComponent
+    SiteEditComponent,
+    StepsControllerComponent
   ],
   imports: [
     BrowserModule,

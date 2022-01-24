@@ -15,13 +15,13 @@ export class AppComponent {
 
     this.router.events.subscribe((ev: any) => {
       if(ev instanceof NavigationEnd) {
-        this.hideAddButton = ev.url.includes('site-add') || ev.url.includes('site-edit');
+        this.hideAddButton = ev.url.includes('site-edit');
       }
     });
   }
 
   onAddClick() {
     this.isMenuOpen = false;
-    this.router.navigate(['/site-add/'])
+    this.router.navigate(['/site-edit/'])
   }
 }

@@ -12,7 +12,7 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
 
   private map:any;
   @Input() mapData:any[] = [];
-  @Input() mapID:string = 'none';
+  @Input() mapType:string = 'none';
   @Input() isPlacement:boolean = false;
   @Input() coords:number[] = [];
   @Output() onMapChange:EventEmitter<any> = new EventEmitter<any>();
@@ -45,9 +45,9 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     let maxZoom:number = 18;
     let minZoom:number = 3;
 
-    this.mapID = this.isPlacement ? 'mapadd' : 'maplist';
+    this.mapType = this.isPlacement ? 'mapadd' : 'maplist';
 
-    this.map = L.map(this.mapID, {center: this.centroid, zoom:this.currentZoom});
+    this.map = L.map( this.mapType, {center: this.centroid, zoom:this.currentZoom});
     const tiles = L.tileLayer('https://api.mapbox.com/styles/v1/brunoperry/cjqr2e6z699gu2tpavd0e5wwy/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYnJ1bm9wZXJyeSIsImEiOiJjamdhdHdramkxbDA4MnpzMDdpaXdkZTdoIn0.bvfmigvdRdrNBnAxfX_e2g', {
       maxZoom: maxZoom,
       minZoom: minZoom,
@@ -56,8 +56,9 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     tiles.addTo(this.map);
     this.markersLayer  = L.layerGroup().addTo(this.map);
     new SimpleMapScreenshoter({ hidden: true }).addTo(this.map);
+    
 
-    switch (this.mapID) {
+    switch ( this.mapType) {
       case 'mapadd':
         this.initMapAdd();
         break;
@@ -113,6 +114,8 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     L.marker(coords, markerOptions).addTo(this.markersLayer);
     this.isMarked = true;
 
+    this.coords = [coords.lat, coords.lng];
+
     const mapImg = await this.takeSnapshot();
     this.onMapChange.emit({
       coords:[coords.lat, coords.lng],
@@ -120,31 +123,31 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     });
   }
   onClearMarkerClick():void {
-    this.onMapChange.emit();
+    this.onMapChange.emit({
+      coords:[],
+      mapImg: undefined
+    });
     this.markersLayer.clearLayers();
     this.isMarked = false;
   }
-  onMyLocationClick():void {
+  onMyLocationClick(e:any):void {
+    e.preventDefault();
     this.map.locate({setView: true, watch: true, maxZoom: 17});
   }
 
   async takeSnapshot():Promise<any> {
     let pluginOptions = {
-      cropImageByInnerWH: true, // crop blank opacity from image borders
-      hidden: true, // hide screen icon
-      preventDownload: false, // prevent download on button click
-      screenName: 'screen', // string or function
-      hideElementsWithSelectors: ['.leaflet-control-container', 'leaflet-control-simpleMapScreenshoter'], // by default hide map controls All els must be child of _map._container
-      mimeType: 'image/png', // used if format == image,
+      cropImageByInnerWH: true,
+      hidden: true,
+      preventDownload: false,
+      screenName: 'screen',
+      hideElementsWithSelectors: ['.leaflet-control-container', 'leaflet-control-simpleMapScreenshoter'],
+      mimeType: 'image/png',
     }
 
-    const screenShoter = L.simpleMapScreenshoter(pluginOptions).addTo(this.map)
-    let format:any = 'blob' // 'image' - return base64, 'canvas' - return canvas
-    let overridedPluginOptions = {
-      mimeType: 'image/jpeg'
-    }
     try {
-      const blob = await screenShoter.takeScreen(format, overridedPluginOptions);
+      const screenShoter = L.simpleMapScreenshoter(pluginOptions).addTo(this.map);
+      const blob = await screenShoter.takeScreen('blob', { mimeType: 'image/jpeg' });
       return blob;
     } catch (error) {
       console.error(error)

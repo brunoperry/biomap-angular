@@ -1,7 +1,15 @@
 <h2 [ngClass]="{'initialized':initialized}">
     {{currentStep.title}}
 </h2>
-<div id="steps-container" [ngClass]="{'initialized':initialized}"
+
+
+<form id="steps-container" [formGroup]="siteEditForm" (ngSubmit)="onSubmit()">
+    <div class="step" formGroupName="location">
+        <app-site-map [mapType]="'mapadd'" [isPlacement]="true" [coords]="siteData.coords" (onMapChange)="onMapChange($event)"></app-site-map>
+        <input type="text" name="coordinates" class="hidden" formControlName="coordinates" (value)="'map'">
+    </div>
+</form>
+<!-- <div id="steps-container" [ngClass]="{'initialized':initialized}"
     [ngStyle]="{'transform': 'translateX(-' + (currIndex/steps.length) * 100 + '%)'}">
 
     <app-step1 [ngClass]="'step'" (onChange)="onStep1Change($event)" [siteData]="currentSiteData"></app-step1>
@@ -10,8 +18,10 @@
     <app-step4 [ngClass]="'step'" (onChange)="onStep4Change($event)"></app-step4>
     <app-step5 [ngClass]="'step'" (onChange)="onStep5Change($event)" [reviewData]="currentSiteData"></app-step5>
 
-</div>
-<div id="steps-controller" [ngClass]="{'initialized':initialized}">
+</div> -->
+
+<app-steps-controller (onSubmit)="isEnd"></app-steps-controller>
+<!-- <div id="steps-controller" [ngClass]="{'initialized':initialized}">
     <button id="prev-step" (click)="onPrevClick()" [ngClass]="{'disabled' : currIndex == 0}">
         <svg width="32" height="21" viewBox="0 0 32 21" fill="var(--green-e)">
             <path
@@ -29,4 +39,4 @@
                 d="M 12.877746,15.129772 28.052642,2.8736e-4 32.00008,3.9347737 12.877746,22.999884 0,10.160674 3.9474384,6.2261875 Z" />
         </svg>
     </button>
-</div>
+</div> -->

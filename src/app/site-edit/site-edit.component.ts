@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SiteModel } from 'src/models/site.model';
-import { BackendService } from 'src/services/backend.service';
 import { SiteService } from 'src/services/site.service';
 
 
@@ -40,22 +40,129 @@ export class SiteEditComponent implements OnInit {
     }
   ];
   currIndex:number=0;
+
   disableNext:boolean = true;
-  currentSiteData:SiteModel = new SiteModel();
+  siteData:SiteModel = new SiteModel();
   isEnd:boolean = false;
 
-  constructor(private siteService:SiteService, private route:ActivatedRoute, private backendService:BackendService) { 
+  private context:string = 'edit';
+
+  siteEditForm:FormGroup = new FormGroup({})
+
+  constructor(private siteService:SiteService, private route:ActivatedRoute) { 
     document.documentElement.style.setProperty('--num-steps', this.steps.length.toString());
+
+    this.route.params.subscribe(async (params:Params) => {
+      if(!params['index']) {
+        this.context = 'add';
+        this.siteEditForm = new FormGroup({
+          location: new FormGroup({
+            coordinates: new FormControl('')
+          }),
+          information: new FormGroup({
+            title: new FormControl(''),
+            description: new FormControl(''),
+            type: new FormControl('')
+          }),
+          contacts: new FormGroup({
+            address: new FormControl(''),
+            phone: new FormControl(''),
+            email: new FormControl(''),
+            website: new FormControl(''),
+            networks: new FormGroup({
+              facebook: new FormControl(''),
+              instagram: new FormControl(''),
+              twitter: new FormControl(''),
+            }),
+            media: new FormControl('')
+          })
+        })
+        return;
+      }
+      const detailID = params['index'];
+      let data:SiteModel | undefined;
+      if(this.siteService.getSites().length === 0) {
+        this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
+          data = this.siteService.getSiteById(detailID);
+          if(data) {
+            this.siteData = data;
+            this.siteEditForm = new FormGroup({
+              location: new FormGroup({
+                coordinates: new FormControl(data.coords)
+              }),
+              information: new FormGroup({
+                title: new FormControl(data.title),
+                description: new FormControl(data.description),
+                type: new FormControl(data.type)
+              }),
+              contacts: new FormGroup({
+                address: new FormControl(data.address),
+                phone: new FormControl(data.phone),
+                email: new FormControl(data.email),
+                website: new FormControl(data.website),
+                networks: new FormGroup({
+                  facebook: new FormControl(data.networks.facebook),
+                  instagram: new FormControl(data.networks.instagram),
+                  twitter: new FormControl(data.networks.twitter),
+                }),
+                media: new FormControl(data.media)
+              })
+            })
+          }
+        })
+      } else {
+          data = this.siteService.getSiteById(detailID);
+          if(data) {
+            
+            this.siteData = data;
+            this.siteEditForm = new FormGroup({
+              location: new FormGroup({
+                coordinates: new FormControl(data.coords)
+              }),
+              information: new FormGroup({
+                title: new FormControl(data.title),
+                description: new FormControl(data.description),
+                type: new FormControl(data.type)
+              }),
+              contacts: new FormGroup({
+                address: new FormControl(data.address),
+                phone: new FormControl(data.phone),
+                email: new FormControl(data.email),
+                website: new FormControl(data.website),
+                networks: new FormGroup({
+                  facebook: new FormControl(data.networks.facebook),
+                  instagram: new FormControl(data.networks.instagram),
+                  twitter: new FormControl(data.networks.twitter),
+                }),
+                media: new FormControl(data.media)
+              })
+            })
+          }
+          
+      }
+    })
   }
 
   ngOnInit(): void {
+    this.initialized = true;
+  }
 
-    this.route.params.subscribe((params:Params) => {
-      if(params['index']) {
-        this.currentSiteData = this.siteService.getSiteById(params['index']);
+  onSubmit():void {
+
+    console.log('kjh');
+
+    console.warn(this.siteEditForm.value);
+  }
+
+  onMapChange(e:any) {
+
+    this.siteEditForm.patchValue({
+      location: {
+        coordinates: e.coords.toString()
       }
     })
-    this.initialized = true;
+
+    console.log('update coords', e)
   }
 
   onPrevClick():void {
@@ -65,15 +172,17 @@ export class SiteEditComponent implements OnInit {
   async onNextClick() {
 
     if(this.isEnd) {
-      return await this.siteService.updateSite(this.currentSiteData);
+      return await this.siteService.updateSite(this.siteData);
     }
     this.currIndex++;
     this.isEnd = this.currIndex >= this.steps.length - 1;
   }
 
-  onStep1Change(coords:number[] | undefined):void {
+  onStep1Change(coords:number[]):void {
+
+    console.log('likjd', coords)
     coords ? this.currentStep.state = true : this.currentStep.state = false;
-    this.currentSiteData.coords = coords;
+    this.siteData.coords = coords;
   }
   onStep2Change(data:any):void {
 
@@ -82,12 +191,12 @@ export class SiteEditComponent implements OnInit {
       return;
     }
 
-    this.currentSiteData = Object.assign({}, this.currentSiteData, data);
+    this.siteData = Object.assign({}, this.siteData, data);
     this.currentStep.state = true;
   }
 
   onStep3Change(data:any):void {
-    this.currentSiteData = Object.assign({}, this.currentSiteData, data);
+    this.siteData = Object.assign({}, this.siteData, data);
     this.currentStep.state = true;
   }
 

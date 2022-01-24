@@ -36,45 +36,17 @@
   animation-name: fadein;
 }
 .step {
+  position: relative;
   display: inline-flex;
-  width: calc(100% / 4);
+  flex: 1;
+  max-width: calc(100% / var(--num-steps));
   height: 100%;
   overflow-y: scroll;
 }
 
-#steps-controller {
-  display: grid;
-  grid-template-areas: "prev stepnum next";
-  grid-template-columns: 33% 34% 33%;
-  align-items: stretch;
-  justify-items: stretch;
-  flex: 1;
-  max-height: 48px;
-  background-color: var(--brown);
-  animation-duration: var(--speed);
-  animation-fill-mode: forwards;
-}
-#steps-controller.initialized {
-  animation-name: showup;
-}
-#steps-controller .disabled {
+input.hidden {
+  position: absolute;
+  opacity: 0;
+  top: 0;
   pointer-events: none;
-  opacity: 0.5;
-}
-#prev-step {
-  grid-area: prev;
-}
-#controller-text {
-  grid-area: stepnum;
-  font-size: 18pt;
-  color: var(--green-e);
-  align-self: center;
-  justify-self: center;
-}
-#next-step {
-  grid-area: next;
-}
-
-:host .hidden {
-  display: none;
 }

@@ -7,7 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class Step5Component implements OnInit {
 
-  @Input() reviewData:any;
+  @Input() reviewData:any = {
+    title:''
+  };
   constructor() { }
 
   ngOnInit(): void {}
