@@ -53,11 +53,14 @@ export class SiteEditComponent implements OnInit {
     document.documentElement.style.setProperty('--num-steps', this.steps.length.toString());
 
     this.route.params.subscribe(async (params:Params) => {
-      if(!params['index']) {
-        this.context = 'add';
+
+      const detailID = params['index'];
+      if(!detailID) {
+        this.context = 'new';
         this.siteEditForm = new FormGroup({
           location: new FormGroup({
-            coordinates: new FormControl('')
+            coordinates: new FormControl(''),
+            mapImg: new FormControl('')
           }),
           information: new FormGroup({
             title: new FormControl(''),
@@ -79,7 +82,6 @@ export class SiteEditComponent implements OnInit {
         })
         return;
       }
-      const detailID = params['index'];
       let data:SiteModel | undefined;
       if(this.siteService.getSites().length === 0) {
         this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
@@ -154,6 +156,23 @@ export class SiteEditComponent implements OnInit {
     console.warn(this.siteEditForm.value);
   }
 
+  checkSteps() {
+    console.log('check step', this.currentStep);
+
+
+
+    // console.log('update coords', e)
+
+    // if(e.coords.length === 0) {
+    //   console.log('disable next');
+      
+    // } else {
+    //   console.log('enble next');
+      
+    // }
+    
+  }
+
   onMapChange(e:any) {
 
     this.siteEditForm.patchValue({
@@ -162,7 +181,12 @@ export class SiteEditComponent implements OnInit {
       }
     })
 
-    console.log('update coords', e)
+    this.currentStep.state = this.siteEditForm.get('location.coordinates');
+
+    console.log(this.currentStep);
+    
+
+    this.checkSteps()
   }
 
   onPrevClick():void {

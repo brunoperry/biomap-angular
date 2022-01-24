@@ -112,7 +112,7 @@ const routes:Routes = [
     LogoutComponent,
     LangButtonComponent,
     SiteEditComponent,
-    StepsControllerComponent
+    StepsControllerComponent,
   ],
   imports: [
     BrowserModule,
