@@ -5,24 +5,24 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { SiteListComponent } from './site-list/site-list.component';
-import { SiteCardComponent } from './site-card/site-card.component';
-import { RateComponent } from './rate/rate.component';
-import { MenuComponent } from './menu/menu.component';
+import { SiteCardComponent } from './components/site-card/site-card.component';
+import { RateComponent } from './components/rate/rate.component';
+import { MenuComponent } from './components/menu/menu.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SiteDetailComponent } from './site-detail/site-detail.component';
-import { ReviewCardComponent } from './review-card/review-card.component';
-import { SiteMapComponent } from './site-map/site-map.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
+import { SiteMapComponent } from './components/site-map/site-map.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
-import { SiteMiniCardComponent } from './site-mini-card/site-mini-card.component';
+import { SiteMiniCardComponent } from './components/site-mini-card/site-mini-card.component';
 import { ReviewAddComponent } from './review-add/review-add.component';
 import { SettingsComponent } from './settings/settings.component';
-import { CheckboxComponent } from './checkbox/checkbox.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { AboutComponent } from './about/about.component';
 import { LogoutComponent } from './logout/logout.component';
-import { LangButtonComponent } from './lang-button/lang-button.component';
+import { LangButtonComponent } from './components/lang-button/lang-button.component';
 import { SiteEditComponent } from './site-edit/site-edit.component';
 
 //firebase
@@ -91,7 +91,6 @@ const routes:Routes = [
     ReviewCardComponent,
     SiteMapComponent,
     ProfileComponent,
-    SiteMiniCardComponent,
     ReviewAddComponent,
     SettingsComponent,
     CheckboxComponent,
@@ -99,6 +98,7 @@ const routes:Routes = [
     LogoutComponent,
     LangButtonComponent,
     SiteEditComponent,
+    SiteMiniCardComponent
   ],
   imports: [
     BrowserModule,
