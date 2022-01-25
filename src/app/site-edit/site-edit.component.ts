@@ -42,6 +42,7 @@ export class SiteEditComponent implements OnInit {
   currIndex:number=0;
 
   detailID:string = '';
+  private context:string = 'new';
 
   disableNext:boolean = true;
   siteData:SiteModel = new SiteModel();
@@ -68,30 +69,33 @@ export class SiteEditComponent implements OnInit {
       media: new FormControl('')
     })
 
-    this.route.params.subscribe(async (params:Params) => {
+    this.route.params.subscribe((params:Params) => {
       this.detailID = params['index'];
+      if(this.detailID) this.context = 'edit';
     })
   }
 
   ngOnInit(): void {
-    this.initialized = true;
     if(!this.detailID) {
         this.initializeForm();
     } else if(this.siteService.getSites().length === 0) {
       this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
         this.initializeForm(this.siteService.getSiteById(this.detailID))
+        
       })
     } else {
       this.initializeForm(this.siteService.getSiteById(this.detailID))
     }
+    this.initialized = true;
   }
 
   initializeForm(formData:SiteModel = new SiteModel()):void {
 
+        // console.log('lij',formData);
     this.siteData = formData;
 
     this.siteEditForm.patchValue({
-      coordinates: this.siteData.coords,
+      coordinates: this.siteData.coordinates,
       mapImg: this.siteData.mapImg,
       title: this.siteData.title,
       description: this.siteData.description,
@@ -102,17 +106,21 @@ export class SiteEditComponent implements OnInit {
       website: this.siteData.website,
       facebook: this.siteData.facebook,
       instagram: this.siteData.instagram,
-      twitter: this.siteData.twitter
+      twitter: this.siteData.twitter,
+      media: this.siteData.media
     })
 
     if(this.siteData.title) this.steps[0].isReady = this.steps[1].isReady = true;
   }
 
   async submitSite():Promise<void> {
+    
 
-
-    console.log(this.siteEditForm.value)
-    return await this.siteService.updateSite(this.siteEditForm.value as SiteModel);
+    if(this.context === 'edit') {
+      return await this.siteService.updateSite(this.siteEditForm.value as SiteModel);
+    } else {
+      return await this.siteService.addSite(this.siteEditForm.value as SiteModel);
+    }
   }
 
   onPrevClick():void {
@@ -127,16 +135,16 @@ export class SiteEditComponent implements OnInit {
       this.currIndex++;
       this.isEnd = this.currIndex >= this.steps.length - 1;
     }
-    
   }
 
   onStep1Change(event:any):void {
 
     this.siteEditForm.patchValue({
-      coordinates: event.coords.toString(),
+      coordinates: event.coordinates,
       mapImg: event.mapImg
     })
     this.siteEditForm.get('coordinates')?.value ? this.currentStep.isReady = true : this.currentStep.isReady = false;
+    this.siteData = this.siteEditForm.value;
   }
   onStep2Change(event:any, type:string):void {
     this.siteEditForm.value[type] = event.target.value;
@@ -144,14 +152,20 @@ export class SiteEditComponent implements OnInit {
     const descData = this.siteEditForm.get('description')?.value;
     const typeData = this.siteEditForm.get('type')?.value;
     titleData && descData && typeData ? this.currentStep.isReady = true : this.currentStep.isReady = false;
+
+    this.siteData = this.siteEditForm.value;
   }
 
   onStep3Change(event:any, type:string):void {
     this.siteEditForm.value[type] = event.target.value;
+
+    this.siteData = this.siteEditForm.value;
   }
 
   onStep4Change(data:any):void {
     console.log('step4 change, deal with media', data);
+
+    this.siteData = this.siteEditForm.value;
   }
 
   get currentStep():any {

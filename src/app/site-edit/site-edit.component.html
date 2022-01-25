@@ -5,7 +5,7 @@
 <form id="steps-container" [formGroup]="siteEditForm" [ngStyle]="{'transform': 'translateX(-' + (currIndex/steps.length) * 100 + '%)'}">
     
     <div id="step1" class="step">
-        <app-site-map [mapType]="'mapadd'" [isPlacement]="true" [coords]="siteData.coords" (onMapChange)="onStep1Change($event)"></app-site-map>
+        <app-site-map [mapType]="'mapadd'" [isPlacement]="true" [coordinates]="siteData.coordinates" (onMapChange)="onStep1Change($event)"></app-site-map>
         <input type="text" name="coordinates" class="hidden" formControlName="coordinates" (value)="'map'">
     </div>
 

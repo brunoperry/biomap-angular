@@ -21,10 +21,19 @@ export class BackendService {
     }
 
     async saveData(table:string, data:any, images:any=null):Promise<any> {
+
+        if(data.mapImg) {
+            const url = await this.uploadImages([data.mapImg]);
+            data.mapImg = url;
+        }
         const sitesRef = collection(this.firestore, table);
+
+        console.log(data);
+        
         return await addDoc(sitesRef, data);
     }
     async uploadImages(images:any[]):Promise<any> {
+        
         const storage = getStorage();
         const storageRef = ref(storage, `files/${Math.random()}${images[0].name}`);
         const uploadTask = await uploadBytes(storageRef, images[0])

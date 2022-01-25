@@ -26,7 +26,6 @@ export class SiteDetailComponent implements OnInit {
 
       if(!params['index']) return;
 
-
       this.detailID = params['index'];
       let data:SiteModel | undefined;
       if(this.siteService.getSites().length === 0) {
@@ -39,6 +38,7 @@ export class SiteDetailComponent implements OnInit {
           if(data) this.detailData = data;
       }
     })
+    
     this.initialized = true;
   }
 
@@ -47,7 +47,8 @@ export class SiteDetailComponent implements OnInit {
   }
 
   onMapButtonClick():void {
-    console.log('map button click');
+    const c:any = this.detailData.coordinates;
+    window.open(`https://www.google.com/maps/search/?api=1&query=${c[0]},${c[1]}`, '_blank');
   }
 
   onNetworkClick(type:string | undefined):void {

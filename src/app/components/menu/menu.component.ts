@@ -29,11 +29,4 @@ export class MenuComponent implements OnInit {
     this.isOpen = false;
     this.router.navigate([value]);
   }
-
-  onSaveClick():void {
-    // this.backendService.saveData();
-  }
-  // onFetchClick():void {
-  //   this.backendService.fetchData();
-  // }
 }

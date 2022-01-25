@@ -14,7 +14,11 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
   @Input() mapData:any[] = [];
   @Input() mapType:string = 'none';
   @Input() isPlacement:boolean = false;
-  @Input() coords:number[] = [];
+  @Input() coordinates:number[] = [];
+  @Input('coordinates') set value(val: any) {
+    this.coordinates = val;
+    if(val.length > 0) this.setNewCoordinates();
+  }
   @Output() onMapChange:EventEmitter<any> = new EventEmitter<any>();
 
   private centroid:L.LatLngExpression = [47.250, 7.646];
@@ -23,17 +27,13 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
   markerStatus:string = 'zoom';
 
   private markersLayer:any;
-  private currentZoom:number = 3;
 
   constructor(private router:Router) {
-
-
   }
 
   ngOnInit():void {
-
-    if(this.coords.length > 0) {
-      this.centroid = [this.coords[0], this.coords[1]];
+    if(this.coordinates.length > 0) {
+      this.centroid = [this.coordinates[0], this.coordinates[1]];
       this.currentZoom = 18;
       this.isZoomed = true;
       this.markerStatus = 'tap!'
@@ -47,7 +47,8 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
 
     this.mapType = this.isPlacement ? 'mapadd' : 'maplist';
 
-    this.map = L.map( this.mapType, {center: this.centroid, zoom:this.currentZoom});
+    this.map = L.map( this.mapType, {center: this.centroid, zoom:minZoom});
+
     const tiles = L.tileLayer('https://api.mapbox.com/styles/v1/brunoperry/cjqr2e6z699gu2tpavd0e5wwy/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYnJ1bm9wZXJyeSIsImEiOiJjamdhdHdramkxbDA4MnpzMDdpaXdkZTdoIn0.bvfmigvdRdrNBnAxfX_e2g', {
       maxZoom: maxZoom,
       minZoom: minZoom,
@@ -66,12 +67,8 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
         this.initMapList();
         break;
     }
-    
-    if(this.coords.length > 0) {
-      this.centroid = [this.coords[0], this.coords[1]];
-      this.currentZoom = 18;
-      this.isZoomed = true;
-      setTimeout(() => this.onMarkerTapClick(), 100);
+    if(this.coordinates.length > 0) {
+      this.setNewCoordinates();
     }
   }
 
@@ -79,7 +76,7 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
 
     setTimeout(() => this.map.invalidateSize(), 100);
     this.map.on('zoom', () => {
-      this.isZoomed = this.map.getZoom() >= 17;
+      this.isZoomed = this.currentZoom >= 17;
       this.isZoomed ? this.markerStatus = 'tap!' : this.markerStatus = 'zoom'
     });
   }
@@ -104,8 +101,18 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     });
   }
 
-  async onMarkerTapClick():Promise<any> {
+  setNewCoordinates() {
 
+      if(!this.map) return;
+      this.centroid = [this.coordinates[0], this.coordinates[1]];
+      this.currentZoom = 18;
+      this.isZoomed = true;
+
+      this.map.setView(this.centroid, this.currentZoom);
+
+      setTimeout(() => this.setTapToMarker(), 100);
+  }
+  setTapToMarker():void {
     const coords = this.map.getBounds().getCenter();
 
     const markerIcon = L.icon({
@@ -120,17 +127,21 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     L.marker(coords, markerOptions).addTo(this.markersLayer);
     this.isMarked = true;
 
-    this.coords = [coords.lat, coords.lng];
+    this.coordinates = [coords.lat, coords.lng];
+  }
+
+  async onMarkerTapClick():Promise<any> {
+    this.setTapToMarker();
 
     const mapImg = await this.takeSnapshot();
     this.onMapChange.emit({
-      coords:[coords.lat, coords.lng],
+      coordinates:[this.coordinates],
       mapImg: mapImg
     });
   }
   onClearMarkerClick():void {
     this.onMapChange.emit({
-      coords:[],
+      coordinates:[],
       mapImg: undefined
     });
     this.markersLayer.clearLayers();
@@ -157,6 +168,19 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
       return blob;
     } catch (error) {
       console.error(error)
+    }
+  }
+
+  get currentZoom():number {
+    if (this.map) {
+      return this.map.getZoom()
+    } else {
+      return 0;
+    }
+  }
+  set currentZoom(val:number) {
+    if (this.map) {
+      this.map.setZoom(val);
     }
   }
 }
