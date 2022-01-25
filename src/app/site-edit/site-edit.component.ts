@@ -41,6 +41,8 @@ export class SiteEditComponent implements OnInit {
   ];
   currIndex:number=0;
 
+  detailID:string = '';
+
   disableNext:boolean = true;
   siteData:SiteModel = new SiteModel();
   isEnd:boolean = false;
@@ -50,88 +52,67 @@ export class SiteEditComponent implements OnInit {
   constructor(private siteService:SiteService, private route:ActivatedRoute) { 
     document.documentElement.style.setProperty('--num-steps', this.steps.length.toString());
 
-    this.route.params.subscribe(async (params:Params) => {
+    this.siteEditForm = new FormGroup({
+      coordinates: new FormControl(''),
+      mapImg: new FormControl(''),
+      title: new FormControl(''),
+      description: new FormControl(''),
+      type: new FormControl(''),
+      address: new FormControl(''),
+      phone: new FormControl(''),
+      email: new FormControl(''),
+      website: new FormControl(''),
+      facebook: new FormControl(''),
+      instagram: new FormControl(''),
+      twitter: new FormControl(''),
+      media: new FormControl('')
+    })
 
-      const detailID = params['index'];
-      if(!detailID) {
-        this.initializeForm();
-      } else if(this.siteService.getSites().length === 0) {
-        this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
-          this.initializeForm(this.siteService.getSiteById(detailID))
-        })
-      } else {
-        this.initializeForm(this.siteService.getSiteById(detailID))
-      }
+    this.route.params.subscribe(async (params:Params) => {
+      this.detailID = params['index'];
     })
   }
 
   ngOnInit(): void {
     this.initialized = true;
-
-    console.log('init', this.siteData);
-    
+    if(!this.detailID) {
+        this.initializeForm();
+    } else if(this.siteService.getSites().length === 0) {
+      this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
+        this.initializeForm(this.siteService.getSiteById(this.detailID))
+      })
+    } else {
+      this.initializeForm(this.siteService.getSiteById(this.detailID))
+    }
   }
 
   initializeForm(formData:SiteModel = new SiteModel()):void {
 
     this.siteData = formData;
 
-    // this.siteEditForm = new FormGroup({
-    //   location: new FormGroup({
-    //     coordinates: new FormControl(''),
-    //     mapImg: new FormControl('')
-    //   }),
-    //   information: new FormGroup({
-    //     title: new FormControl(''),
-    //     description: new FormControl(''),
-    //     type: new FormControl('')
-    //   }),
-    //   contacts: new FormGroup({
-    //     address: new FormControl(''),
-    //     phone: new FormControl(''),
-    //     email: new FormControl(''),
-    //     website: new FormControl(''),
-    //     facebook: new FormControl(''),
-    //     instagram: new FormControl(''),
-    //     twitter: new FormControl('')
-    //   }),
-    //   media: new FormControl('')
-    // })
-
-    console.log(formData);
-    
-
-
-    this.siteEditForm = new FormGroup({
-      location: new FormGroup({
-        coordinates: new FormControl(formData.coords),
-        mapImg: new FormControl(formData.mapImg)
-      }),
-      information: new FormGroup({
-        title: new FormControl(formData.title),
-        description: new FormControl(formData.description),
-        type: new FormControl(formData.type)
-      }),
-      contacts: new FormGroup({
-        address: new FormControl(formData.address),
-        phone: new FormControl(formData.phone),
-        email: new FormControl(formData.email),
-        website: new FormControl(formData.website),
-        facebook: new FormControl(formData.networks.facebook),
-        instagram: new FormControl(formData.networks.instagram),
-        twitter: new FormControl(formData.networks.twitter)
-      }),
-      media: new FormControl('')
+    this.siteEditForm.patchValue({
+      coordinates: this.siteData.coords,
+      mapImg: this.siteData.mapImg,
+      title: this.siteData.title,
+      description: this.siteData.description,
+      type: this.siteData.type,
+      phone: this.siteData.phone,
+      address: this.siteData.address,
+      email: this.siteData.email,
+      website: this.siteData.website,
+      facebook: this.siteData.facebook,
+      instagram: this.siteData.instagram,
+      twitter: this.siteData.twitter
     })
+
+    if(this.siteData.title) this.steps[0].isReady = this.steps[1].isReady = true;
   }
 
   async submitSite():Promise<void> {
 
-    console.log(this.siteData);
 
-    const req = await this.siteService.updateSite(this.siteData);
-
-    console.warn(req);
+    console.log(this.siteEditForm.value)
+    return await this.siteService.updateSite(this.siteEditForm.value as SiteModel);
   }
 
   onPrevClick():void {
@@ -152,22 +133,21 @@ export class SiteEditComponent implements OnInit {
   onStep1Change(event:any):void {
 
     this.siteEditForm.patchValue({
-      location: {
-        coordinates: event.coords.toString(),
-        mapImg: event.mapImg
-      }
+      coordinates: event.coords.toString(),
+      mapImg: event.mapImg
     })
-
-    this.siteEditForm.get('location.coordinates')?.value ? this.currentStep.isReady = true : this.currentStep.isReady = false;
+    this.siteEditForm.get('coordinates')?.value ? this.currentStep.isReady = true : this.currentStep.isReady = false;
   }
   onStep2Change(event:any, type:string):void {
-    this.siteEditForm.value.information[type] = event.target.value;
-    const infoData = this.siteEditForm.get('information')?.value;
-    infoData.title && infoData.description && infoData.type ? this.currentStep.isReady = true : this.currentStep.isReady = false;
+    this.siteEditForm.value[type] = event.target.value;
+    const titleData = this.siteEditForm.get('title')?.value;
+    const descData = this.siteEditForm.get('description')?.value;
+    const typeData = this.siteEditForm.get('type')?.value;
+    titleData && descData && typeData ? this.currentStep.isReady = true : this.currentStep.isReady = false;
   }
 
   onStep3Change(event:any, type:string):void {
-    this.siteEditForm.value.contacts[type] = event.target.value;
+    this.siteEditForm.value[type] = event.target.value;
   }
 
   onStep4Change(data:any):void {

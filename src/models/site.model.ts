@@ -12,11 +12,9 @@ export class SiteModel {
         public address:string='',
         public email:string='',
         public website:string='',
-        public networks:any = {
-            facebook: null,
-            instagram: null,
-            twitter: null
-        },
+        public facebook:string='',
+        public instagram:string='',
+        public twitter:string='',
         public media:string[] = [],
         public date:string='',
         public reviews:number[]=[],

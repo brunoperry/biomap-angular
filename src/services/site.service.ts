@@ -40,8 +40,6 @@ export class SiteService {
 
     ids.forEach(id => {
       let site = this.sitesData.find( s => s.id === id );
-
-      console.log(site);
       
       if(site) out.push(site);
     });
@@ -58,7 +56,7 @@ export class SiteService {
   }
  
   async updateSite(site: SiteModel) {
-    return await this.backendService.updateDataByID('sites', site);
+    return await this.backendService.updateData('sites', site);
   }
 
   async deleteSiteByID(id:string) {

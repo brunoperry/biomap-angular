@@ -36,8 +36,11 @@ export class BackendService {
         return await deleteDoc(siteDocRef);
     }
 
-    async updateDataByID(table:string, data:any):Promise<any> {
+    async updateData(table:string, data:any):Promise<any> {
         const noteDocRef = doc(this.firestore, `${table}/${data.id}`);
+
+        console.log(noteDocRef, data);
+        
         return await updateDoc(noteDocRef, data);
     }
 }

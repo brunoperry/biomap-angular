@@ -57,7 +57,6 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     this.markersLayer  = L.layerGroup().addTo(this.map);
     new SimpleMapScreenshoter({ hidden: true }).addTo(this.map);
     
-
     switch ( this.mapType) {
       case 'mapadd':
         this.initMapAdd();
@@ -66,6 +65,13 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
       default:
         this.initMapList();
         break;
+    }
+    
+    if(this.coords.length > 0) {
+      this.centroid = [this.coords[0], this.coords[1]];
+      this.currentZoom = 18;
+      this.isZoomed = true;
+      setTimeout(() => this.onMarkerTapClick(), 100);
     }
   }
 
