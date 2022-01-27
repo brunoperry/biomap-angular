@@ -108,6 +108,8 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
       this.currentZoom = 18;
       this.isZoomed = true;
 
+      console.log('w', this.coordinates)
+
       this.map.setView(this.centroid, this.currentZoom);
 
       setTimeout(() => this.setTapToMarker(), 100);
@@ -135,7 +137,7 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
 
     const mapImg = await this.takeSnapshot();
     this.onMapChange.emit({
-      coordinates:[this.coordinates],
+      coordinates: this.coordinates,
       mapImg: mapImg
     });
   }
@@ -165,6 +167,7 @@ export class SiteMapComponent implements AfterViewInit, OnInit {
     try {
       const screenShoter = L.simpleMapScreenshoter(pluginOptions).addTo(this.map);
       const blob = await screenShoter.takeScreen('blob', { mimeType: 'image/jpeg' });
+          console.log(blob)
       return blob;
     } catch (error) {
       console.error(error)

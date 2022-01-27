@@ -21,23 +21,47 @@ export class BackendService {
     }
 
     async saveData(table:string, data:any, images:any=null):Promise<any> {
+        const ref = data;
 
         if(data.mapImg) {
             const url = await this.uploadImages([data.mapImg]);
             data.mapImg = url;
         }
-        const sitesRef = collection(this.firestore, table);
 
-        console.log(data);
-        
+        if(data.media.length > 0) {
+            const urls = await this.uploadImages(data.media);
+            data.media = urls;
+            console.log(urls);
+        }
+        const sitesRef = collection(this.firestore, table);
         return await addDoc(sitesRef, data);
     }
     async uploadImages(images:any[]):Promise<any> {
         
         const storage = getStorage();
-        const storageRef = ref(storage, `files/${Math.random()}${images[0].name}`);
-        const uploadTask = await uploadBytes(storageRef, images[0])
-        return await getDownloadURL(uploadTask.ref);
+        let urls:string[] = [];
+
+        for (let i = 0; i < images.length; i++) {
+            const img = images[i];
+            const storageRef = ref(storage, `files/${Math.random()}${img.name}`);
+            const uploadTask = await uploadBytes(storageRef, img);
+            const u:string = await getDownloadURL(uploadTask.ref);
+
+            console.log('url', u);
+            urls.push(u);
+        }
+
+        // images.forEach(async img => {
+        //     const storageRef = ref(storage, `files/${Math.random()}${img.name}`);
+        //     const uploadTask = await uploadBytes(storageRef, img);
+        //     const u:string = await getDownloadURL(uploadTask.ref);
+
+        //     console.log('url', u);
+        //     urls.push(u);
+        // })
+        
+        console.log('done', urls);
+        return urls;
     }
 
     async deleteDataByID(table:string, id:string):Promise<any> {
@@ -47,9 +71,6 @@ export class BackendService {
 
     async updateData(table:string, data:any):Promise<any> {
         const noteDocRef = doc(this.firestore, `${table}/${data.id}`);
-
-        console.log(noteDocRef, data);
-        
         return await updateDoc(noteDocRef, data);
     }
 }

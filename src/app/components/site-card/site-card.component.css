@@ -37,7 +37,7 @@
   gap: var(--padding);
   justify-content: flex-end;
 }
-:host img {
+app-gallery {
   grid-area: img;
   width: 100%;
   height: auto;

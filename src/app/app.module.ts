@@ -30,6 +30,7 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore, connectFirestoreEmulator, enableIndexedDbPersistence } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 const routes:Routes = [
   {
@@ -98,7 +99,8 @@ const routes:Routes = [
     LogoutComponent,
     LangButtonComponent,
     SiteEditComponent,
-    SiteMiniCardComponent
+    SiteMiniCardComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

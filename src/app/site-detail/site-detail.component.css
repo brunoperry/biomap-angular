@@ -52,7 +52,7 @@
   gap: var(--padding);
   justify-content: flex-end;
 }
-#detail-description-container img {
+#detail-description-container app-gallery {
   grid-area: img;
   width: 100%;
   height: auto;
@@ -78,6 +78,11 @@
 #detail-contacts-container {
   position: relative;
   margin-top: var(--padding);
+  max-height: 50%;
+  overflow: hidden;
+}
+#detail-contacts-container img {
+  width: 100%;
 }
 #detail-contacts-container p {
   padding: var(--padding);

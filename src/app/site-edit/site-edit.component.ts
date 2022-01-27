@@ -49,11 +49,13 @@ export class SiteEditComponent implements OnInit {
   isEnd:boolean = false;
 
   siteEditForm:FormGroup = new FormGroup({})
+  thumbs:any[] = [];
 
   constructor(private siteService:SiteService, private route:ActivatedRoute) { 
     document.documentElement.style.setProperty('--num-steps', this.steps.length.toString());
 
     this.siteEditForm = new FormGroup({
+      id: new FormControl(''),
       coordinates: new FormControl(''),
       mapImg: new FormControl(''),
       title: new FormControl(''),
@@ -95,6 +97,7 @@ export class SiteEditComponent implements OnInit {
     this.siteData = formData;
 
     this.siteEditForm.patchValue({
+      id: this.siteData.id,
       coordinates: this.siteData.coordinates,
       mapImg: this.siteData.mapImg,
       title: this.siteData.title,
@@ -109,6 +112,8 @@ export class SiteEditComponent implements OnInit {
       twitter: this.siteData.twitter,
       media: this.siteData.media
     })
+
+    this.thumbs = this.siteData.media;
 
     if(this.siteData.title) this.steps[0].isReady = this.steps[1].isReady = true;
   }
@@ -155,20 +160,65 @@ export class SiteEditComponent implements OnInit {
 
     this.siteData = this.siteEditForm.value;
   }
-
   onStep3Change(event:any, type:string):void {
     this.siteEditForm.value[type] = event.target.value;
-
     this.siteData = this.siteEditForm.value;
   }
 
-  onStep4Change(data:any):void {
-    console.log('step4 change, deal with media', data);
+  async onStep4Change(type:any, event:any=null):Promise<void> {
+    switch (type) {
+      case 'addPics':
+        const fileAsDataURL = (inputFile:any) => {
+          const reader = new FileReader();
+          return new Promise((resolve, reject) => {
+            reader.onerror = () => {
+              reader.abort();
+              reject(new DOMException("Problem parsing input file."));
+            };
+
+            reader.onload = () => {
+              this.thumbs.push(reader.result);
+              resolve(reader.result);
+            };
+            reader.readAsDataURL(inputFile);
+          });
+        };
+
+        let blobs:any[] = [];
+        Array.from(event.target.files).forEach(async (f:any) => {
+          const b64Data:string = await fileAsDataURL(f) as string;
+          const blob = this.DataURL2Blob(b64Data.split(',')[1]);
+          blobs.push(blob);
+        });
+        this.siteEditForm.value.media = blobs;
+        break;
+      case 'deleteThumb':
+        this.siteEditForm.value.media.splice(event, 1);
+        this.thumbs.splice(event, 1);
+        break;
+      default:
+        break;
+    }
 
     this.siteData = this.siteEditForm.value;
   }
 
   get currentStep():any {
     return this.steps[this.currIndex];
+  }
+
+  //UTILS
+  DataURL2Blob(b64Data:any):Blob {
+
+    const contentType:string = 'image/jpeg';
+    const byteCharacters = atob(b64Data);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], {type: contentType});
+    
+    return blob;
   }
 }

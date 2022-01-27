@@ -11,7 +11,9 @@
     </div>
     <label>{{detailData?.type}}</label>
     <app-rate [rating]="detailData?.rating" [enabled]="false"></app-rate>
-    <img src="{{detailData?.img}}" alt="">
+
+    <app-gallery [images]="detailData.media"></app-gallery>
+    <!-- <img src="{{detailData?.img}}" alt=""> -->
     <p>{{detailData?.description}}</p>
     <p class="date">{{detailData?.date}}</p>
 </div>

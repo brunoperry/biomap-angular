@@ -33,6 +33,7 @@ export class SiteService {
   }
  
   getSiteById(id:string):SiteModel | any {
+
     return this.sitesData.find(site => site.id === id);
   }
   getSitesByID(ids:string[]): SiteModel[] {
@@ -47,11 +48,11 @@ export class SiteService {
   }
  
   async addSite(site: SiteModel) {
-    if(site.media.length > 0) {
-      const uploadURL = await this.backendService.uploadImages(site.media);
-      site.img = uploadURL;
-      site.media = [uploadURL];
-    }
+    // if(site.media.length > 0) {
+    //   const uploadURL = await this.backendService.uploadImages(site.media);
+    //   site.img = uploadURL;
+    //   site.media = [uploadURL];
+    // }
     await this.backendService.saveData('sites', site);
   }
  

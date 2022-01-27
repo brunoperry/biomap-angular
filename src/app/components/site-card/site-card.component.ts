@@ -8,7 +8,7 @@ import { SiteModel } from '../../../models/site.model';
 })
 export class SiteCardComponent implements OnInit {
 
-  @Input() siteData?: SiteModel;
+  @Input() siteData: SiteModel = new SiteModel();
 
   constructor() {}
 

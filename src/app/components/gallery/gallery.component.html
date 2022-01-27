@@ -1,0 +1,7 @@
+<div class="gallery-images-container">
+    <img *ngFor="let img of images" src="{{img}}" alt="">
+</div>
+<div class="gallery-controls" [ngClass]="'hidden : images.length>0'">
+    <button class="gallery-controls-btn" (click)="onNextClick()"></button>
+    <button class="gallery-controls-btn" (click)="onPrevClick()"></button>
+</div>
