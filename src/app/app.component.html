@@ -2,8 +2,9 @@
 <router-outlet></router-outlet>
 <app-menu #menu [isOpen]="isMenuOpen"></app-menu>
 <button id="button-add" (click)="onAddClick()" [ngClass]="{'hide':hideAddButton}">
-    <svg width="100%" height="100%" viewBox="0 0 32 32" fill="var(--green-e)">
+    <svg width="32" height="32" viewBox="0 0 128 128" fill="var(--green-e)">
         <path
-            d="m 19.20628,12.77 h 12.793742 v 5.3735 H 19.20628 V 32 H 12.889864 V 18.1435 H 0 V 12.77 H 12.889864 V 0 h 6.316416 z" />
+            d="M56,56L8,56C3.585,56 0,59.585 0,64C0,68.415 3.585,72 8,72L56,72L56,120C56,124.415 59.585,128 64,128C68.415,128 72,124.415 72,120L72,72L120,72C124.415,72 128,68.415 128,64C128,59.585 124.415,56 120,56L72,56L72,8C72,3.585 68.415,0 64,0C59.585,0 56,3.585 56,8L56,56Z" />
     </svg>
+
 </button>

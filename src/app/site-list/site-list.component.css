@@ -8,7 +8,7 @@
   display: flex;
   flex: 1;
   justify-content: space-around;
-  max-height: 48px;
+  height: 48px;
   pointer-events: initial;
   animation-duration: var(--speed);
   animation-fill-mode: forwards;
@@ -18,8 +18,10 @@
 }
 
 #list-modes button {
-  padding: var(--padding);
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #list-modes .toggled {
@@ -80,8 +82,8 @@
 #types-filter-container .filters-container {
   position: absolute;
   background-color: var(--green-e);
-  padding: 10px;
-  width: 50%;
+  /* padding: 10px; */
+  width: 70%;
   pointer-events: initial;
 }
 #types-filter-container.hide {
@@ -89,14 +91,16 @@
 }
 
 #types-filter-container h2 {
-  color: var(--green-b);
-  margin-bottom: 20px;
+  color: var(--green-c);
+  /* margin-bottom: var(--padding); */
+  padding: var(--padding);
+  background-color: var(--green-a);
 }
 
 #types-filter-container .type-button {
   position: relative;
   display: flex;
-  margin: var(--padding) 0;
+  padding: var(--padding);
 }
 #types-filter-container .type-button:active {
   transform: scale(0.98);

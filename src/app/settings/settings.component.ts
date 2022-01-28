@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserModel } from 'src/models/user.model';
 import { UsersService } from 'src/services/users.service';
 
 @Component({
@@ -20,12 +21,23 @@ export class SettingsComponent implements OnInit {
   public showLangList:boolean = false;
 
   constructor(private userModel:UsersService) {
-
-    this.settings = this.userModel.getUserSettings();
-   }
+  }
 
   ngOnInit(): void {
-    this.initialized = true;
+
+    const set:any = this.userModel.getUserSettings();
+    if(set) {
+      this.settings = set;
+      this.initialized = true;
+      console.log('1');
+      
+    } else {
+      this.userModel.usersChangedEvent.subscribe((user:UserModel) => {
+        this.settings = this.userModel.getUserSettings();
+        this.initialized = true;
+      console.log('2');
+      })
+    }
   }
 
   onNotificationClick(e:any):void {
@@ -59,10 +71,9 @@ export class SettingsComponent implements OnInit {
     this.settings.mapStyle = type;
   }
 
-  onRefreshClick() :void {
+  async onRefreshClick() {
 
-    this.userModel.saveUserSettings(this.settings);
-    console.log('refresh');
-    
+    await this.userModel.saveUserSettings(this.settings);
+    window.location.reload();
   }
 }

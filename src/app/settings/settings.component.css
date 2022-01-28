@@ -1,13 +1,21 @@
 :host {
   flex: 1;
   display: flex;
+  /* animation-duration: 1s;
+  animation-name: show; */
 }
+
+/* :host.hidden {
+  display: none !important;
+  animation-name: none !important;
+} */
 
 #settings-container {
   flex: 1;
   padding: var(--padding);
   animation-duration: var(--speed);
   animation-fill-mode: forwards;
+  opacity: 0;
 }
 #settings-container.initialized {
   animation-name: zoomin;
@@ -34,13 +42,24 @@
 }
 #lang-list-container .lang-list {
   background-color: white;
-  padding: var(--padding);
-  min-width: 50%;
+  min-width: 70%;
   z-index: 9999;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   flex-direction: column;
+}
+#lang-list-container .lang-list h2 {
+  background-color: var(--green-a);
+  padding: var(--padding);
+  color: var(--green-c);
+  font-weight: 400;
+  flex: 1;
+  margin: 0;
+  text-align: left;
+}
+#lang-list-container .lang-list svg {
+  align-self: center;
 }
 
 :host h3 {

@@ -8,39 +8,9 @@ export class UsersService {
 
     usersData:UserModel[] = [];
 
-    // usersData:UserModel[] = [
-    //     new UserModel(
-    //         '',
-    //         'bruno',
-    //         'bruno@email.com',
-    //         ['lXoplrDsD1UBc5UyR2BD'],
-    //         {
-    //             notifications: true,
-    //             location: false,
-    //             newsletter: true,
-    //             language: 'eng',
-    //             mapStyle: 'graphic'
-    //         }
-    //     ),
-    //     new UserModel(
-    //         '',
-    //         'perry',
-    //         'perry@email.com',
-    //         ['edae4c1pUQqx4Tk2aEkE', 'IgL5YjfaH75Wj1rUh9V9'],
-    //         {
-    //             notifications: false,
-    //             location: false,
-    //             newsletter: false,
-    //             language: 'pt',
-    //             mapStyle: 'terrain'
-    //         }
-    //     )
-    // ];
-
-
     usersChangedEvent: EventEmitter<UserModel> = new EventEmitter();
 
-    currentUser:UserModel = new UserModel('','','',[],{});
+    currentUser:UserModel = new UserModel('','','',[],null);
 
     constructor(private backendService: BackendService) {
         this.backendService.getDataFrom('users').subscribe((res:UserModel[]) => {
@@ -55,7 +25,8 @@ export class UsersService {
     getUserSettings():void {
         return this.currentUser.settings;
     }
-    saveUserSettings(settings:any) :void {
+    async saveUserSettings(settings:any) :Promise<void> {
         this.currentUser.settings = settings;
+        return await this.backendService.updateData('users', this.currentUser);
     }
 }

@@ -1,23 +1,33 @@
-/* :host img {
-  height: auto;
-  margin: 0;
-  display: inline-block;
-} */
-:host img {
+:host {
+  position: relative;
+  overflow: auto;
+}
+
+:host .gallery-images-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 218px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+:host .gallery-item {
   width: 100%;
   height: auto;
   max-height: 218px;
   margin: 0;
   padding: 0;
-  display: inline-block;
-}
-
-:host .gallery-images-container {
-  position: relative;
   display: block;
+  position: absolute;
+}
+:host .gallery-item img {
+  margin: 0;
   width: 100%;
-  max-height: 218px;
-  overflow: hidden;
+  height: 100%;
+}
+:host .gallery-image-container .current-image {
+  display: block !important;
 }
 
 :host .gallery-controls {

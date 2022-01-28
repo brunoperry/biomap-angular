@@ -90,7 +90,7 @@ input.hidden {
 }
 #controller-text {
   grid-area: stepnum;
-  font-size: 18pt;
+  font-size: 12pt;
   color: var(--green-e);
   align-self: center;
   justify-self: center;

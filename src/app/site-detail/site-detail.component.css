@@ -96,6 +96,9 @@
   position: absolute;
   top: var(--padding);
   right: var(--padding);
+  background-color: var(--blue);
+  padding: var(--padding);
+  border-radius: 50%;
 }
 #detail-networks-container {
   display: flex;
