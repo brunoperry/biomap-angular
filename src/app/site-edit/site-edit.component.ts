@@ -68,7 +68,8 @@ export class SiteEditComponent implements OnInit {
       facebook: new FormControl(''),
       instagram: new FormControl(''),
       twitter: new FormControl(''),
-      media: new FormControl('')
+      media: new FormControl(''),
+      reviews: new FormControl('')
     })
 
     this.route.params.subscribe((params:Params) => {
@@ -83,7 +84,6 @@ export class SiteEditComponent implements OnInit {
     } else if(this.siteService.getSites().length === 0) {
       this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
         this.initializeForm(this.siteService.getSiteById(this.detailID))
-        
       })
     } else {
       this.initializeForm(this.siteService.getSiteById(this.detailID))
@@ -110,7 +110,8 @@ export class SiteEditComponent implements OnInit {
       facebook: this.siteData.facebook,
       instagram: this.siteData.instagram,
       twitter: this.siteData.twitter,
-      media: this.siteData.media
+      media: this.siteData.media,
+      reviews: this.siteData.reviews
     })
 
     this.thumbs = this.siteData.media;
@@ -119,8 +120,6 @@ export class SiteEditComponent implements OnInit {
   }
 
   async submitSite():Promise<void> {
-    
-
     if(this.context === 'edit') {
       return await this.siteService.updateSite(this.siteEditForm.value as SiteModel);
     } else {

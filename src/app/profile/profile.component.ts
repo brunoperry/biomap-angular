@@ -12,41 +12,84 @@ import { UsersService } from 'src/services/users.service';
 })
 export class ProfileComponent implements OnInit {
 
+  private userID:string = '';
   userData:UserModel = new UserModel();
   sitesData:any[] = [];
   isEditable:boolean = false;
   initialized:boolean = false;
 
   constructor(private userService:UsersService, private siteService:SiteService, private route:ActivatedRoute) { 
-
-    this.siteService.sitesChangedEvent.subscribe(() => {
-      this.sitesData = this.siteService.getSitesByID(this.userData.sites);
-      
-    });
-    this.userService.usersChangedEvent.subscribe(() => {
-      this.userData = this.userService.currentUser;
-      this.sitesData = this.siteService.getSitesByID(this.userData.sites);
-      
-    });
-  }
-
-  ngOnInit(): void {
-
+    
     this.route.params.subscribe((params:Params) => {
-      if(params['index']) {
-        const data = this.userService.getUserByID(params['index']);
-        if(data) {
-          this.userData = data;
-        }
-      } else {
-        this.userData = this.userService.currentUser;
-      }
 
-      this.isEditable = this.userData.id === this.userService.currentUser.id;
-      this.sitesData = this.siteService.getSitesByID(this.userData.sites);
+      this.userID = params['index'] || '';
+      // if(params['index']) {
+      //   this.initializeUser(params['index']);
+      // } else {
+      //   this.initializeCurrentUser();
+      //   this.isEditable = true;
+      // }
     })
-    this.initialized = true;
   }
+
+  ngOnInit() {
+
+    if(this.userID) {
+      this.initializeUser(this.userID);
+    } else {
+      this.initializeCurrentUser();
+    }
+  }
+
+  private initializeCurrentUser():void {
+    const data = this.userService.currentUser;
+    if(!data.name) {
+      
+      this.userService.usersChangedEvent.subscribe(() => {
+        this.userData = this.userService.currentUser;
+
+        console.log('lajsd',this.userData);
+        this.setSitesData();
+      });
+    } else {
+      this.userData = data;
+      this.setSitesData();
+    }
+    this.isEditable = true;
+  }
+
+  private async initializeUser(userID:string) {
+    const data = await this.userService.getUserByID(userID);
+
+    if(data) {
+      this.userData = data;
+      
+      
+    } else {
+      this.userService.usersChangedEvent.subscribe(() => {
+        this.userData = this.userService.currentUser;
+      });
+    }
+    this.setSitesData();
+
+    console.log(this.userData);
+    
+  }
+  private setSitesData():void {
+
+    const data = this.siteService.getSitesByID(this.userData.sites);
+    
+    if(data.length==0) {
+      this.siteService.sitesChangedEvent.subscribe(() => {
+        this.sitesData = this.siteService.getSitesByID(this.userData.sites);
+        this.initialized = true;
+      });
+    } else {
+      this.sitesData = data;
+      this.initialized = true;
+    }
+  }
+
   onChangeAvatarClick() :void {
     console.log('change avatar');
   }

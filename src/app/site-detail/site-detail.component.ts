@@ -18,26 +18,18 @@ export class SiteDetailComponent implements OnInit {
   initialized:boolean = false;
 
   constructor(private siteService:SiteService, private route:ActivatedRoute, private router:Router) { 
+
+    this.route.params.subscribe(async (params:Params) => {
+      this.detailID = params['index'];
+      this.siteService.sitesChangedEvent.subscribe(() => {
+        this.detailData = this.siteService.getSiteById(this.detailID);
+      });
+    });
   }
 
   ngOnInit(): void {
 
-    this.route.params.subscribe(async (params:Params) => {
-
-      if(!params['index']) return;
-
-      this.detailID = params['index'];
-      let data:SiteModel | undefined;
-      if(this.siteService.getSites().length === 0) {
-        this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
-          data = this.siteService.getSiteById(this.detailID);
-          if(data) this.detailData = data;
-        })
-      } else {
-          data = this.siteService.getSiteById(this.detailID);
-          if(data) this.detailData = data;
-      }
-    })
+    if(this.siteService.getSites().length > 0) this.detailData = this.siteService.getSiteById(this.detailID);
     
     this.initialized = true;
   }

@@ -16,12 +16,15 @@ export class ReviewCardComponent implements OnInit {
   constructor(private siteService:SiteService, private router:Router) { }
 
   ngOnInit(): void {
-    // this.reviewData = this.siteService.getReview(this.reviewID);
+    this.init();
+  }
+
+  async init() {
+    this.reviewData = await this.siteService.getReviewById(this.reviewID);
   }
 
   onAvatarClick():void {
     if(!this.reviewData) return;
-
     this.router.navigate(['/profile', this.reviewData.userID]);
   }
 }

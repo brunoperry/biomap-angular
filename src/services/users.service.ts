@@ -8,19 +8,26 @@ export class UsersService {
 
     usersData:UserModel[] = [];
 
-    usersChangedEvent: EventEmitter<UserModel> = new EventEmitter();
+    usersChangedEvent: EventEmitter<UserModel[]> = new EventEmitter();
 
-    currentUser:UserModel = new UserModel('','','',[],null);
+    currentUser:UserModel = new UserModel();
 
     constructor(private backendService: BackendService) {
-        this.backendService.getDataFrom('users').subscribe((res:UserModel[]) => {
-            this.currentUser = res[0];
-            this.usersChangedEvent.emit(this.currentUser);
-        });
+        this.init();
     }
 
-    getUserByID(id:number):UserModel {
-        return this.usersData[id];
+    async init() {
+        this.usersData = await this.backendService.getDataFrom('users');
+        this.currentUser = this.usersData[0];
+        this.usersChangedEvent.emit(this.usersData)
+    }
+
+    async getUserByID(id:string) {
+
+        if(this.usersData.length===0) {
+            this.usersData = await this.backendService.getDataFrom('users');
+        }
+        return this.usersData.filter((u)=> u.id===id)[0];
     }
     getUserSettings():void {
         return this.currentUser.settings;

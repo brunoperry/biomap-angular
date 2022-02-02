@@ -20,7 +20,7 @@ export class SiteListComponent implements OnInit {
   constructor(private siteService:SiteService, private router:Router) { 
     this.siteService.sitesChangedEvent.subscribe((sites:SiteModel[]) => {
       this.sitesData = sites;
-    })
+    });
   }
 
   ngOnInit():void {

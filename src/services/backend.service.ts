@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, addDoc, getDocs, getDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
 
 
@@ -10,14 +10,17 @@ export class BackendService {
     constructor(private firestore: Firestore) {
     }
 
-    getDataFrom(table:string, params:any={idField: 'id'}):Observable<any> {
-        const siteRef = collection(this.firestore, table);
-        return collectionData(siteRef, params) as Observable<any[]>;
-    }
+    async getDataFrom(table:string):Promise<any> {
 
-    getDataById(table:string, id:number, params:any={idField: 'id'}):Observable<any> {
-        const siteDocRef = doc(this.firestore, `${table}/${id}`);
-        return docData(siteDocRef, params) as Observable<any>;
+        let out:any[] = [];
+        const siteRef = collection(this.firestore, table);
+        const res = await getDocs(siteRef);
+        
+        res.forEach((doc) => {
+            out.push(doc.data());
+        });
+
+        return out;
     }
 
     async saveData(table:string, data:any, images:any=null):Promise<any> {
@@ -31,7 +34,6 @@ export class BackendService {
         if(data.media.length > 0) {
             const urls = await this.uploadImages(data.media);
             data.media = urls;
-            console.log(urls);
         }
         const sitesRef = collection(this.firestore, table);
         return await addDoc(sitesRef, data);
@@ -46,22 +48,15 @@ export class BackendService {
             const storageRef = ref(storage, `files/${Math.random()}${img.name}`);
             const uploadTask = await uploadBytes(storageRef, img);
             const u:string = await getDownloadURL(uploadTask.ref);
-
-            console.log('url', u);
             urls.push(u);
         }
-
-        // images.forEach(async img => {
-        //     const storageRef = ref(storage, `files/${Math.random()}${img.name}`);
-        //     const uploadTask = await uploadBytes(storageRef, img);
-        //     const u:string = await getDownloadURL(uploadTask.ref);
-
-        //     console.log('url', u);
-        //     urls.push(u);
-        // })
         
-        console.log('done', urls);
         return urls;
+    }
+
+    async getDataById(table:string, id:string):Promise<any> {
+        const siteDocRef = doc(this.firestore, `${table}/${id}`);
+        return await getDoc(siteDocRef);
     }
 
     async deleteDataByID(table:string, id:string):Promise<any> {

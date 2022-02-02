@@ -1,9 +1,9 @@
 export class ReviewModel {
 
     constructor(
-        public userID: number,
-        public id:number,
-        public rating:number,
-        public text:string,
-        public date:string) {}
+        public userID: number = -1,
+        public id:number=-1,
+        public rating:number=-1,
+        public text:string='',
+        public date:string='') {}
 }
