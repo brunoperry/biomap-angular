@@ -1,10 +1,2 @@
-<app-header></app-header>
 <router-outlet></router-outlet>
-<app-menu #menu [isOpen]="isMenuOpen"></app-menu>
-<button id="button-add" (click)="onAddClick()" [ngClass]="{'hide':hideAddButton}">
-    <svg width="32" height="32" viewBox="0 0 128 128" fill="var(--green-e)">
-        <path
-            d="M56,56L8,56C3.585,56 0,59.585 0,64C0,68.415 3.585,72 8,72L56,72L56,120C56,124.415 59.585,128 64,128C68.415,128 72,124.415 72,120L72,72L120,72C124.415,72 128,68.415 128,64C128,59.585 124.415,56 120,56L72,56L72,8C72,3.585 68.415,0 64,0C59.585,0 56,3.585 56,8L56,56Z" />
-    </svg>
-
-</button>
+<app-navbar></app-navbar>
