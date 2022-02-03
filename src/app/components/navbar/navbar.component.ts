@@ -10,6 +10,7 @@ import { filter } from 'rxjs';
 })
 export class NavbarComponent implements OnInit {
   public currentView: string = 'home';
+  public initialized: boolean = false;
   constructor(location: Location, router: Router) {
     router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
