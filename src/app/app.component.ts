@@ -1,27 +1,30 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
+import { swap } from './route-animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [swap],
 })
 export class AppComponent {
   title = 'biomap';
-  hideAddButton:boolean = true;
-  isMenuOpen:boolean = false;
-
-  constructor(private router:Router) {
-
-    this.router.events.subscribe((ev: any) => {
-      if(ev instanceof NavigationEnd) {
-        this.hideAddButton = ev.url.includes('site-edit');
-      }
-    });
+  currentView: string = '';
+  constructor(router: Router) {
+    router.events
+      .pipe(filter((e: any) => e instanceof NavigationEnd))
+      .subscribe((ev: any) => {
+        this.currentView = ev.url.split('/')[1];
+      });
   }
 
-  onAddClick() {
-    this.isMenuOpen = false;
-    this.router.navigate(['/site-edit/'])
+  prepareRoute(outlet: RouterOutlet) {
+    return (
+      outlet &&
+      outlet.activatedRouteData &&
+      outlet.activatedRouteData['animation']
+    );
   }
 }

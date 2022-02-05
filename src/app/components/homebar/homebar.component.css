@@ -1,0 +1,31 @@
+:host {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  max-height: 48px;
+  background-color: var(--green-c);
+}
+
+:host button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+:host button.selected {
+  pointer-events: none;
+  transform: scale(1.1);
+}
+:host button.selected svg {
+  fill: var(--white);
+}
+
+@keyframes showhomebar {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

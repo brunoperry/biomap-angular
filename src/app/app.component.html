@@ -1,2 +1,4 @@
-<router-outlet></router-outlet>
-<app-navbar class=""></app-navbar>
+<main [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+</main>
+<app-navbar [currentView]="currentView"></app-navbar>
