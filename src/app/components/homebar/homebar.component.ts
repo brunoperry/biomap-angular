@@ -21,7 +21,6 @@ export class HomebarComponent implements OnInit {
     } else {
       this.isFilter = true;
     }
-    console.log(type);
   }
 
   openFilterMenu(): void {}

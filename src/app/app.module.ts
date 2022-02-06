@@ -24,6 +24,12 @@ import { AddComponent } from './views/add/add.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomebarComponent } from './components/homebar/homebar.component';
 import { ListComponent } from './list/list.component';
+import { AddReviewComponent } from './views/add-review/add-review.component';
+import { DetailComponent } from './views/detail/detail.component';
+import { AboutComponent } from './views/about/about.component';
+import { TosComponent } from './views/tos/tos.component';
+import { EditComponent } from './views/edit/edit.component';
+import { ButtonIconComponent } from './components/button-icon/button-icon.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +41,12 @@ import { ListComponent } from './list/list.component';
     AddComponent,
     HomebarComponent,
     ListComponent,
+    AddReviewComponent,
+    DetailComponent,
+    AboutComponent,
+    TosComponent,
+    EditComponent,
+    ButtonIconComponent,
   ],
   imports: [
     BrowserModule,

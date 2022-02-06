@@ -10,6 +10,7 @@
   --yellow: #ffd100;
   --font-color: #2a2a2a;
 
+  --background-color: var(--white);
   --overlay-color: #000000e7;
 
   --padding: 10px;
@@ -35,6 +36,8 @@ html,
 body {
   width: 100%;
   height: 100%;
+  background-color: var(--background-color);
+  transition: background-color var(--speed) ease;
 }
 
 body {
@@ -56,11 +59,10 @@ app-root {
   flex-direction: column;
 }
 
-button {
+/* button {
   display: flex;
   background-color: transparent;
   border: 0;
-  /* transition: transform var(--speed) ease; */
 }
 button.icon {
   width: 32px;
@@ -81,15 +83,13 @@ button.selected img {
 }
 button:active {
   transform: scale(1.1);
-}
+} */
 
-img {
-  width: 100%;
-  height: 100%;
+/* img {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-}
+} */
 
 /* CLASSES */
 

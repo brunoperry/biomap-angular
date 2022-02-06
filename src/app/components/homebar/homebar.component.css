@@ -4,20 +4,20 @@
   justify-content: space-around;
   max-height: 48px;
   background-color: var(--green-c);
+
+  animation-duration: var(--speed);
+  animation-delay: var(--speed);
+  animation-name: showhomebar;
+  animation-fill-mode: forwards;
 }
 
-:host button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+:host app-button-icon {
+  fill: var(--green-a);
 }
 
-:host button.selected {
+:host app-button-icon.selected {
   pointer-events: none;
   transform: scale(1.1);
-}
-:host button.selected svg {
   fill: var(--white);
 }
 
@@ -26,6 +26,6 @@
     transform: translateY(-100%);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(0%);
   }
 }

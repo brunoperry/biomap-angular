@@ -17,6 +17,24 @@ export class AppComponent {
       .pipe(filter((e: any) => e instanceof NavigationEnd))
       .subscribe((ev: any) => {
         this.currentView = ev.url.split('/')[1];
+
+        let bColor: string;
+        switch (this.currentView) {
+          case 'search':
+            bColor = 'var(--green-a)';
+            break;
+          case 'add':
+          case 'add-review':
+            bColor = 'var(--green-d)';
+            break;
+          default:
+            bColor = '--white';
+            break;
+        }
+        document.documentElement.style.setProperty(
+          '--background-color',
+          bColor
+        );
       });
   }
 

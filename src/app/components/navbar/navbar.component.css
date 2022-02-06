@@ -16,36 +16,31 @@
   animation-name: shownavbar;
 }
 
-#navbar-container button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+:host app-button-icon {
   height: 100%;
+  fill: var(--white);
 
   transform: translateY(100%);
   animation-duration: var(--speed);
   animation-fill-mode: forwards;
   animation-name: shownavbar;
 }
-#navbar-container button:active {
+#navbar-container app-button-icon.selected {
   animation-fill-mode: none;
   transform: translateY(0) scale(1.1);
-}
-#navbar-container button img {
-  width: 32px;
-  height: 32px;
+  fill: var(--yellow);
 }
 
-#navbar-container button:nth-child(1) {
+#navbar-container app-button-icon:nth-child(1) {
   animation-delay: 0.05s;
 }
-#navbar-container button:nth-child(2) {
+#navbar-container app-button-icon:nth-child(2) {
   animation-delay: 0.15s;
 }
-#navbar-container button:nth-child(3) {
+#navbar-container app-button-icon:nth-child(3) {
   animation-delay: 0.25s;
 }
-#navbar-container button:nth-child(4) {
+#navbar-container app-button-icon:nth-child(4) {
   animation-delay: 0.35s;
 }
 
@@ -54,7 +49,7 @@
   animation-delay: 0.08s;
 }
 
-#navbar-container.hidden button {
+#navbar-container.hidden app-button-icon {
   animation-name: hidenavbar;
   animation-delay: 0s;
 }

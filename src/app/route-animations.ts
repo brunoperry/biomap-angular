@@ -6,6 +6,7 @@ import {
   query,
   animate,
 } from '@angular/animations';
+import { Util } from './utils';
 
 export const swap = trigger('routeAnimations', [transition('* <=> *', fade())]);
 
@@ -19,8 +20,12 @@ function fade(): any {
     ),
     query(':enter', [style({ opacity: 0 })], optional),
     group([
-      query(':enter', [animate('500ms', style({ opacity: 1 }))], optional),
-      query(':leave', [animate('500ms', style({ opacity: 0 }))], optional),
+      query(
+        ':enter',
+        [animate(`${Util.SPEED}ms ${Util.SPEED}ms`, style({ opacity: 1 }))],
+        optional
+      ),
+      query(':leave', [animate(Util.SPEED, style({ opacity: 0 }))], optional),
     ]),
   ];
 }
