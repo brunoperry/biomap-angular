@@ -1,0 +1,29 @@
+:host {
+  flex: 1;
+  position: relative;
+  display: block;
+  padding: var(--padding);
+  padding-bottom: 0;
+  margin-bottom: calc(var(--padding) * 3);
+  border-bottom: 1px solid var(--green-d);
+}
+:host:active {
+  transform: scale(0.95);
+}
+
+:host p {
+  max-height: 80px;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+}
+
+:host app-gallery {
+  margin: 0 calc(-1 * var(--padding));
+  margin-bottom: var(--padding);
+  width: calc(100% + calc(var(--padding) * 2));
+}
+
+:host * {
+  margin-bottom: var(--padding);
+}

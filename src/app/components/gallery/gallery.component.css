@@ -1,0 +1,15 @@
+:host {
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: red;
+  overflow: hidden;
+}
+
+:host img {
+  width: 100%;
+}
+
+:host .gallery-container {
+  display: flex;
+}

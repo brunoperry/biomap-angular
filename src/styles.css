@@ -31,6 +31,9 @@
 *:focus {
   outline: none;
 }
+*::-webkit-scrollbar {
+  display: none;
+}
 
 html,
 body {
@@ -43,6 +46,7 @@ body {
 body {
   max-width: 600px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 main {
@@ -59,37 +63,21 @@ app-root {
   flex-direction: column;
 }
 
-/* button {
-  display: flex;
-  background-color: transparent;
-  border: 0;
+h2 {
+  color: var(--green-a);
+  text-transform: capitalize;
 }
-button.icon {
-  width: 32px;
-  height: 32px;
-}
-button.icon img {
-  border-radius: 50%;
-}
-button.selected {
-  pointer-events: none;
-  transform: scale(1.1);
-}
-button.selected svg {
-  fill: var(--yellow);
-}
-button.selected img {
-  border: 3px solid var(--yellow);
-}
-button:active {
-  transform: scale(1.1);
-} */
 
-/* img {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-} */
+p {
+  color: var(--font-color);
+  font-size: 1em;
+  line-height: 1.2;
+}
+
+span {
+  color: var(--green-c);
+  font-size: 0.9em;
+}
 
 /* CLASSES */
 

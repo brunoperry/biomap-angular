@@ -8,5 +8,26 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   constructor() {}
 
+  sitesData: any[] = [
+    {
+      type: 'farm',
+      title: 'quinta das azenhagazinhas',
+      rating: 2,
+      reviews: [{}, {}],
+      media: ['http://e2value.com/wp-content/uploads/2014/01/farm11.jpg'],
+      description: 'qwjdkqjwhkqjhwe qkwjhekqjwhe qwjkhekqjwhe',
+    },
+    {
+      type: 'other',
+      title: 'oitavos',
+      rating: 4,
+      reviews: [],
+      media: [
+        'https://www.glencorgolf.com/wp-content/uploads/2014/12/oitavos-dunes-2-.jpg',
+      ],
+      description: 'qwjdkqjwhkqjhwe qkwjhekqjwhe qwjkhekqjwhe',
+    },
+  ];
+
   ngOnInit(): void {}
 }

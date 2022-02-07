@@ -1,0 +1,15 @@
+:host {
+  position: relative;
+  display: flex;
+  gap: 0 5px;
+}
+
+:host h2 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+:host svg {
+  background-color: red;
+}

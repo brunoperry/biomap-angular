@@ -12,6 +12,7 @@ export class ButtonIconComponent implements OnInit {
   @Input() image: string | null = null;
   @Input() width: number = 32;
   @Input() height: number = 32;
+  @Input() color: string | null = null;
 
   element: SafeHtml = '';
 
@@ -19,8 +20,9 @@ export class ButtonIconComponent implements OnInit {
 
   ngOnInit(): void {
     let elem: any;
+
     if (this.icon) {
-      elem = Util.getIcon(this.icon, this.width, this.height);
+      elem = Util.getIcon(this.icon, this.width, this.height, this.color);
     } else if (this.image) {
       elem = Util.getImage(this.image, this.width, this.height, '50%');
     }

@@ -1,5 +1,39 @@
 export class Util {
-  static getIcon(name: string, width: number, height: number): any {
+  static getTypeIcon(type: string, opt: any = null): any {
+    let color;
+    switch (type) {
+      case 'restaurant':
+        color = '--blue';
+        break;
+      case 'farm':
+        color = '--red';
+        break;
+      case 'market':
+        color = '--green-c';
+        break;
+      case 'other':
+        color = '--green-a';
+        break;
+      default:
+        color = '--white';
+        break;
+    }
+    let icon = Util.getIcon('type', 28, 28, color);
+
+    //use this to align svg with parent (used in site title component)
+    if (opt) {
+      console.log(opt);
+    }
+
+    return icon;
+  }
+
+  static getIcon(
+    name: string,
+    width: number,
+    height: number,
+    color: string | null = null
+  ): any {
     const template = document.querySelector('template')?.content;
     if (!template) return 'null';
 
@@ -8,6 +42,10 @@ export class Util {
     if (!icon) return 'null';
     icon.setAttribute('width', `${width}px`);
     icon.setAttribute('height', `${height}px`);
+
+    if (color) {
+      icon.setAttribute('fill', `var(${color})`);
+    }
 
     return icon.outerHTML;
   }

@@ -19,17 +19,20 @@ import { HomeComponent } from './views/home/home.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { SearchComponent } from './views/search/search.component';
 import { AddComponent } from './views/add/add.component';
-
-//components
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomebarComponent } from './components/homebar/homebar.component';
-import { ListComponent } from './list/list.component';
-import { AddReviewComponent } from './views/add-review/add-review.component';
 import { DetailComponent } from './views/detail/detail.component';
 import { AboutComponent } from './views/about/about.component';
 import { TosComponent } from './views/tos/tos.component';
 import { EditComponent } from './views/edit/edit.component';
+import { AddReviewComponent } from './views/add-review/add-review.component';
+
+//components
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomebarComponent } from './components/homebar/homebar.component';
 import { ButtonIconComponent } from './components/button-icon/button-icon.component';
+import { SiteCardComponent } from './components/site-card/site-card.component';
+import { SiteTitleComponent } from './components/site-title/site-title.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +43,16 @@ import { ButtonIconComponent } from './components/button-icon/button-icon.compon
     SearchComponent,
     AddComponent,
     HomebarComponent,
-    ListComponent,
     AddReviewComponent,
     DetailComponent,
     AboutComponent,
     TosComponent,
     EditComponent,
     ButtonIconComponent,
+    SiteCardComponent,
+    SiteTitleComponent,
+    RatingComponent,
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,

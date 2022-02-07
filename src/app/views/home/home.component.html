@@ -1,4 +1,6 @@
 <section id="home-container">
     <app-homebar></app-homebar>
-    <app-list></app-list>
+    <div id="sites-list-container">
+        <app-site-card *ngFor="let site of sitesData" [siteData]="site"  routerLink="/detail/{{site.id}}"></app-site-card>
+    </div>
 </section>
