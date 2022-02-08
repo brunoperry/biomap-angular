@@ -1,15 +1,46 @@
 <div id="navbar-container" [ngClass]="{'hidden':!isVisible}">
+    
+    <app-button-icon 
+      [iconName]="'home'" 
+      [width]="32" 
+      [height]="32" 
+      [fill]="currentView=='home'?'var(--yellow)':'var(--green-a)'" 
+      routerLink="/home" >
+    </app-button-icon>
 
-  <app-button-icon [icon]="'home'" [width]="32" [height]="32"
-    [ngClass]="{ selected: currentView == 'home' }" routerLink="/home"></app-button-icon>
+    <app-button-icon
+      [iconName]="'search'"
+      [width]="32"
+      [height]="32"
+      [stroke]="currentView=='search'?'var(--yellow)':'var(--green-a)'" 
+      routerLink="/search">
+    </app-button-icon>
+    
+    <app-button-icon
+      [iconName]="'add'"
+      [width]="32" [height]="32"
+      [stroke]="currentView=='add'?'var(--yellow)':'var(--green-a)'" 
+      routerLink="/add">
+    </app-button-icon>
+
+    <app-button-icon
+      [image]="'https://firebasestorage.googleapis.com/v0/b/biomap-2f3d1.appspot.com/o/files%2Favatar.jpeg?alt=media&token=24faacff-59f4-4bd2-9a30-1ad1a403276f'"
+      [width]="32"
+      [height]="32"
+      [ngClass]="{ selected: currentView == 'profile' }"
+      routerLink="/profile">
+    </app-button-icon>
+
+    <!-- <app-button-icon [iconName]="'search'" [width]="32" [height]="32"
+      [ngStyle]="{'stroke': currentView=='search'?'var(--yellow)':'var(--green-b)'}" routerLink="/search">
+    </app-button-icon> -->
  
-  <app-button-icon [icon]="'search'" [width]="32" [height]="32"
-    [ngClass]="{ selected: currentView == 'search' }" routerLink="/search"></app-button-icon>
+  <!-- <app-button-icon [icon]="'search'" [width]="32" [height]="32" 
+    [ngClass]="{ selected: currentView == 'search' }"  routerLink="/search"></app-button-icon>
 
-  <app-button-icon [icon]="'add'" [width]="32" [height]="32"
-    [ngClass]="{ selected: currentView == 'add' }" routerLink="/add"></app-button-icon>
+  <app-button-icon [icon]="'add'" [width]="32" [height]="32" [color]="currentView=='add'?'--yellow':'--green-b'" routerLink="/add"></app-button-icon>
 
   <app-button-icon [image]="'https://firebasestorage.googleapis.com/v0/b/biomap-2f3d1.appspot.com/o/files%2Favatar.jpeg?alt=media&token=24faacff-59f4-4bd2-9a30-1ad1a403276f'" [width]="32" [height]="32"
-    [ngClass]="{ selected: currentView == 'profile' }" routerLink="/profile"></app-button-icon>
+    [ngClass]="{ selected: currentView == 'profile' }" routerLink="/profile"></app-button-icon> -->
   
 </div>

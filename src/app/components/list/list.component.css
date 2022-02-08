@@ -6,9 +6,10 @@
 }
 
 :host ul li:nth-child(n) {
-  animation-duration: calc(4 * var(--speed));
-  animation-delay: calc(200 * n);
+  animation-duration: calc(3 * var(--speed));
+  animation-delay: calc(1500ms * n);
   animation-name: showItems;
+  /* transform: translateY(calc(10px + n)); */
 }
 
 @keyframes showItems {

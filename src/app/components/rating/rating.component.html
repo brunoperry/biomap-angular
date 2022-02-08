@@ -1,3 +1,7 @@
-<app-button-icon *ngFor="let r of rates; let i = index;" [icon]="'star'" [width]="18" [height]="18" [color]="r"
-    (click)="onStarClicked(i+1)"></app-button-icon>
+<app-button-icon *ngFor="let r of rates; let i = index;"
+    [iconName]="'star'"
+    [width]="18"
+    [height]="18"
+    [fill]="r">
+</app-button-icon>
 <span *ngIf="showLabel">2 Reviews</span>

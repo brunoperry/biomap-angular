@@ -19,7 +19,6 @@
 :host app-button-icon {
   height: 100%;
 
-  fill: var(--green-b);
   transform: translateY(100%);
   animation-duration: var(--speed);
   animation-fill-mode: forwards;
@@ -28,7 +27,7 @@
 #navbar-container app-button-icon.selected {
   animation-fill-mode: none;
   transform: translateY(0) scale(1.1);
-  fill: var(--yellow);
+  stroke: var(--yellow);
 }
 
 #navbar-container app-button-icon:nth-child(1) {

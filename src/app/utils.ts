@@ -5,7 +5,11 @@ if (template) {
 }
 
 export class Util {
-  static getTypeIcon(type: string): any {
+  static getTypeIcon(
+    type: string,
+    width: number = 28,
+    height: number = 28
+  ): any {
     let color;
     switch (type) {
       case 'restaurant':
@@ -24,7 +28,7 @@ export class Util {
         color = '--white';
         break;
     }
-    let icon = Util.getIcon('type', 28, 28, color);
+    let icon = Util.getIcon('type', width, height, `var(${color})`);
 
     return icon;
   }
@@ -33,29 +37,21 @@ export class Util {
     name: string,
     width: number = 32,
     height: number = 32,
-    color: string | null = null
+    fill: string | null = null
   ): any {
     if (!ICONS_POOL) return 'null';
 
     const hasType = name.split(':');
+    if (hasType.length > 1) return Util.getTypeIcon(hasType[1]);
 
-    if (hasType.length > 1) {
-      return Util.getTypeIcon(hasType[1]);
-    }
     let icon: any = Array.from(ICONS_POOL).find(
       (ico: any) => ico.className.baseVal === name
     );
-
-    if (!icon) {
-      return Util.getIcon('missing', width, height, color);
-    }
+    if (!icon) return Util.getIcon('missing', width, height);
 
     icon.setAttribute('width', `${width}px`);
     icon.setAttribute('height', `${height}px`);
-
-    if (color) {
-      icon.style.fill = `var(${color})`;
-    }
+    if (fill) icon.setAttribute('fill', fill);
 
     return icon.outerHTML;
   }

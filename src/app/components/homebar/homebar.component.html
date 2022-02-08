@@ -1,8 +1,24 @@
-<app-button-icon [icon]="'list-mode'" [width]="28" [height]="28"
-    [ngClass]="{ selected: currentMode == 'list' }" (click)="onModeClick('list')"></app-button-icon>
+<app-button-icon 
+    [iconName]="'list-mode'"
+    [width]="28" 
+    [height]="28"
+    [stroke]="currentMode=='list'?'var(--white)':'var(--green-a)'"
+    [fill]="currentMode=='list'?'var(--white)':'var(--green-a)'" 
+    (click)="onModeClick('list')">
+</app-button-icon>
 
-<app-button-icon [icon]="'map-mode'" [width]="28" [height]="28"
-    [ngClass]="{ selected: currentMode == 'map' }" (click)="onModeClick('map')"></app-button-icon>
+<app-button-icon
+    [iconName]="'map-mode'"
+    [width]="28" 
+    [height]="28"
+    [fill]="currentMode=='map'?'var(--white)':'var(--green-a)'" 
+    (click)="onModeClick('map')">
+</app-button-icon>
 
-<app-button-icon [icon]="'filter'" [width]="28" [height]="28"
-     [ngClass]="{ selected: isFilter }" (click)="onModeClick('filter')"></app-button-icon>
+<app-button-icon 
+    [iconName]="'filter'" 
+    [width]="28" 
+    [height]="28"
+    [stroke]="isFilter?'var(--white)':'var(--green-a)'"
+    (click)="onModeClick('filter')">
+</app-button-icon>

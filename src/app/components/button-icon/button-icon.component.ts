@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Util } from 'src/app/utils';
 
 @Component({
   selector: 'app-button-icon',
@@ -8,25 +6,15 @@ import { Util } from 'src/app/utils';
   styleUrls: ['./button-icon.component.css'],
 })
 export class ButtonIconComponent implements OnInit {
-  @Input() icon: string | null = null;
-  @Input() image: string | null = null;
+  @Input() iconName: string = '';
   @Input() width: number = 32;
   @Input() height: number = 32;
-  @Input() color: string = '';
+  @Input() stroke: string = 'none';
+  @Input() fill: string = 'none';
 
-  element: SafeHtml = '';
+  @Input() image: string | null = null;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    let elem: any;
-
-    if (this.icon) {
-      elem = Util.getIcon(this.icon, this.width, this.height, this.color);
-    } else if (this.image) {
-      elem = Util.getImage(this.image, this.width, this.height, '50%');
-    }
-
-    if (elem) this.element = this.sanitizer.bypassSecurityTrustHtml(elem);
-  }
+  ngOnInit(): void {}
 }

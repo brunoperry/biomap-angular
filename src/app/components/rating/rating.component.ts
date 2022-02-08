@@ -26,8 +26,8 @@ export class RatingComponent implements OnInit {
 
   private setRate(): void {
     for (let i = 0; i < this.rates.length; i++) {
-      if (i < this.rating) this.rates[i] = '--yellow';
-      else this.rates[i] = '--green-b';
+      if (i < this.rating) this.rates[i] = 'var(--yellow)';
+      else this.rates[i] = 'var(--green-b)';
     }
   }
 }

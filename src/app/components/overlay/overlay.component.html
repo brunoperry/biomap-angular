@@ -3,8 +3,17 @@
 
     <div class="overlay-title">
         <label>{{title}}</label>
-        <app-button-icon [icon]="'cross'" [width]="15" [height]="15" (click)="onCloseClick()" [color]="'--white'">
+
+
+        <app-button-icon
+            [iconName]="'cross'"
+            [width]="16"
+            [height]="16"
+            [stroke]="'var(--white)'"
+            (click)="onCloseClick()">
         </app-button-icon>
+        <!-- <app-button-icon [icon]="'cross'" [width]="15" [height]="15" (click)="onCloseClick()" [color]="">
+        </app-button-icon> -->
     </div>
     <template [ngTemplateOutlet]="contentTemplate"></template>
 </div>

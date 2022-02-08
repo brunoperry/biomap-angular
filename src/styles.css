@@ -8,6 +8,8 @@
   --white: #ffffff;
   --red: #f51b00;
   --yellow: #ffd100;
+  --grey: #adadad;
+  --pink: #ff00ff;
   --font-color: #2a2a2a;
 
   --background-color: var(--white);
@@ -80,6 +82,15 @@ label {
 ul {
   overflow-y: scroll;
   flex: 1;
+}
+
+svg {
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4;
+  stroke: inherit;
 }
 
 app-root {

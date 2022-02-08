@@ -20,6 +20,6 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {}
 
   onCloseClick(): void {
-    console.log('close overlay');
+    console.log('close overlay', this.itemTemplate);
   }
 }
