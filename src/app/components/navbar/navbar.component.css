@@ -9,7 +9,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: var(--green-d);
 
   animation-duration: var(--speed);
   animation-fill-mode: forwards;

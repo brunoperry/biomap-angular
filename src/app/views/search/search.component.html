@@ -1,1 +1,43 @@
-<p>search works!</p>
+<div class="search-container">
+    <app-button-icon [iconName]="'search'" [width]="25" [height]="25" [stroke]="'var(--green-b)'"></app-button-icon>
+    <input type="text" placeholder="Search" (input)="onSearchInputChange($event)">
+</div>
+
+<div class="types-container">
+    <h3>Types</h3>
+    <div class="button-types-container">
+        
+        <app-button-type
+            [type]="'restaurant'"
+            [text]="'restaurant'"
+            [baseColor]="'var(--green-a)'"
+            [toggleColor]="'var(--white)'">
+        </app-button-type>
+
+        <app-button-type
+            [type]="'farm'"
+            [text]="'farm'"
+            [baseColor]="'var(--green-a)'"
+            [toggleColor]="'var(--white)'">
+        </app-button-type>
+        
+        <app-button-type
+            [type]="'market'"
+            [text]="'market'"
+            [baseColor]="'var(--green-a)'"
+            [toggleColor]="'var(--white)'">
+        </app-button-type>
+        
+        <app-button-type
+            [type]="'other'"
+            [text]="'other'"
+            [baseColor]="'var(--green-a)'"
+            [toggleColor]="'var(--white)'">
+        </app-button-type>
+    </div>
+</div>
+
+<div class="results-container">
+    <h3>Results</h3>
+    <div class="placeholder" [ngStyle]="{'display':results.length > 0?'none':'initial'}">No results</div>
+</div>

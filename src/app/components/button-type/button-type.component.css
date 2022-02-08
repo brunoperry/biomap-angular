@@ -1,0 +1,10 @@
+:host {
+  flex: 1;
+}
+
+:host .button-type-container {
+  display: flex;
+  border-radius: 4px;
+  padding: var(--padding);
+  align-items: center;
+}

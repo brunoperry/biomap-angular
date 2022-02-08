@@ -38,6 +38,7 @@ import { OverlayComponent } from './components/overlay/overlay.component';
 import { ButtonToggleComponent } from './components/button-toggle/button-toggle.component';
 import { LabelIconComponent } from './components/label-icon/label-icon.component';
 import { SvgComponent } from './components/svg/svg.component';
+import { ButtonTypeComponent } from './components/button-type/button-type.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { SvgComponent } from './components/svg/svg.component';
     ButtonToggleComponent,
     LabelIconComponent,
     SvgComponent,
+    ButtonTypeComponent,
   ],
   imports: [
     BrowserModule,

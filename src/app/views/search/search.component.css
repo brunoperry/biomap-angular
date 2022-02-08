@@ -1,3 +1,35 @@
 :host {
   flex: 1;
+  padding: var(--padding);
+}
+:host ::placeholder {
+  color: var(--green-a);
+}
+:host h3 {
+  color: var(--green-d);
+}
+
+.search-container {
+  padding: var(--padding);
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  background-color: var(--white);
+}
+
+.types-container,
+.results-container {
+  margin-top: var(--padding);
+  padding: var(--padding) 0;
+}
+.button-types-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: var(--padding);
+  gap: 5px;
+}
+
+.placeholder {
+  color: var(--green-d);
+  opacity: 0.5;
 }

@@ -58,7 +58,8 @@ main {
   overflow: hidden;
 }
 
-h2 {
+h2,
+h3 {
   color: var(--green-a);
   text-transform: capitalize;
 }
@@ -82,6 +83,17 @@ label {
 ul {
   overflow-y: scroll;
   flex: 1;
+}
+
+input {
+  flex: 1;
+  border: none;
+  font-size: 1.1em;
+  padding: 0 var(--padding);
+  color: var(--font-color);
+}
+::placeholder {
+  color: var(--green-c);
 }
 
 svg {

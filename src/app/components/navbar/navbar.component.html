@@ -4,7 +4,7 @@
       [iconName]="'home'" 
       [width]="32" 
       [height]="32" 
-      [fill]="currentView=='home'?'var(--yellow)':'var(--green-a)'" 
+      [fill]="currentView=='home'?'var(--yellow)':mainFill" 
       routerLink="/home" >
     </app-button-icon>
 
@@ -12,14 +12,14 @@
       [iconName]="'search'"
       [width]="32"
       [height]="32"
-      [stroke]="currentView=='search'?'var(--yellow)':'var(--green-a)'" 
+      [stroke]="currentView=='search'?'var(--yellow)':mainFill" 
       routerLink="/search">
     </app-button-icon>
     
     <app-button-icon
       [iconName]="'add'"
       [width]="32" [height]="32"
-      [stroke]="currentView=='add'?'var(--yellow)':'var(--green-a)'" 
+      [stroke]="currentView=='add'?'var(--yellow)':mainFill" 
       routerLink="/add">
     </app-button-icon>
 
