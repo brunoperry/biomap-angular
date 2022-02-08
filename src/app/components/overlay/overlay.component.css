@@ -1,0 +1,57 @@
+:host {
+  position: absolute;
+  display: flex;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity var(--speed) ease;
+}
+
+:host.hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+:host.hidden .overlay-content {
+  animation-name: none;
+}
+
+:host .overlay-close {
+  position: absolute;
+  inset: 0;
+  background-color: var(--overlay-color);
+}
+
+:host .overlay-content {
+  display: absolute;
+  min-width: 60%;
+  min-height: 200px;
+  max-height: 400px;
+  background-color: var(--green-d);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 9999;
+  animation-name: showcontent;
+  animation-duration: var(--speed);
+}
+
+:host .overlay-title {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--green-a);
+  padding: var(--padding);
+}
+:host .overlay-title label {
+  color: var(--white);
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+@keyframes showcontent {
+  from {
+    transform: translateY(10%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

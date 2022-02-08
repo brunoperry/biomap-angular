@@ -1,5 +1,11 @@
+const template = document.querySelector('template')?.content;
+let ICONS_POOL: any = null;
+if (template) {
+  ICONS_POOL = document.importNode(template, true).querySelectorAll('svg');
+}
+
 export class Util {
-  static getTypeIcon(type: string, opt: any = null): any {
+  static getTypeIcon(type: string): any {
     let color;
     switch (type) {
       case 'restaurant':
@@ -20,31 +26,35 @@ export class Util {
     }
     let icon = Util.getIcon('type', 28, 28, color);
 
-    //use this to align svg with parent (used in site title component)
-    if (opt) {
-      console.log(opt);
-    }
-
     return icon;
   }
 
   static getIcon(
     name: string,
-    width: number,
-    height: number,
+    width: number = 32,
+    height: number = 32,
     color: string | null = null
   ): any {
-    const template = document.querySelector('template')?.content;
-    if (!template) return 'null';
+    if (!ICONS_POOL) return 'null';
 
-    let icon = document.importNode(template, true).querySelector(`.${name}`);
+    const hasType = name.split(':');
 
-    if (!icon) return 'null';
+    if (hasType.length > 1) {
+      return Util.getTypeIcon(hasType[1]);
+    }
+    let icon: any = Array.from(ICONS_POOL).find(
+      (ico: any) => ico.className.baseVal === name
+    );
+
+    if (!icon) {
+      return Util.getIcon('missing', width, height, color);
+    }
+
     icon.setAttribute('width', `${width}px`);
     icon.setAttribute('height', `${height}px`);
 
     if (color) {
-      icon.setAttribute('fill', `var(${color})`);
+      icon.style.fill = `var(${color})`;
     }
 
     return icon.outerHTML;

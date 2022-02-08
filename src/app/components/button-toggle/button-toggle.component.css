@@ -1,0 +1,10 @@
+:host .button-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding);
+}
+
+:host label {
+  margin-left: 3px;
+}

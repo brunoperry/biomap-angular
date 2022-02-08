@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-homebar',
@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class HomebarComponent implements OnInit {
   public currentMode: string = 'list';
 
-  public isFilter: boolean = false;
+  @Input() isFilter: boolean = false;
+  @Output() homeBarEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
@@ -21,8 +22,7 @@ export class HomebarComponent implements OnInit {
     } else {
       this.isFilter = true;
     }
-  }
 
-  openFilterMenu(): void {}
-  closeFilterMenu(): void {}
+    this.homeBarEvent.emit(type);
+  }
 }

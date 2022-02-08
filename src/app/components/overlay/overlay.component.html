@@ -1,0 +1,10 @@
+<div class="overlay-close" (click)="onCloseClick()"></div>
+<div class="overlay-content">
+
+    <div class="overlay-title">
+        <label>{{title}}</label>
+        <app-button-icon [icon]="'cross'" [width]="15" [height]="15" (click)="onCloseClick()" [color]="'--white'">
+        </app-button-icon>
+    </div>
+    <template [ngTemplateOutlet]="contentTemplate"></template>
+</div>

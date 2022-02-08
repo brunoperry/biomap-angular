@@ -2,7 +2,6 @@
   flex: 1;
   display: flex;
   justify-content: space-around;
-  max-height: 48px;
   background-color: var(--green-c);
 
   animation-duration: var(--speed);

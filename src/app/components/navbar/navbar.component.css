@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: var(--green-a);
+  background-color: var(--green-d);
 
   animation-duration: var(--speed);
   animation-fill-mode: forwards;
@@ -18,8 +18,8 @@
 
 :host app-button-icon {
   height: 100%;
-  fill: var(--white);
 
+  fill: var(--green-b);
   transform: translateY(100%);
   animation-duration: var(--speed);
   animation-fill-mode: forwards;

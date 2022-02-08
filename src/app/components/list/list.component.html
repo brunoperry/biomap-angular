@@ -1,0 +1,5 @@
+    <ul class="list-container">
+        <li *ngFor="let item of listData">
+            <template [ngTemplateOutletContext]='{item: item}' [ngTemplateOutlet]="itemTemplate"></template>
+        </li>
+    </ul>

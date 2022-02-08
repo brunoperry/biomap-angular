@@ -1,0 +1,23 @@
+:host {
+  flex: 1;
+  display: flex;
+  max-width: 100%;
+  overflow-y: hidden;
+}
+
+:host ul li:nth-child(n) {
+  animation-duration: calc(4 * var(--speed));
+  animation-delay: calc(200 * n);
+  animation-name: showItems;
+}
+
+@keyframes showItems {
+  from {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

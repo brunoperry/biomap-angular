@@ -30,9 +30,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomebarComponent } from './components/homebar/homebar.component';
 import { ButtonIconComponent } from './components/button-icon/button-icon.component';
 import { SiteCardComponent } from './components/site-card/site-card.component';
-import { SiteTitleComponent } from './components/site-title/site-title.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { MapComponent } from './components/map/map.component';
+import { ListComponent } from './components/list/list.component';
+import { OverlayComponent } from './components/overlay/overlay.component';
+import { ButtonToggleComponent } from './components/button-toggle/button-toggle.component';
+import { LabelIconComponent } from './components/label-icon/label-icon.component';
 
 @NgModule({
   declarations: [
@@ -50,9 +54,13 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     EditComponent,
     ButtonIconComponent,
     SiteCardComponent,
-    SiteTitleComponent,
     RatingComponent,
     GalleryComponent,
+    MapComponent,
+    ListComponent,
+    OverlayComponent,
+    ButtonToggleComponent,
+    LabelIconComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,16 +18,16 @@ export class RatingComponent implements OnInit {
     this.setRate();
   }
 
-  setRate(): void {
-    for (let i = 0; i < this.rates.length; i++) {
-      if (i < this.rating) this.rates[i] = '--yellow';
-      else this.rates[i] = '--green-b';
-    }
-  }
-
   onStarClicked(value: number): void {
     this.rating = value;
     this.setRate();
     this.onRateChange.emit(value);
+  }
+
+  private setRate(): void {
+    for (let i = 0; i < this.rates.length; i++) {
+      if (i < this.rating) this.rates[i] = '--yellow';
+      else this.rates[i] = '--green-b';
+    }
   }
 }

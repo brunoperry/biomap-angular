@@ -1,6 +1,27 @@
-<section id="home-container">
-    <app-homebar></app-homebar>
-    <div id="sites-list-container">
-        <app-site-card *ngFor="let site of sitesData" [siteData]="site"  routerLink="/detail/{{site.id}}"></app-site-card>
-    </div>
-</section>
+<app-homebar (homeBarEvent)="onHomeBarClick($event)" [isFilter]="isOverlay"></app-homebar>
+
+<div id="modes-container" [ngStyle]="{'transform':modeXPos}">
+    <app-list [listData]="sitesData">
+        <ng-template let-item="item">
+            <app-site-card [siteData]="item" routerLink="/detail/{{item.id}}"></app-site-card>
+        </ng-template>
+    </app-list>
+    <app-map></app-map>
+</div>
+
+<app-overlay [ngClass]="{'hidden' : !isOverlay}" (onOverlay)="onOverlayClick()" [title]="'Filter'">
+    <ng-template>
+        <app-list [listData]="filtersData" [title]="'Filter'">
+            <ng-template let-item="item">
+                <app-button-toggle (onChange)="onButtonToggleClick($event)"
+                    [text]="item" 
+                    [icon]="'type:' + item"
+                    [toggled]="true">
+                </app-button-toggle>
+            </ng-template>
+        </app-list>
+    </ng-template>
+</app-overlay>
+
+
+

@@ -1,24 +1,17 @@
 :host {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   max-width: 100%;
-}
-
-#home-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  grid-template-rows: 48px calc(100% - 48px);
+  grid-template-columns: 100%;
   overflow: hidden;
+  background-color: var(--green-d);
 }
 
-#sites-list-container {
-  display: block;
+#modes-container {
+  display: grid;
   flex: 1;
-  overflow-y: scroll;
-}
-
-:host app-site-card:last-child {
-  margin-bottom: 0;
-  border-bottom: none;
+  grid-template-columns: 50% 50%;
+  width: 200%;
+  transition: transform var(--speed) ease;
 }

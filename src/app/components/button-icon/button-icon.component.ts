@@ -12,7 +12,7 @@ export class ButtonIconComponent implements OnInit {
   @Input() image: string | null = null;
   @Input() width: number = 32;
   @Input() height: number = 32;
-  @Input() color: string | null = null;
+  @Input() color: string = '';
 
   element: SafeHtml = '';
 

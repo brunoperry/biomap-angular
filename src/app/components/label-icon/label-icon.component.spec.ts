@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiteTitleComponent } from './site-title.component';
+import { LabelIconComponent } from './label-icon.component';
 
-describe('SiteTitleComponent', () => {
-  let component: SiteTitleComponent;
-  let fixture: ComponentFixture<SiteTitleComponent>;
+describe('LabelIconComponent', () => {
+  let component: LabelIconComponent;
+  let fixture: ComponentFixture<LabelIconComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SiteTitleComponent ]
+      declarations: [ LabelIconComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SiteTitleComponent);
+    fixture = TestBed.createComponent(LabelIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

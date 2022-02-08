@@ -1,13 +1,14 @@
 :host {
   position: relative;
   display: flex;
-  gap: 0 5px;
+  align-items: center;
 }
 
-:host h2 {
+:host label {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  padding-left: 5px;
 }
 
 :host svg {

@@ -11,11 +11,11 @@
   --font-color: #2a2a2a;
 
   --background-color: var(--white);
-  --overlay-color: #000000e7;
+  --overlay-color: #000000c0;
 
   --padding: 10px;
 
-  --shadow: 0px 3px 10px 0 #2224222e;
+  --shadow: 0px 3px 10px 0 #b0c0b00c;
 
   --speed: 0.2s;
 }
@@ -56,13 +56,6 @@ main {
   overflow: hidden;
 }
 
-app-root {
-  flex: 1;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-}
-
 h2 {
   color: var(--green-a);
   text-transform: capitalize;
@@ -77,6 +70,23 @@ p {
 span {
   color: var(--green-c);
   font-size: 0.9em;
+}
+
+label {
+  color: var(--font-color);
+  text-transform: capitalize;
+}
+
+ul {
+  overflow-y: scroll;
+  flex: 1;
+}
+
+app-root {
+  flex: 1;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 }
 
 /* CLASSES */

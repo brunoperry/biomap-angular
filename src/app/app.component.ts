@@ -23,12 +23,8 @@ export class AppComponent {
           case 'search':
             bColor = 'var(--green-a)';
             break;
-          case 'add':
-          case 'add-review':
-            bColor = 'var(--green-d)';
-            break;
           default:
-            bColor = '--white';
+            bColor = 'var(--green-d)';
             break;
         }
         document.documentElement.style.setProperty(
