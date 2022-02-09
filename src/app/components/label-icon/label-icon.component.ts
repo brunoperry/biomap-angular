@@ -10,9 +10,10 @@ import { Util } from 'src/app/utils';
 export class LabelIconComponent implements OnInit {
   @Input() icon: string = '';
   @Input() text: string = 'no text';
-  @Input() size: string = '1em';
+  @Input() fontSize: string = '1em';
   @Input() fontColor: string = 'var(--font-color)';
   @Input() fontWeight: number = 500;
+  @Input() iconSize: number = 32;
 
   public icontemplate: SafeHtml = '';
 
@@ -20,7 +21,9 @@ export class LabelIconComponent implements OnInit {
 
   ngOnInit(): void {
     this.icontemplate = this.sanitizer.bypassSecurityTrustHtml(
-      Util.getIcon(this.icon)
+      Util.getIcon(this.icon, this.iconSize, this.iconSize)
     );
+
+    console.log(this.iconSize);
   }
 }

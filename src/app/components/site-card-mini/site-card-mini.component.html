@@ -1,0 +1,16 @@
+<img src="{{siteData.media[0]}}" alt="">
+
+<app-label-icon
+    [text]="siteData.title"
+    [icon]="'type:' + siteData.type"
+    [fontSize]="'1em'"
+    [fontColor]="'var(--green-a)'"
+    [fontWeight]="700"
+    [iconSize]="17">
+</app-label-icon>
+
+<app-rating
+    [rating]="siteData.rating"
+    [showLabel]="true"
+    [ngClass]="'disabled'">
+</app-rating>

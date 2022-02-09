@@ -7,29 +7,37 @@
 }
 :host h3 {
   color: var(--green-d);
+  padding-bottom: var(--padding);
 }
 
-.search-container {
+:host .search-container {
   padding: var(--padding);
   display: flex;
   align-items: center;
   border-radius: 4px;
   background-color: var(--white);
+  margin-bottom: var(--padding);
 }
-
-.types-container,
-.results-container {
-  margin-top: var(--padding);
-  padding: var(--padding) 0;
+:host .search-container,
+.types-container {
+  margin-bottom: calc(var(--padding) * 2);
 }
-.button-types-container {
+:host .button-types-container {
   display: flex;
   flex-wrap: wrap;
-  margin-top: var(--padding);
   gap: 5px;
 }
 
-.placeholder {
+:host .placeholder {
   color: var(--green-d);
   opacity: 0.5;
+}
+
+:host .results-container {
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+}
+:host .search-results-container {
+  flex: 1;
 }

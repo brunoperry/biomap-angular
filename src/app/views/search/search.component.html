@@ -1,6 +1,6 @@
 <div class="search-container">
-    <app-button-icon [iconName]="'search'" [width]="25" [height]="25" [stroke]="'var(--green-b)'"></app-button-icon>
-    <input type="text" placeholder="Search" (input)="onSearchInputChange($event)">
+    <app-button-icon [iconName]="'search'" [width]="25" [height]="25" [stroke]="'var(--green-b)'" (click)="onSearchInputChange(searchinput)"></app-button-icon>
+    <input #searchinput type="text" placeholder="Search" (input)="onSearchInputChange($event.target)">
 </div>
 
 <div class="types-container">
@@ -39,5 +39,8 @@
 
 <div class="results-container">
     <h3>Results</h3>
-    <div class="placeholder" [ngStyle]="{'display':results.length > 0?'none':'initial'}">No results</div>
+    <div class="placeholder" [ngStyle]="{'display':searchResults.length > 0?'none':'initial'}">No results</div>
+    <div class="search-results-container">
+        <app-site-card-mini *ngFor="let site of searchResults" [siteData]="site" (click)="onMiniCardClick(site.id)"></app-site-card-mini>
+    </div>
 </div>

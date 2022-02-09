@@ -39,6 +39,7 @@ import { ButtonToggleComponent } from './components/button-toggle/button-toggle.
 import { LabelIconComponent } from './components/label-icon/label-icon.component';
 import { SvgComponent } from './components/svg/svg.component';
 import { ButtonTypeComponent } from './components/button-type/button-type.component';
+import { SiteCardMiniComponent } from './components/site-card-mini/site-card-mini.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ButtonTypeComponent } from './components/button-type/button-type.compon
     LabelIconComponent,
     SvgComponent,
     ButtonTypeComponent,
+    SiteCardMiniComponent,
   ],
   imports: [
     BrowserModule,

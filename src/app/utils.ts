@@ -42,7 +42,7 @@ export class Util {
     if (!ICONS_POOL) return 'null';
 
     const hasType = name.split(':');
-    if (hasType.length > 1) return Util.getTypeIcon(hasType[1]);
+    if (hasType.length > 1) return Util.getTypeIcon(hasType[1], width, height);
 
     let icon: any = Array.from(ICONS_POOL).find(
       (ico: any) => ico.className.baseVal === name
