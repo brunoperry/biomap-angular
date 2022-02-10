@@ -2,7 +2,7 @@
   --green-a: #485822;
   --green-b: #667e2f;
   --green-c: #a4c458;
-  --green-d: #f3f4ef;
+  --green-d: #e5e6e3;
 
   --blue: #0081d3;
   --white: #ffffff;
@@ -27,6 +27,7 @@
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
   font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
 }
@@ -104,6 +105,9 @@ svg {
   stroke-width: 4;
   stroke: inherit;
 }
+img {
+  max-width: 100%;
+}
 
 app-root {
   flex: 1;
@@ -113,5 +117,8 @@ app-root {
 }
 
 /* CLASSES */
+.void {
+  grid-area: void;
+}
 
 /* ANIMATIONS */

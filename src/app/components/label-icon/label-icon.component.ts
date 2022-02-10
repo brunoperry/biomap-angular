@@ -13,6 +13,7 @@ export class LabelIconComponent implements OnInit {
   @Input() fontSize: string = '1em';
   @Input() fontColor: string = 'var(--font-color)';
   @Input() fontWeight: number = 500;
+  @Input() iconFill: string = 'var(--pink)';
   @Input() iconSize: number = 32;
 
   public icontemplate: SafeHtml = '';
@@ -23,7 +24,5 @@ export class LabelIconComponent implements OnInit {
     this.icontemplate = this.sanitizer.bypassSecurityTrustHtml(
       Util.getIcon(this.icon, this.iconSize, this.iconSize)
     );
-
-    console.log(this.iconSize);
   }
 }

@@ -1,4 +1,4 @@
 <div class="button-type-container" [ngStyle]="{'backgroundColor': isToggled?toggleColor:baseColor}" (click)="onClick()">
     <div [innerHTML]="icontemplate" stroke="var(--white)"></div>
-    <label [ngStyle]="{'color': isToggled?baseColor:toggleColor}">{{text}}</label>
+    <label [ngStyle]="{'color': isToggled?fontToggleColor:fontBaseColor}">{{text}}</label>
 </div>

@@ -1,0 +1,15 @@
+<div class="button-background" 
+    [ngStyle]="{
+        'backgroundColor':backgroundColor,
+        'transform':rotation
+    }">
+</div>
+<div class="content-container">
+    <app-svg
+        [iconName]="icon"
+        [width]="iconSize"
+        [height]="iconSize"
+        [ngStyle]="{'stroke': iconStroke, 'fill' : iconFill}">
+    </app-svg>
+    <label>{{text}}</label>
+</div>

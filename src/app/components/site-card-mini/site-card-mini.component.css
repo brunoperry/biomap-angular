@@ -12,6 +12,7 @@
   border-bottom-right-radius: 4px;
   grid-gap: 0 5px;
   cursor: pointer;
+  margin-bottom: var(--padding);
 }
 :host:active {
   transform: scale(0.98);

@@ -1,0 +1,22 @@
+:host {
+  position: relative;
+  display: flex;
+  min-width: 32px;
+  min-height: 32px;
+  justify-content: center;
+}
+:host:active {
+  transform: scale(0.95);
+}
+
+:host .button-background {
+  flex: 1;
+  padding: var(--padding);
+  border-radius: 4px;
+}
+
+:host .content-container {
+  flex: 1;
+  position: absolute;
+  transform: translateY(50%);
+}

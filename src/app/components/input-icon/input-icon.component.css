@@ -1,0 +1,8 @@
+:host {
+  padding: var(--padding);
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  background-color: var(--white);
+  margin-bottom: var(--padding);
+}

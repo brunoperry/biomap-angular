@@ -3,7 +3,7 @@
 <div id="modes-container" [ngStyle]="{'transform':modeXPos}">
     <app-list [listData]="sitesData">
         <ng-template let-item="item">
-            <app-site-card [siteData]="item" routerLink="/detail/{{item.id}}"></app-site-card>
+            <app-site-card [siteData]="item" [routerLink]="['/detail', item.id]"></app-site-card>
         </ng-template>
     </app-list>
     <app-map></app-map>

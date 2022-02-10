@@ -1,0 +1,98 @@
+:host {
+  flex: 1;
+  overflow-y: scroll;
+  padding: var(--padding);
+  padding-bottom: 0;
+  background-color: var(--white);
+}
+
+:host app-gallery {
+  margin: 0 calc(-1 * var(--padding));
+  margin-bottom: calc(var(--padding) * 2);
+  width: calc(100% + calc(var(--padding) * 2));
+}
+
+:host .header-container {
+  display: grid;
+  grid-template-areas:
+    "labelicon labelicon"
+    "rating share";
+  align-items: center;
+}
+:host .header-container app-label-icon {
+  grid-area: labelicon;
+  overflow: auto;
+}
+:host .header-container app-rating {
+  grid-area: rating;
+}
+:host .header-container .share-button {
+  grid-area: share;
+  justify-self: flex-end;
+}
+
+:host .reviews-container {
+  margin: 0 calc(-1 * var(--padding));
+}
+
+:host .location-container {
+  position: relative;
+}
+:host .location-container app-button-action {
+  position: absolute;
+  top: calc(var(--padding) * 5);
+  right: var(--padding);
+}
+
+:host .contacts-container {
+  display: flex;
+  margin-bottom: calc(var(--padding) * 2);
+  gap: var(--padding);
+}
+
+:host .reviews-container {
+  background-color: var(--green-d);
+  padding: var(--padding);
+}
+:host .review-title {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: var(--padding);
+}
+:host .review-title app-button-icon {
+  margin-left: auto;
+  margin-bottom: var(--padding);
+}
+:host .review-title span {
+  margin-bottom: var(--padding);
+}
+
+:host app-label-icon,
+:host h3 {
+  margin-bottom: var(--padding);
+}
+
+:host .section {
+  margin-bottom: calc(var(--padding) * 2);
+}
+
+:host .review-card-container {
+  max-height: 500px;
+  overflow-y: scroll;
+  transition: max-height var(--speed) ease;
+}
+:host .review-card-container app-list {
+  opacity: 1;
+  transition: opacity var(--speed) ease;
+  transition-delay: var(--speed);
+}
+
+:host .review-card-container.colapsed {
+  max-height: 0;
+  overflow: hidden;
+}
+:host .review-card-container.colapsed app-list {
+  visibility: hidden;
+  opacity: 0;
+}

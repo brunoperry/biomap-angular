@@ -1,0 +1,30 @@
+:host {
+  display: grid;
+  grid-template-areas:
+    "avatar rating"
+    "text text"
+    "date void";
+  padding: var(--padding) 0;
+  margin-bottom: var(--padding);
+}
+
+:host app-label-icon {
+  grid-area: avatar;
+  margin-bottom: var(--padding);
+}
+
+:host app-rating {
+  grid-area: rating;
+  justify-self: flex-end;
+  margin-bottom: var(--padding);
+}
+
+:host p {
+  grid-area: text;
+  word-break: break-all;
+  margin-bottom: var(--padding);
+}
+
+:host app-date {
+  grid-area: date;
+}

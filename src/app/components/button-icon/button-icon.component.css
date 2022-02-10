@@ -3,4 +3,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+:host:active {
+  transform: scale(0.9);
+  outline: none;
 }

@@ -24,8 +24,4 @@ export class SearchComponent implements OnInit {
       this.searchResults = [];
     }
   }
-
-  onMiniCardClick(id: string): void {
-    console.log(id);
-  }
 }

@@ -1,0 +1,15 @@
+<app-label-icon
+    [text]="reviewData.username"
+    [fontSize]="'1em'"
+    [fontColor]="'var(--green-a)'"
+    [fontWeight]="500"
+    [icon]="'avatar'"
+    [iconFill]="'var(--green-a)'"
+    [iconSize]="28"
+    [routerLink]="'/profile'">
+</app-label-icon>
+<app-rating [rating]="reviewData.rating"></app-rating>
+
+<p>{{reviewData.text}}</p>
+<app-date [date]="reviewData.date"></app-date>
+<div class="void"></div>

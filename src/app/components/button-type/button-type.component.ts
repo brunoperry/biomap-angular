@@ -10,6 +10,8 @@ import { Util } from 'src/app/utils';
 export class ButtonTypeComponent implements OnInit {
   @Input() type: string = '';
   @Input() text: string = '';
+  @Input() fontBaseColor: string = 'var(--white)';
+  @Input() fontToggleColor: string = 'var(--green-a)';
   @Input() baseColor: string = 'var(--pink)';
   @Input() toggleColor: string = 'var(--pink)';
 

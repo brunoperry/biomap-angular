@@ -25,3 +25,7 @@
 :host * {
   margin-bottom: var(--padding);
 }
+
+:host .contacts-container {
+  display: flex;
+}

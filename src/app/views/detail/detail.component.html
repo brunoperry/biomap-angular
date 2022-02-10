@@ -1,1 +1,118 @@
-<p>detail works!</p>
+<div class="header-container section">
+
+    <app-label-icon
+        [text]="siteData.title"
+        [fontSize]="'1.5em'"
+        [fontColor]="'var(--green-a)'"
+        [fontWeight]="700"
+        [icon]="'type:' + siteData.type"
+        [iconSize]="28">
+    </app-label-icon>
+
+    <app-rating [rating]="siteData.rating" [showLabel]="true"></app-rating>
+
+    <app-button-icon class="share-button"
+        [iconName]="'share'"
+        [width]="28"
+        [height]="28"
+        [fill]="'var(--green-a)'"
+        [stroke]="'var(--green-a)'"
+        (click)="onShareClick($event)">
+    </app-button-icon>
+</div>
+
+<app-gallery class="section" [media]="siteData.media"></app-gallery>
+
+<p class="section">{{siteData.description}}</p>
+
+<div class="location-container section">
+    <h3>Location</h3>
+    <img src="{{siteData.location.img}}" alt="">
+    <app-button-action
+        [icon]="'goto_map'"
+        [iconFill]="'var(--white)'"
+        [iconStroke]="'var(--white)'"
+        [rotation]="'rotate(45deg)'">
+    </app-button-action>
+<span>{{siteData.contacts.address}}</span>
+</div>
+
+<div class="section">
+    <h3>contacts</h3>
+    <div class="contacts-container">
+        <span *ngIf="!hasContacts">No contacts</span>
+
+        <app-button-icon 
+            *ngIf="siteData.contacts.email"
+            [iconName]="'email'" 
+            [width]="32" 
+            [height]="32" 
+            [stroke]="'var(--green-a)'">
+        </app-button-icon>
+
+        <app-button-icon 
+            *ngIf="siteData.contacts.phone"
+            [iconName]="'phone'" 
+            [width]="32" 
+            [height]="32" 
+            [fill]="'var(--green-a)'">
+        </app-button-icon>
+
+        <app-button-icon 
+            *ngIf="siteData.contacts.instagram"
+            [iconName]="'instagram'" 
+            [width]="32" 
+            [height]="32" 
+            [fill]="'var(--green-a)'">
+        </app-button-icon>
+
+        <app-button-icon 
+            *ngIf="siteData.contacts.facebook"
+            [iconName]="'facebook'" 
+            [width]="32" 
+            [height]="32" 
+            [fill]="'var(--green-a)'">
+        </app-button-icon>
+
+        <app-button-icon 
+            *ngIf="siteData.contacts.twitter"
+            [iconName]="'twitter'" 
+            [width]="32" 
+            [height]="32" 
+            [fill]="'var(--green-a)'">
+        </app-button-icon>
+        
+    </div>
+</div>
+
+<div class="reviews-container">
+
+    <div class="review-title">
+        <h3>reviews </h3><span> ({{reviewsData.length}})</span>
+
+        <app-button-icon
+            [iconName]="'colapse'"
+            [width]="16"
+            [height]="10"
+            [stroke]="'var(--green-a)'"
+            (click)="isReviewsColapse = !isReviewsColapse"
+            [ngStyle]="{'transform': isReviewsColapse?'rotate(0)':'rotate(180deg)'}">
+        </app-button-icon>
+    </div>
+
+    <div class="review-card-container" [ngClass]="{'colapsed':isReviewsColapse}">
+        <app-list [listData]="reviewsData">
+            <ng-template let-item="item">
+                <app-review-card [reviewData]="item"></app-review-card>
+            </ng-template>
+        </app-list>
+    </div>
+
+    <app-input-icon
+        [icon]="'add'"
+        [iconStroke]="'var(--green-a)'"
+        [placeholder]="'Write a review'"
+        [routerLink]="['/add-review', siteData.id]">
+    </app-input-icon>
+</div>
+

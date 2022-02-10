@@ -1,0 +1,10 @@
+<app-button-icon
+    [iconName]="icon"
+    [width]="25"
+    [height]="25"
+    [fill]="iconFill"
+    [stroke]="iconStroke"
+    (click)="onInput(searchinput)">
+</app-button-icon>
+
+<input #searchinput type="text" placeholder="{{placeholder}}" (input)="onInput($event.target)">

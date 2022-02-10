@@ -1,7 +1,9 @@
-<div class="search-container">
-    <app-button-icon [iconName]="'search'" [width]="25" [height]="25" [stroke]="'var(--green-b)'" (click)="onSearchInputChange(searchinput)"></app-button-icon>
-    <input #searchinput type="text" placeholder="Search" (input)="onSearchInputChange($event.target)">
-</div>
+<app-input-icon
+    [icon]="'search'"
+    [iconStroke]="'var(--green-b)'"
+    [placeholder]="'Search'"
+    (onInputEvent)="onSearchInputChange($event)">
+</app-input-icon>
 
 <div class="types-container">
     <h3>Types</h3>
@@ -10,28 +12,28 @@
         <app-button-type
             [type]="'restaurant'"
             [text]="'restaurant'"
-            [baseColor]="'var(--green-a)'"
+            [baseColor]="'transparent'"
             [toggleColor]="'var(--white)'">
         </app-button-type>
 
         <app-button-type
             [type]="'farm'"
             [text]="'farm'"
-            [baseColor]="'var(--green-a)'"
+            [baseColor]="'transparent'"
             [toggleColor]="'var(--white)'">
         </app-button-type>
         
         <app-button-type
             [type]="'market'"
             [text]="'market'"
-            [baseColor]="'var(--green-a)'"
+            [baseColor]="'transparent'"
             [toggleColor]="'var(--white)'">
         </app-button-type>
         
         <app-button-type
             [type]="'other'"
             [text]="'other'"
-            [baseColor]="'var(--green-a)'"
+            [baseColor]="'transparent'"
             [toggleColor]="'var(--white)'">
         </app-button-type>
     </div>
@@ -41,6 +43,6 @@
     <h3>Results</h3>
     <div class="placeholder" [ngStyle]="{'display':searchResults.length > 0?'none':'initial'}">No results</div>
     <div class="search-results-container">
-        <app-site-card-mini *ngFor="let site of searchResults" [siteData]="site" (click)="onMiniCardClick(site.id)"></app-site-card-mini>
+        <app-site-card-mini *ngFor="let item of searchResults" [siteData]="item" [routerLink]="['/detail', item.id]"></app-site-card-mini>
     </div>
 </div>

@@ -40,6 +40,11 @@ import { LabelIconComponent } from './components/label-icon/label-icon.component
 import { SvgComponent } from './components/svg/svg.component';
 import { ButtonTypeComponent } from './components/button-type/button-type.component';
 import { SiteCardMiniComponent } from './components/site-card-mini/site-card-mini.component';
+import { NotFoundComponent } from './views/not-found/not-found.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
+import { DateComponent } from './components/date/date.component';
+import { InputIconComponent } from './components/input-icon/input-icon.component';
+import { ButtonActionComponent } from './components/button-action/button-action.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +72,11 @@ import { SiteCardMiniComponent } from './components/site-card-mini/site-card-min
     SvgComponent,
     ButtonTypeComponent,
     SiteCardMiniComponent,
+    NotFoundComponent,
+    ReviewCardComponent,
+    DateComponent,
+    InputIconComponent,
+    ButtonActionComponent,
   ],
   imports: [
     BrowserModule,
