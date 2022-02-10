@@ -1,0 +1,23 @@
+:host {
+  flex: 1;
+  padding: var(--padding);
+}
+
+:host .section {
+  margin: calc(var(--padding) * 2) 0;
+}
+:host h3 {
+  margin-bottom: var(--padding);
+}
+
+:host .review-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+:host .review-container app-button-action {
+  margin-top: var(--padding);
+  width: 64px;
+  align-self: flex-end;
+}

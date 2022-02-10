@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './views/about/about.component';
-import { AddReviewComponent } from './views/add-review/add-review.component';
 import { AddComponent } from './views/add/add.component';
 import { DetailComponent } from './views/detail/detail.component';
 import { EditComponent } from './views/edit/edit.component';
@@ -10,6 +9,7 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { SearchComponent } from './views/search/search.component';
 import { TosComponent } from './views/tos/tos.component';
+import { WriteReviewComponent } from './views/write-review/write-review.component';
 
 const routes: Routes = [
   {
@@ -48,14 +48,14 @@ const routes: Routes = [
     data: { animation: 'about' },
   },
   {
-    path: 'add-review/:id',
-    component: AddReviewComponent,
-    data: { animation: 'add-review' },
-  },
-  {
     path: 'detail/:id',
     component: DetailComponent,
     data: { animation: 'detail' },
+  },
+  {
+    path: 'write-review/:siteid',
+    component: WriteReviewComponent,
+    data: { animation: 'write-review' },
   },
   {
     path: 'tos',

@@ -18,5 +18,5 @@
 :host .content-container {
   flex: 1;
   position: absolute;
-  transform: translateY(50%);
+  /* transform: translateY(50%); */
 }

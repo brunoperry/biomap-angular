@@ -9,7 +9,9 @@
         [iconName]="icon"
         [width]="iconSize"
         [height]="iconSize"
-        [ngStyle]="{'stroke': iconStroke, 'fill' : iconFill}">
+        [ngStyle]="{
+            'stroke': iconStroke,
+            'fill' : iconFill}">
     </app-svg>
     <label>{{text}}</label>
 </div>

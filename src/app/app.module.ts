@@ -23,7 +23,6 @@ import { DetailComponent } from './views/detail/detail.component';
 import { AboutComponent } from './views/about/about.component';
 import { TosComponent } from './views/tos/tos.component';
 import { EditComponent } from './views/edit/edit.component';
-import { AddReviewComponent } from './views/add-review/add-review.component';
 
 //components
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -45,6 +44,7 @@ import { ReviewCardComponent } from './components/review-card/review-card.compon
 import { DateComponent } from './components/date/date.component';
 import { InputIconComponent } from './components/input-icon/input-icon.component';
 import { ButtonActionComponent } from './components/button-action/button-action.component';
+import { WriteReviewComponent } from './views/write-review/write-review.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,6 @@ import { ButtonActionComponent } from './components/button-action/button-action.
     SearchComponent,
     AddComponent,
     HomebarComponent,
-    AddReviewComponent,
     DetailComponent,
     AboutComponent,
     TosComponent,
@@ -77,6 +76,7 @@ import { ButtonActionComponent } from './components/button-action/button-action.
     DateComponent,
     InputIconComponent,
     ButtonActionComponent,
+    WriteReviewComponent,
   ],
   imports: [
     BrowserModule,

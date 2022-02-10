@@ -12,7 +12,7 @@ export class ButtonActionComponent implements OnInit {
   @Input() iconFill: string = 'var(--pink)';
   @Input() iconStroke: string = 'var(--pink)';
   @Input() backgroundColor: string = 'var(--blue)';
-  @Input() rotation: string = 'rotate(0deg)';
+  @Input() rotation: string = '';
 
   constructor() {}
 

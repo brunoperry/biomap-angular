@@ -59,9 +59,12 @@ main {
   overflow: hidden;
 }
 
-h2,
-h3 {
+h2 {
   color: var(--green-a);
+  text-transform: capitalize;
+}
+h3 {
+  color: var(--green-b);
   text-transform: capitalize;
 }
 
@@ -107,6 +110,15 @@ svg {
 }
 img {
   max-width: 100%;
+}
+
+textarea {
+  height: 180px;
+  border: none;
+  border-radius: 4px;
+  padding: var(--padding);
+  font-size: 1.1em;
+  resize: none;
 }
 
 app-root {

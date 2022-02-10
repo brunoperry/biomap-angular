@@ -1,0 +1,18 @@
+<h2>Write a review</h2>
+<div class="rating-container section">
+    <h3>Rating</h3>
+    <app-rating class="enabled"
+    [rating]="0"
+    [starSize]="28"
+    [enabled]="true"
+    (onRateChange)="onRateChange($event)"></app-rating>
+</div>
+<div class="review-container section">
+    <h3>Review</h3>
+    <textarea placeholder="Max. 200 characters"></textarea>
+    <app-button-action
+        [icon]="'check'"
+        [iconSize]="32"
+        [iconStroke]="'var(--white)'">
+    </app-button-action>
+</div>
