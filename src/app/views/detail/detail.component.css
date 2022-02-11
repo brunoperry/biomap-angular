@@ -47,7 +47,7 @@
 :host .contacts-container {
   display: flex;
   margin-bottom: calc(var(--padding) * 2);
-  gap: var(--padding);
+  gap: 15px;
 }
 
 :host .reviews-container {

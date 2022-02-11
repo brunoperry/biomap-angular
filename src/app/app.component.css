@@ -1,17 +1,1 @@
-#button-add {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background-color: var(--green-b);
-  position: absolute;
-  bottom: var(--padding);
-  right: var(--padding);
 
-  box-shadow: var(--shadow);
-  -webkit-box-shadow: var(--shadow);
-  -moz-box-shadow: var(--shadow);
-}
-
-#button-add.hide {
-  display: none;
-}

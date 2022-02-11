@@ -8,7 +8,7 @@ import { SiteService } from 'src/services/site.service';
   styleUrls: ['./write-review.component.css'],
 })
 export class WriteReviewComponent implements OnInit {
-  private siteID: string = '';
+  public siteID: string = '';
   constructor(
     private siteService: SiteService,
     private route: ActivatedRoute

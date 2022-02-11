@@ -4,7 +4,7 @@
 
 :host .button-type-container {
   display: flex;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   padding: var(--padding);
   align-items: center;
 }

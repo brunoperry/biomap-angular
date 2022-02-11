@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Util } from 'src/app/utils';
 import { SiteService } from 'src/services/site.service';
 
 @Component({
@@ -32,7 +31,6 @@ export class HomeComponent implements OnInit {
       case 'filter':
         this.isOverlay = true;
         break;
-
       default:
         break;
     }

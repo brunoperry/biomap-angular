@@ -2,7 +2,8 @@
   padding: var(--padding);
   display: flex;
   align-items: center;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   background-color: var(--white);
   margin-bottom: var(--padding);
+  min-height: calc(45px - calc(var(--padding) * 2));
 }

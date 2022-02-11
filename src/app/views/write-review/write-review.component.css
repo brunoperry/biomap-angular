@@ -6,8 +6,17 @@
 :host .section {
   margin: calc(var(--padding) * 2) 0;
 }
+:host h2 {
+  color: var(--green-b);
+}
 :host h3 {
   margin-bottom: var(--padding);
+}
+
+:host .header-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0;
 }
 
 :host .review-container {

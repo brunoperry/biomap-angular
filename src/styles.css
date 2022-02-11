@@ -12,12 +12,15 @@
   --pink: #ff00ff;
   --font-color: #2a2a2a;
 
+  --stroke-width: 4px;
+  --border-radius: 7px;
+
   --background-color: var(--white);
   --overlay-color: #000000c0;
 
   --padding: 10px;
 
-  --shadow: 0px 3px 10px 0 #b0c0b00c;
+  --shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.329);
 
   --speed: 0.2s;
 }
@@ -105,8 +108,9 @@ svg {
   clip-rule: evenodd;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 4;
+  stroke-width: var(--stroke-width);
   stroke: inherit;
+  overflow: visible;
 }
 img {
   max-width: 100%;
@@ -115,7 +119,7 @@ img {
 textarea {
   height: 180px;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   padding: var(--padding);
   font-size: 1.1em;
   resize: none;

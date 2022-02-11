@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class InputIconComponent implements OnInit {
   @Input() icon: string = '';
   @Input() iconFill: string = '';
+  @Input() iconSize: number = 25;
   @Input() iconStroke: string = '';
   @Input() placeholder: string = '';
 
