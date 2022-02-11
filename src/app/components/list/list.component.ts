@@ -13,11 +13,14 @@ import {
 })
 export class ListComponent implements OnInit {
   @Input() listData: any = {};
+  @Input() placeholder: string = '';
   @Input() title: string | null = null;
   @ContentChild(TemplateRef) itemTemplate: TemplateRef<any> | null = null;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // console.log(this.listData);
+  }
 
   onCloseClick(): void {
     console.log('close overlay', this.itemTemplate);

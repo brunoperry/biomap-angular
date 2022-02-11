@@ -1,11 +1,21 @@
 <div id="navbar-container" [ngClass]="{'hidden':!isVisible}">
     
-    <app-button-icon 
+    <app-button-icon
+      [ngStyle]="{'display' : !isBack?'flex':'none'}" 
       [iconName]="'home'" 
       [width]="32" 
       [height]="32" 
       [fill]="currentView=='home'?'var(--yellow)':mainFill" 
       routerLink="/home" >
+    </app-button-icon>
+    
+    <app-button-icon
+      [ngStyle]="{'display' : isBack?'flex':'none'}" 
+      [iconName]="'back'" 
+      [width]="32" 
+      [height]="24" 
+      [stroke]="mainFill" 
+      (click)="onBackClick()" >
     </app-button-icon>
 
     <app-button-icon

@@ -38,13 +38,19 @@ export class SiteService {
     return this.dummyData.find((site) => site.id === id);
     // return this.sitesData.find((site) => site.id === id);
   }
-  getSitesByID(ids: string[]): SiteModel[] {
-    const out: SiteModel[] = [];
+  getSitesByID(ids: string[]): SiteModel[] | any[] {
+    const out: any[] = [];
     ids.forEach((id) => {
-      let site = this.sitesData.find((s) => s.id === id);
+      let site = this.dummyData.find((s) => s.id === id);
       if (site) out.push(site);
     });
     return out;
+    // const out: SiteModel[] = [];
+    // ids.forEach((id) => {
+    //   let site = this.sitesData.find((s) => s.id === id);
+    //   if (site) out.push(site);
+    // });
+    // return out;
   }
 
   async getSearchedSite(searchValue: string): Promise<any> {
@@ -194,11 +200,13 @@ export class SiteService {
         id: 'a',
         name: 'perry',
         avatar: '',
+        sites: ['wfwef4iweur', 'wfwefqweqwe4iweur'],
       },
       {
         id: 'b',
-        name: 'angels sex',
+        name: 'looking good',
         avatar: '',
+        sites: ['893748736hajkdh'],
       },
     ];
   }
@@ -219,6 +227,7 @@ export class SiteService {
         out.push({
           avatar: user.avatar,
           username: user.name,
+          userID: user.id,
           rating: rev.rating,
           text: rev.text,
           date: rev.date,

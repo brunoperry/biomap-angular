@@ -1,5 +1,14 @@
-    <ul class="list-container">
-        <li *ngFor="let item of listData">
-            <template [ngTemplateOutletContext]='{item: item}' [ngTemplateOutlet]="itemTemplate"></template>
-        </li>
-    </ul>
+    <ng-container *ngIf="listData.length > 0; then list; else noitems">
+    </ng-container>
+
+    <ng-template #list>
+        <ul class="list-container">
+            <li *ngFor="let item of listData">
+                <template [ngTemplateOutletContext]='{item: item}' [ngTemplateOutlet]="itemTemplate"></template>
+            </li>
+        </ul>
+    </ng-template>
+    <ng-template #noitems>
+        <span>{{placeholder}}</span>
+    </ng-template>
+

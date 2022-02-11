@@ -33,7 +33,7 @@ const routes: Routes = [
     data: { animation: 'add' },
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     component: ProfileComponent,
     data: { animation: 'profile' },
   },

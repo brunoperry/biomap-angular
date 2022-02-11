@@ -11,6 +11,8 @@ export class SvgComponent implements OnInit {
   @Input() iconName: string = '';
   @Input() width: number = 32;
   @Input() height: number = 32;
+  @Input() iconFill: string = 'var--pink';
+  @Input() iconStroke: string = 'var--pink';
 
   public element: SafeHtml = '';
 

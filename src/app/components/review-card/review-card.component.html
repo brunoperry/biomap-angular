@@ -6,7 +6,7 @@
     [icon]="'avatar'"
     [iconFill]="'var(--green-a)'"
     [iconSize]="28"
-    [routerLink]="'/profile'">
+    [routerLink]="'/profile/' + reviewData.userID">
 </app-label-icon>
 <app-rating [rating]="reviewData.rating"></app-rating>
 

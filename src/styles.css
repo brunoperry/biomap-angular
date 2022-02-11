@@ -69,6 +69,7 @@ h2 {
 h3 {
   color: var(--green-b);
   text-transform: capitalize;
+  margin-bottom: 5px;
 }
 
 p {

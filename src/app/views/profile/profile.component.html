@@ -1,1 +1,35 @@
-<p>profile works!</p>
+<div class="header-container section">
+    <h2>Profile</h2>
+    <app-button-icon [iconName]="'cross'"
+        [width]="20"
+        [height]="20"
+        [stroke]="'var(--green-a)'">
+    </app-button-icon>
+</div>
+<div class="avatar-container section">
+    <app-svg
+        [iconName]="'avatar'"
+        [width]="64"
+        [height]="64"
+        [iconFill]="'var(--green-b)'">
+    </app-svg>
+</div>
+<div class="userinfo-container section">
+    <h3>Username</h3>
+    <p>{{profileData.name}}</p>
+</div>
+
+<div class="places-container section">
+    <h3>Sites added</h3>
+    <app-list
+        [listData]="profileData.sitesAdded"
+        [placeholder]="'No sites added'">
+        <ng-template let-item="item">
+            <app-site-card-mini
+                [siteData]="item"
+                [routerLink]="['/detail', item.id]"
+                [ngStyle]="{'backgroundColor': 'var(--white)'}">
+            </app-site-card-mini>
+        </ng-template>
+    </app-list>
+</div>

@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SiteCardMiniComponent implements OnInit {
   @Input() siteData: any = {};
+  @Input() background: string = 'var(--green-d)';
   constructor() {}
 
   ngOnInit(): void {

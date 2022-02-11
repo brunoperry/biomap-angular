@@ -65,11 +65,10 @@
   margin-bottom: var(--padding);
 }
 :host .review-title span {
-  margin-bottom: var(--padding);
+  margin-bottom: 5px;
 }
 
-:host app-label-icon,
-:host h3 {
+:host app-label-icon {
   margin-bottom: var(--padding);
 }
 
