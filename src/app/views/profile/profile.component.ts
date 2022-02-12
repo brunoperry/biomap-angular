@@ -21,17 +21,6 @@ export class ProfileComponent implements OnInit {
       const user = this.siteService.getUserByID(params.get('id') || '');
       this.profileData.sitesAdded = this.siteService.getSitesByID(user.sites);
       this.profileData = Object.assign(user, this.profileData);
-
-      console.log(this.profileData);
-
-      // console.log(params.get(this.profileData));
-
-      // this.reviewsData = this.siteService.getSiteReviews(this.siteData.id);
-
-      // const c = this.siteData.contacts;
-      // if (c.email || c.phone || c.instagram || c.facebook || c.twitter)
-      //   this.hasContacts = true;
-      // else this.hasContacts = false;
     });
   }
 }

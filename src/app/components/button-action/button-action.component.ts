@@ -19,6 +19,6 @@ export class ButtonActionComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.icon);
+    // console.log(this.icon);
   }
 }

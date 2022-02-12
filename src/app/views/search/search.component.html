@@ -43,6 +43,18 @@
     <h3>Results</h3>
     <div class="placeholder" [ngStyle]="{'display':searchResults.length > 0?'none':'initial'}">No results</div>
     <div class="search-results-container">
-        <app-site-card-mini *ngFor="let item of searchResults" [siteData]="item" [routerLink]="['/detail', item.id]"></app-site-card-mini>
+
+
+        <app-list [listData]="searchResults">
+            <ng-template let-item="item">
+                <app-site-card-mini
+                    [siteData]="item"
+                    [routerLink]="['/detail', item.id]">
+                </app-site-card-mini>
+            </ng-template>
+        </app-list>
+
+
+        <!-- <app-site-card-mini *ngFor="let item of searchResults" [siteData]="item" [routerLink]="['/detail', item.id]"></app-site-card-mini> -->
     </div>
 </div>

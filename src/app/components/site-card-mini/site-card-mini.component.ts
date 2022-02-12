@@ -11,6 +11,6 @@ export class SiteCardMiniComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.siteData);
+    // console.log(this.siteData);
   }
 }

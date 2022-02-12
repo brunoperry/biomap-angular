@@ -36,7 +36,6 @@ export class NavbarComponent implements OnInit, OnChanges {
         ? (this.isBack = false)
         : (this.isBack = true);
     }
-    console.log(this.isBack, this.previousRoute.getPreviousUrl());
 
     if (this.isVisible) {
       this.mainFill =
